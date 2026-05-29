@@ -328,6 +328,14 @@ Pristine "just listening" by default; deep and fascinating on demand.
   tradition), and **the ancient philosophers** (Socratic examination). Humor earned through erudition,
   never irreverence toward the subject; always hard-labeled and kept separate from the text and the
   verified facts.
+- **"Enriched edition" (deepest stretch)** — beyond the parallel track, an *opt-in alternate edition*
+  of the audiobook with commentary **woven into the audio itself**: at respectful breaks (section or
+  chapter boundaries, never mid-argument) the narration pauses — a soft chime, a distinct commentary
+  voice — for a **succinct, on-topic** "let me pause here and chat about this," then the reading
+  resumes. Podcast-host warmth, audiobook discipline. The **clean edition stays primary and
+  untouched**; the enriched one is a clearly-marked, sonically-distinct alternate (its own generated
+  MP3 set, chosen like a voice in the player via an `editions` field in the manifest). Same
+  grounding / accuracy / respect bar; bounded aside length.
 
 **Non-negotiable bar:**
 - **Optional & non-distracting** — off/collapsed by default; the core experience stays pristine.
@@ -355,6 +363,10 @@ lean: regenerate-from-cited-data and link-out; borrow only with attribution + a 
 **Still static** — all enrichment generated offline into static JSON/HTML, served from Pages, **no
 backend, no runtime LLM in the browser**. Sets `"has_guide": true`; the player reveals the companion
 when present.
+
+*Deepest stretch of all: seed the commentary from a real, recorded Blaine × Claude interview about
+the text — so the persona is rooted in genuine dialogue, not synthesized from nothing. A first pass,
+then we riff.*
 
 ## 15. Deployment
 
