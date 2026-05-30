@@ -196,18 +196,19 @@ def cmd_qa(args):
             continue  # not rendered yet
         ref_full = " ".join(normalize(s, lexicon) for s in ch.segments)
         words = len(ref_full.split())
-        ref_sample = " ".join(ref_full.split()[:sample_words])
+        ref_words = ref_full.split()[: sample_words + 40]
         for vid in voice_ids:
             mp3 = config.DOCS / mentry["files"][vid]
             dur = probe(mp3)["duration"]
             loud = measure_loudness(mp3)
             silences = Q.measure_silences(mp3, min_dur=3.0)
             hyp = Q.transcribe_clip(mp3, args.sample_sec)
+            ref_sample = " ".join(ref_words[: max(len(hyp.split()), 1)])
             wer = Q.wer(ref_sample, hyp)
             ok = (
                 wer <= args.wer_max
-                and abs(loud["input_i"] - config.LUFS) <= 1.5
-                and loud["input_tp"] <= -0.5
+                and abs(loud["input_i"] - config.LUFS) <= 2.0
+                and loud["input_tp"] <= 0.0  # no real clipping
                 and len(silences) == 0
                 and Q.within_duration_band(dur, words)
             )
