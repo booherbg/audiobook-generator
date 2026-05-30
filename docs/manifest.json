@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "books": [
+    {
+      "id": "magnifica-humanitas",
+      "title": "Magnifica Humanitas",
+      "subtitle": "On Safeguarding the Human Person in the Time of Artificial Intelligence",
+      "author": "Pope Leo XIV",
+      "date": "2026-05-15",
+      "source_url": "https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
+      "description": "Pope Leo XIV's first encyclical — on safeguarding the human person in the age of artificial intelligence.",
+      "cover": "audio/magnifica-humanitas/cover.svg",
+      "public": true,
+      "has_guide": false,
+      "voices": [
+        {
+          "id": "female",
+          "label": "Heart — warm US female",
+          "engine": "kokoro",
+          "ref": "af_heart"
+        },
+        {
+          "id": "male",
+          "label": "Michael — friendly US male",
+          "engine": "kokoro",
+          "ref": "am_michael"
+        }
+      ],
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Introduction",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-01.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-01.mp3"
+          },
+          "duration": {
+            "female": 6.8,
+            "male": 7.5
+          }
+        }
+      ]
+    }
+  ]
+}

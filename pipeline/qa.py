@@ -44,3 +44,12 @@ def within_duration_band(actual_sec: float, words: int, wpm: int = WPM, tol: flo
     if expected <= 0:
         return actual_sec >= 0
     return abs(actual_sec - expected) <= tol * expected
+
+
+def transcribe(path, model_size: str = "base") -> str:
+    """Transcribe an audio file with faster-whisper (downloads model on first use)."""
+    from faster_whisper import WhisperModel
+
+    model = WhisperModel(model_size, device="cpu", compute_type="int8")
+    segments, _ = model.transcribe(str(path), language="en")
+    return " ".join(s.text for s in segments)

@@ -26,9 +26,9 @@ def test_chunk_basic_two_sections():
     chs = chunk_document(doc)
     assert len(chs) == 2
     assert chs[0].index == 1
-    assert chs[0].segments[0] == "Chapter One. Introduction."
+    assert chs[0].segments[0] == "Introduction."
     assert "Hello world." in chs[0].segments
-    assert chs[1].segments[0] == "Chapter Two. The Body."
+    assert chs[1].segments[0] == "The Body."
 
 
 def test_chunk_subsplits_long_section():

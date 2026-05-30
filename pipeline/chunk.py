@@ -6,7 +6,6 @@ import re
 
 from pipeline.config import MAX_CHAPTER_MIN, WPM
 from pipeline.model import Chapter, Document
-from pipeline.normalize import _card_word
 
 _SENT_RE = re.compile(r'(?<=[.!?])["”\')\]]?\s+(?=[A-Z"“(])')
 
@@ -52,10 +51,10 @@ def chunk_document(doc: Document, max_min: float = MAX_CHAPTER_MIN) -> list[Chap
             idx += 1
             if pi == 0:
                 title = sec.heading
-                intro = f"Chapter {_card_word(idx)}. {sec.heading}."
+                intro = f"{sec.heading}."
             else:
                 title = f"{sec.heading} (continued)"
-                intro = f"Chapter {_card_word(idx)}. {sec.heading}, continued."
+                intro = f"{sec.heading}, continued."
             segments = [intro]
             for sents in part:
                 segments.extend(sents)
