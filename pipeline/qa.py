@@ -80,3 +80,18 @@ def measure_silences(path, noise_db: int = -40, min_dur: float = 3.0) -> list[tu
         capture_output=True, text=True,
     )
     return parse_silences(r.stderr)
+
+
+def sample_peak_dbfs(path) -> float:
+    """Actual maximum sample level in dBFS via astats. >= 0 means real digital
+    clipping. (Distinct from loudnorm's inter-sample 'true peak' estimate, which is
+    not meaningful for lossy spoken-word audio.)"""
+    import re
+    import subprocess
+
+    r = subprocess.run(
+        ["ffmpeg", "-i", str(path), "-af", "astats=metadata=1", "-f", "null", "-"],
+        capture_output=True, text=True,
+    )
+    peaks = [float(m) for m in re.findall(r"Peak level dB:\s*(-?[\d.]+)", r.stderr)]
+    return max(peaks) if peaks else 0.0

@@ -113,11 +113,17 @@ def cmd_generate(args):
         if not (start <= ch.index <= end):
             continue
         norm = None
+        expected_sec = len(" ".join(normalize(s, lexicon) for s in ch.segments).split()) / config.WPM * 60.0
         for vid in selected:
             out_mp3 = config.AUDIO_ROOT / book_id / vid / f"chapter-{ch.index:02d}.mp3"
+            # Resume only if the file is plausibly complete. A render killed mid-chapter
+            # (e.g. by a crash) leaves a too-short MP3 — re-render rather than skip it.
             if out_mp3.exists() and out_mp3.stat().st_size > 1000 and not args.force:
-                print(f"  ch{ch.index:02d} [{vid}] exists — skip", flush=True)
-                continue
+                actual = probe(out_mp3)["duration"]
+                if actual >= 0.6 * expected_sec:
+                    print(f"  ch{ch.index:02d} [{vid}] exists ({actual:.0f}s) — skip", flush=True)
+                    continue
+                print(f"  ch{ch.index:02d} [{vid}] partial ({actual:.0f}s/{expected_sec:.0f}s) — re-render", flush=True)
             if engine is None:
                 from pipeline.tts import KokoroTTS
 

@@ -46,6 +46,7 @@ def stitch_wavs(wav_paths, out_wav, pause_ms: int = PARA_PAUSE_MS) -> Path:
 def encode_mp3(in_wav, out_mp3, title="", album="", artist="", track=0) -> Path:
     cmd = [
         "ffmpeg", "-y", "-i", str(in_wav),
+        # loudnorm to -16 LUFS with a -1.5 dBFS peak ceiling → no sample clipping.
         "-af", f"loudnorm=I={LUFS}:TP={TRUE_PEAK}:LRA={LRA}",
         "-ac", "1", "-ar", str(OUT_SR), "-codec:a", "libmp3lame", "-b:a", MP3_BITRATE,
     ]
