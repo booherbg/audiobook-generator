@@ -20,6 +20,7 @@ from pipeline.model import Document, Section
 _HEADINGS = ("h1", "h2", "h3")
 _SMALL = {"a", "an", "the", "and", "but", "or", "nor", "for", "of", "to", "in",
           "on", "at", "by", "with", "as", "from"}
+_ACRONYMS = {"AI", "UN", "EU", "US", "GDP", "CEO", "DNA", "GMO"}
 _CHAPTER_START = re.compile(r"^CHAPTER\b", re.IGNORECASE)
 
 
@@ -51,15 +52,14 @@ def _smart_title(text: str) -> str:
     out = []
     cap_next = True
     for w in text.split():
-        bare = w.strip(".,:;'\"")
-        if bare.isupper() and len(bare) <= 3:  # keep acronyms (AI, GDP)
+        bare = w.strip(".,:;'\"()")
+        if bare in _ACRONYMS:
             out.append(w)
+        elif bare.lower() in _SMALL and not cap_next:
+            out.append(w.lower())
         else:
             low = w.lower()
-            if cap_next or low not in _SMALL:
-                out.append(low[:1].upper() + low[1:])
-            else:
-                out.append(low)
+            out.append(low[:1].upper() + low[1:])
         cap_next = w.endswith((".", "!", "?", ":"))
     return " ".join(out)
 
@@ -72,31 +72,47 @@ def _sections_from_caps(paras) -> list[Section]:
             continue
         items.append(t)
 
+    caps = [_is_caps_heading(t) for t in items]
+    n = len(items)
+
+    # Skip a leading table of contents. Encyclicals open with "INTRODUCTION",
+    # which also appears in the TOC, so start at its LAST occurrence (the body).
+    intro = [i for i in range(n) if caps[i] and items[i].strip().upper() == "INTRODUCTION"]
+    if intro:
+        start = intro[-1]
+    else:
+        # Fallback: the heading preceding the first substantial body paragraph.
+        first_body = next((i for i in range(n) if not caps[i] and len(items[i]) > 200), None)
+        start = 0
+        if first_body is not None:
+            for j in range(first_body, -1, -1):
+                if caps[j]:
+                    start = j
+                    break
+
     sections: list[Section] = []
     current: Section | None = None
-    i, n = 0, len(items)
+    i = start
     while i < n:
-        t = items[i]
-        if _is_caps_heading(t):
-            if _CHAPTER_START.match(t):
+        if caps[i]:
+            if _CHAPTER_START.match(items[i]):
                 parts = []
                 j = i + 1
-                while j < n and _is_caps_heading(items[j]) and not _CHAPTER_START.match(items[j]):
+                while j < n and caps[j] and not _CHAPTER_START.match(items[j]):
                     parts.append(items[j])
                     j += 1
-                heading = _smart_title(" ".join(parts) if parts else t)
+                heading = _smart_title(" ".join(parts) if parts else items[i])
                 current = Section(heading, [])
                 sections.append(current)
                 i = j
             else:
-                current = Section(_smart_title(t), [])
+                current = Section(_smart_title(items[i]), [])
                 sections.append(current)
                 i += 1
         else:
             if current is not None:
-                current.paragraphs.append(t)
+                current.paragraphs.append(items[i])
             i += 1
-    # Drops the table-of-contents (its entries have no body paragraphs).
     return [s for s in sections if s.paragraphs]
 
 
