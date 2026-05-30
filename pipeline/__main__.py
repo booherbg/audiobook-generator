@@ -1,7 +1,10 @@
-"""audiobook CLI: generate | audition | list | deploy.
+"""audiobook CLI: generate | audition | list | qa | deploy.
 
 The pipeline is deterministic and contains no LLM. Finding a source from a free-text
 description is Claude Code's job in-session; this CLI takes a URL or file.
+
+`generate` is resumable: chapters already rendered on disk are skipped, and the manifest
+is rebuilt from whatever audio is present — so an interrupted run just continues.
 """
 
 import argparse
@@ -14,7 +17,7 @@ from pathlib import Path
 import yaml
 
 from pipeline import config
-from pipeline.assemble import assemble_chapter
+from pipeline.assemble import assemble_chapter, probe
 from pipeline.chunk import chunk_document
 from pipeline.clean import clean_paragraph, is_boilerplate
 from pipeline.load import HTMLLoader
@@ -43,51 +46,8 @@ def clean_document(doc):
     return doc
 
 
-def cmd_generate(args):
-    voices_cfg, lexicon = load_voices()
-    selected = args.voices.split(",") if args.voices else list(voices_cfg)
-    for vid in selected:
-        if vid not in voices_cfg:
-            sys.exit(f"unknown voice id {vid!r}; known: {list(voices_cfg)}")
-
-    src = resolve(args.resource)
-    print(f"loading {src}")
-    doc = clean_document(HTMLLoader().load(src))
-    chapters = chunk_document(doc, max_min=args.max_chapter_min)
-    if args.max_chapters:
-        chapters = chapters[: args.max_chapters]
-
-    book_id = args.id or slugify(args.title or doc.title)
-    title = args.title or doc.title
-    print(f"{len(chapters)} chapters; voices={selected}")
-
-    from pipeline.tts import KokoroTTS  # lazy (loads model)
-
-    engine = KokoroTTS()
-    for vid in selected:  # clear stale chapter MP3s from a prior render
-        vdir = config.AUDIO_ROOT / book_id / vid
-        if vdir.exists():
-            shutil.rmtree(vdir)
-    book_chapters = []
-    for ch in chapters:
-        norm = [normalize(s, lexicon) for s in ch.segments]
-        entry = {"index": ch.index, "title": ch.title, "files": {}, "duration": {}}
-        for vid in selected:
-            ref = voices_cfg[vid]["ref"]
-            wav_dir = config.BUILD / "wav" / book_id / vid / f"chapter-{ch.index:02d}"
-            shutil.rmtree(wav_dir, ignore_errors=True)
-            wavs = engine.render_segments(norm, ref, wav_dir)
-            out_mp3 = config.AUDIO_ROOT / book_id / vid / f"chapter-{ch.index:02d}.mp3"
-            info = assemble_chapter(
-                wavs, out_mp3, title=ch.title, album=title, artist=args.author or "", track=ch.index
-            )
-            shutil.rmtree(wav_dir, ignore_errors=True)
-            entry["files"][vid] = out_mp3.relative_to(config.DOCS).as_posix()
-            entry["duration"][vid] = round(info["duration"], 1)
-            print(f"  ch{ch.index:02d} [{vid}] {info['duration']:.0f}s -> {entry['files'][vid]}")
-        book_chapters.append(entry)
-
-    book = {
+def _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters):
+    return {
         "id": book_id,
         "title": title,
         "subtitle": args.subtitle or "",
@@ -104,10 +64,77 @@ def cmd_generate(args):
         ],
         "chapters": book_chapters,
     }
+
+
+def _write_manifest(args, book_id, title, chapters, selected, voices_cfg, src):
+    """Rebuild the book entry from audio actually on disk (resume-safe)."""
+    book_chapters = []
+    for ch in chapters:
+        files, durs = {}, {}
+        for vid in selected:
+            mp3 = config.AUDIO_ROOT / book_id / vid / f"chapter-{ch.index:02d}.mp3"
+            if mp3.exists() and mp3.stat().st_size > 1000:
+                files[vid] = mp3.relative_to(config.DOCS).as_posix()
+                durs[vid] = round(probe(mp3)["duration"], 1)
+        if len(files) == len(selected):  # only fully-rendered chapters
+            book_chapters.append({"index": ch.index, "title": ch.title, "files": files, "duration": durs})
     manifest = load_manifest(config.MANIFEST)
-    insert_book(manifest, book)
+    insert_book(manifest, _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters))
     save_manifest(config.MANIFEST, manifest)
-    print(f"manifest updated: {config.MANIFEST.relative_to(config.ROOT)}  ({book_id})")
+    print(f"manifest: {len(book_chapters)}/{len(chapters)} chapters complete", flush=True)
+
+
+def cmd_generate(args):
+    voices_cfg, lexicon = load_voices()
+    selected = args.voices.split(",") if args.voices else list(voices_cfg)
+    for vid in selected:
+        if vid not in voices_cfg:
+            sys.exit(f"unknown voice id {vid!r}; known: {list(voices_cfg)}")
+
+    src = resolve(args.resource)
+    print(f"loading {src}", flush=True)
+    doc = clean_document(HTMLLoader().load(src))
+    chapters = chunk_document(doc, max_min=args.max_chapter_min)
+    book_id = args.id or slugify(args.title or doc.title)
+    title = args.title or doc.title
+
+    start, end = 1, len(chapters)
+    if args.chapters:
+        a, _, b = args.chapters.partition(":")
+        start = int(a) if a else 1
+        end = int(b) if b else len(chapters)
+    if args.clean:
+        for vid in selected:
+            shutil.rmtree(config.AUDIO_ROOT / book_id / vid, ignore_errors=True)
+
+    print(f"{len(chapters)} chapters total; rendering {start}..{end}; voices={selected}", flush=True)
+    engine = None  # lazy: load the model only if something actually needs rendering
+    for ch in chapters:
+        if not (start <= ch.index <= end):
+            continue
+        norm = None
+        for vid in selected:
+            out_mp3 = config.AUDIO_ROOT / book_id / vid / f"chapter-{ch.index:02d}.mp3"
+            if out_mp3.exists() and out_mp3.stat().st_size > 1000 and not args.force:
+                print(f"  ch{ch.index:02d} [{vid}] exists — skip", flush=True)
+                continue
+            if engine is None:
+                from pipeline.tts import KokoroTTS
+
+                engine = KokoroTTS()
+            if norm is None:
+                norm = [normalize(s, lexicon) for s in ch.segments]
+            ref = voices_cfg[vid]["ref"]
+            wav_dir = config.BUILD / "wav" / book_id / vid / f"chapter-{ch.index:02d}"
+            shutil.rmtree(wav_dir, ignore_errors=True)
+            wavs = engine.render_segments(norm, ref, wav_dir)
+            info = assemble_chapter(
+                wavs, out_mp3, title=ch.title, album=title, artist=args.author or "", track=ch.index
+            )
+            shutil.rmtree(wav_dir, ignore_errors=True)
+            print(f"  ch{ch.index:02d} [{vid}] {info['duration']:.0f}s", flush=True)
+
+    _write_manifest(args, book_id, title, chapters, selected, voices_cfg, src)
 
 
 def cmd_audition(args):
@@ -134,7 +161,7 @@ def cmd_audition(args):
         assemble_chapter(wavs, out_mp3, title=f"audition {ref}")
         shutil.rmtree(out_dir / ref, ignore_errors=True)
         print(f"  {ref} -> {out_mp3}")
-    print(f"\nListen in {out_dir} and pick your two favourites.")
+    print(f"\nListen in {out_dir} and pick two favourites.")
 
 
 def cmd_list(args):
@@ -149,7 +176,7 @@ def cmd_list(args):
 
 def cmd_qa(args):
     from pipeline import qa as Q
-    from pipeline.assemble import measure_loudness, probe
+    from pipeline.assemble import measure_loudness
 
     voices_cfg, lexicon = load_voices()
     doc = clean_document(HTMLLoader().load(resolve(args.source)))
@@ -158,13 +185,15 @@ def cmd_qa(args):
     book = next((b for b in manifest["books"] if b["id"] == args.id), None)
     if not book:
         sys.exit(f"book {args.id!r} not in manifest")
-    if len(chapters) != len(book["chapters"]):
-        sys.exit(f"chapter count mismatch: source={len(chapters)} manifest={len(book['chapters'])}")
+    by_index = {c["index"]: c for c in book["chapters"]}
     voice_ids = [v["id"] for v in book["voices"]]
     sample_words = int(args.sample_sec / 60 * config.WPM)
 
     rows, overall = [], True
-    for ch, mentry in zip(chapters, book["chapters"]):
+    for ch in chapters:
+        mentry = by_index.get(ch.index)
+        if not mentry:
+            continue  # not rendered yet
         ref_full = " ".join(normalize(s, lexicon) for s in ch.segments)
         words = len(ref_full.split())
         ref_sample = " ".join(ref_full.split()[:sample_words])
@@ -189,11 +218,12 @@ def cmd_qa(args):
                 "dur": round(dur, 1), "words": words, "silences": len(silences), "ok": ok,
             })
             print(f"  ch{ch.index:02d} {vid:6s} wer={wer:.3f} lufs={loud['input_i']:5.1f} "
-                  f"dur={dur:4.0f}s {'OK' if ok else 'FAIL'}")
+                  f"dur={dur:4.0f}s {'OK' if ok else 'FAIL'}", flush=True)
     report = {"passed": overall, "book": args.id, "wer_max": args.wer_max, "chapters": rows}
     (config.BUILD / "qa-report.json").write_text(json.dumps(report, indent=2))
     bad = sum(1 for r in rows if not r["ok"])
-    print(f"\nQA {'PASSED' if overall else 'FAILED'} — {bad} issue(s); report: build/qa-report.json")
+    print(f"\nQA {'PASSED' if overall else 'FAILED'} — {bad} issue(s) over {len(rows)} checks; "
+          f"report: build/qa-report.json")
     if not overall:
         sys.exit(1)
 
@@ -208,7 +238,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(prog="audiobook", description="Local audiobook generator.")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    g = sub.add_parser("generate", help="generate an audiobook from a URL or file")
+    g = sub.add_parser("generate", help="generate an audiobook from a URL or file (resumable)")
     g.add_argument("resource")
     g.add_argument("--id")
     g.add_argument("--title")
@@ -218,8 +248,10 @@ def main(argv=None):
     g.add_argument("--description")
     g.add_argument("--source-url", dest="source_url")
     g.add_argument("--voices", help="comma-separated voice ids (default: all in voices.yaml)")
-    g.add_argument("--max-chapters", type=int)
+    g.add_argument("--chapters", help="range to render, e.g. 1:3 (1-based, inclusive)")
     g.add_argument("--max-chapter-min", type=float, default=config.MAX_CHAPTER_MIN)
+    g.add_argument("--clean", action="store_true", help="delete this book's audio first")
+    g.add_argument("--force", action="store_true", help="re-render chapters even if present")
     g.set_defaults(func=cmd_generate)
 
     a = sub.add_parser("audition", help="render short samples of candidate voices")
@@ -231,7 +263,7 @@ def main(argv=None):
 
     q = sub.add_parser("qa", help="audio quality check (WER, loudness, silence, duration)")
     q.add_argument("--id", required=True)
-    q.add_argument("--source", default="build/magnifica.html", help="source the audio was rendered from")
+    q.add_argument("--source", default="build/magnifica.html")
     q.add_argument("--sample-sec", type=float, default=90.0)
     q.add_argument("--wer-max", type=float, default=0.12)
     q.add_argument("--max-chapter-min", type=float, default=config.MAX_CHAPTER_MIN)
