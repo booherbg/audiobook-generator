@@ -46,10 +46,37 @@ def within_duration_band(actual_sec: float, words: int, wpm: int = WPM, tol: flo
     return abs(actual_sec - expected) <= tol * expected
 
 
+_WHISPER = {}
+
+
 def transcribe(path, model_size: str = "base") -> str:
     """Transcribe an audio file with faster-whisper (downloads model on first use)."""
     from faster_whisper import WhisperModel
 
-    model = WhisperModel(model_size, device="cpu", compute_type="int8")
-    segments, _ = model.transcribe(str(path), language="en")
+    if model_size not in _WHISPER:
+        _WHISPER[model_size] = WhisperModel(model_size, device="cpu", compute_type="int8")
+    segments, _ = _WHISPER[model_size].transcribe(str(path), language="en")
     return " ".join(s.text for s in segments)
+
+
+def transcribe_clip(path, seconds: float, model_size: str = "base") -> str:
+    """Transcribe just the first `seconds` of an audio file."""
+    import subprocess
+    from pipeline.config import BUILD
+
+    tmp = BUILD / "qa_clip.wav"
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", str(path), "-t", str(seconds), "-ac", "1", "-ar", "16000", str(tmp)],
+        capture_output=True, text=True, check=True,
+    )
+    return transcribe(tmp, model_size)
+
+
+def measure_silences(path, noise_db: int = -40, min_dur: float = 3.0) -> list[tuple[float, float]]:
+    import subprocess
+
+    r = subprocess.run(
+        ["ffmpeg", "-i", str(path), "-af", f"silencedetect=noise={noise_db}dB:d={min_dur}", "-f", "null", "-"],
+        capture_output=True, text=True,
+    )
+    return parse_silences(r.stderr)

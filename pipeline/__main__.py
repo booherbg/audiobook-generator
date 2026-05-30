@@ -5,6 +5,7 @@ description is Claude Code's job in-session; this CLI takes a URL or file.
 """
 
 import argparse
+import json
 import re
 import shutil
 import sys
@@ -146,6 +147,57 @@ def cmd_list(args):
         print(f"{b['id']}: {b['title']} — {len(b.get('chapters', []))} chapters [{voices}]")
 
 
+def cmd_qa(args):
+    from pipeline import qa as Q
+    from pipeline.assemble import measure_loudness, probe
+
+    voices_cfg, lexicon = load_voices()
+    doc = clean_document(HTMLLoader().load(resolve(args.source)))
+    chapters = chunk_document(doc, max_min=args.max_chapter_min)
+    manifest = load_manifest(config.MANIFEST)
+    book = next((b for b in manifest["books"] if b["id"] == args.id), None)
+    if not book:
+        sys.exit(f"book {args.id!r} not in manifest")
+    if len(chapters) != len(book["chapters"]):
+        sys.exit(f"chapter count mismatch: source={len(chapters)} manifest={len(book['chapters'])}")
+    voice_ids = [v["id"] for v in book["voices"]]
+    sample_words = int(args.sample_sec / 60 * config.WPM)
+
+    rows, overall = [], True
+    for ch, mentry in zip(chapters, book["chapters"]):
+        ref_full = " ".join(normalize(s, lexicon) for s in ch.segments)
+        words = len(ref_full.split())
+        ref_sample = " ".join(ref_full.split()[:sample_words])
+        for vid in voice_ids:
+            mp3 = config.DOCS / mentry["files"][vid]
+            dur = probe(mp3)["duration"]
+            loud = measure_loudness(mp3)
+            silences = Q.measure_silences(mp3, min_dur=3.0)
+            hyp = Q.transcribe_clip(mp3, args.sample_sec)
+            wer = Q.wer(ref_sample, hyp)
+            ok = (
+                wer <= args.wer_max
+                and abs(loud["input_i"] - config.LUFS) <= 1.5
+                and loud["input_tp"] <= -0.5
+                and len(silences) == 0
+                and Q.within_duration_band(dur, words)
+            )
+            overall = overall and ok
+            rows.append({
+                "index": ch.index, "voice": vid, "wer": round(wer, 3),
+                "lufs": round(loud["input_i"], 2), "tp": round(loud["input_tp"], 2),
+                "dur": round(dur, 1), "words": words, "silences": len(silences), "ok": ok,
+            })
+            print(f"  ch{ch.index:02d} {vid:6s} wer={wer:.3f} lufs={loud['input_i']:5.1f} "
+                  f"dur={dur:4.0f}s {'OK' if ok else 'FAIL'}")
+    report = {"passed": overall, "book": args.id, "wer_max": args.wer_max, "chapters": rows}
+    (config.BUILD / "qa-report.json").write_text(json.dumps(report, indent=2))
+    bad = sum(1 for r in rows if not r["ok"])
+    print(f"\nQA {'PASSED' if overall else 'FAILED'} — {bad} issue(s); report: build/qa-report.json")
+    if not overall:
+        sys.exit(1)
+
+
 def cmd_deploy(args):
     from pipeline.deploy import deploy
 
@@ -176,6 +228,14 @@ def main(argv=None):
     a.set_defaults(func=cmd_audition)
 
     sub.add_parser("list", help="list the library").set_defaults(func=cmd_list)
+
+    q = sub.add_parser("qa", help="audio quality check (WER, loudness, silence, duration)")
+    q.add_argument("--id", required=True)
+    q.add_argument("--source", default="build/magnifica.html", help="source the audio was rendered from")
+    q.add_argument("--sample-sec", type=float, default=90.0)
+    q.add_argument("--wer-max", type=float, default=0.12)
+    q.add_argument("--max-chapter-min", type=float, default=config.MAX_CHAPTER_MIN)
+    q.set_defaults(func=cmd_qa)
 
     d = sub.add_parser("deploy", help="commit docs/, push, ensure GitHub Pages")
     d.add_argument("--force", action="store_true", help="deploy even if QA failed")
