@@ -63,6 +63,10 @@ def cmd_generate(args):
     from pipeline.tts import KokoroTTS  # lazy (loads model)
 
     engine = KokoroTTS()
+    for vid in selected:  # clear stale chapter MP3s from a prior render
+        vdir = config.AUDIO_ROOT / book_id / vid
+        if vdir.exists():
+            shutil.rmtree(vdir)
     book_chapters = []
     for ch in chapters:
         norm = [normalize(s, lexicon) for s in ch.segments]

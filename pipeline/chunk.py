@@ -22,18 +22,21 @@ def split_sentences(paragraph: str) -> list[str]:
 
 
 def _pack_paragraphs(para_sents: list[list[str]], max_min: float) -> list[list[list[str]]]:
-    """Greedily pack whole paragraphs into parts under the per-chapter word limit."""
-    limit = max_min * WPM
+    """Split paragraphs into N evenly-sized parts (N = ceil(total / limit)) so a
+    chapter just over the limit becomes two balanced halves, not full + orphan."""
+    total = sum(sum(len(s.split()) for s in ps) for ps in para_sents)
+    limit = int(max_min * WPM)
+    nparts = max(1, -(-total // limit))  # ceil division
+    target = total / nparts
     parts: list[list[list[str]]] = []
     cur: list[list[str]] = []
     cur_words = 0
     for sents in para_sents:
-        w = sum(len(s.split()) for s in sents)
-        if cur and cur_words + w > limit:
+        if cur and cur_words >= target and len(parts) < nparts - 1:
             parts.append(cur)
             cur, cur_words = [], 0
         cur.append(sents)
-        cur_words += w
+        cur_words += sum(len(s.split()) for s in sents)
     if cur:
         parts.append(cur)
     return parts or [[]]
