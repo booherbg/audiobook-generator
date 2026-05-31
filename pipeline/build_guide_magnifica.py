@@ -20,10 +20,11 @@ CONCEPTS = [
     {
         "title": "Babel or the Beloved City",
         "anchor": "Tower of Babel",
-        "blurb": "The encyclical frames our choice about technology through two biblical images: "
-                 "Babel, built on pride and self-sufficiency, and its counter-image, the city "
-                 "'in which God and humanity dwell together.' The question is not whether to use "
-                 "technology, but in whose spirit.",
+        "blurb": "The encyclical opens not with policy but with two cities. Babel is the project built "
+                 "for its builders' name — capable, coordinated, and pointed nowhere good; its "
+                 "counter-image is the city 'in which God and humanity dwell together.' The point for a "
+                 "technologist: the hard question was never whether we can build the tower, but what it is "
+                 "for and who it leaves out.",
         "related": ["The common good", "Remaining human"],
     },
     {
@@ -156,9 +157,10 @@ COMMENTARY = [
      "label": "On listening to a text about us, narrated by one of us",
      "text": "There is something vertiginous about an AI helping you study a papal letter on whether AI "
              "can serve human dignity. The honest thing is to name it and then get out of the way: I have "
-             "tried to stay a footnote, never the text. Socrates would ask what a tool that can explain "
-             "wisdom but not possess it is actually for — a fair question to put to me. So take these notes "
-             "as questions from the margin, clearly marked as commentary, never the encyclical's word."},
+             "tried to stay a footnote, never the text. Socrates worried about writing for the same reason "
+             "you might worry about me — that a tool which can recite wisdom without holding it lets us "
+             "outsource the part we were supposed to do ourselves. So treat these as questions from the "
+             "margin, clearly marked as commentary, never the encyclical's word."},
     {"timestamp": 372,
      "label": "Babel, or: every ambitious system needs a reason outside itself",
      "text": "The Tower of Babel reads, to a systems-minded ear, less like a fable about architecture "
