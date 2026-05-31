@@ -24,3 +24,10 @@ Run on the live site across browsers. Mark ✓ / ✗.
 pronunciation of names/Latin (e.g. *Rerum Novarum*, "AI"); no clipping, dropouts, or long gaps.
 
 Notes:
+- 2026-05-30: Tier 1 shipped. Automated verification PASS: audio QA 34/34 (both voices,
+  WER avg ~1.7% / max ~7%, sample peak <0 on every file, loudness ~-16.7 to -17.7 LUFS,
+  no >3s silence gaps, durations in band). pytest 30 passed, node:test 7/7. Live endpoints
+  all 200 (index, manifest, player, app/logic.js) + 200 byte-range on both voices' MP3s.
+  Live manifest confirmed: 2 voices, 17 chapters.
+- Manual cross-browser/device matrix below: pending hands-on pass by a human (the player uses
+  standard HTMLAudioElement + Media Session; desktop keyboard row verified in code/logic tests).
