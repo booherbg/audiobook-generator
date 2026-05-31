@@ -16,6 +16,10 @@ the 34 MP3s of *Magnifica Humanitas* (17 chapters × 2 voices).
 end-to-end treatment we built here (audiobook + read-along transcript + full-text reader +
 grounded companion with director's commentary), so the three form a small connected library.
 
+> **Follow the playbook:** [docs/playbook/README.md](docs/playbook/README.md) is the pull-and-go
+> runbook for this; the contract is [the expansion spec](docs/superpowers/specs/2026-05-31-book-expansion-spec.md).
+> The method below is the summary; the playbook has the exact commands, prompts, and gates.
+
 1. **Rerum Novarum** — Leo XIII, 1891 (labour & capital; the origin of Catholic Social
    Teaching, whose 135th anniversary this encyclical marks).
    Source: https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html
