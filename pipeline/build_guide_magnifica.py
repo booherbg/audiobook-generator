@@ -115,16 +115,21 @@ CONCEPTS = [
 ]
 
 GLOSSARY = [
-    {"term": "Encyclical", "def": "A formal letter from the pope to the whole Church (and often the world) "
-                                  "on a matter of teaching."},
-    {"term": "Social Doctrine of the Church", "def": "The body of Catholic teaching on social, economic and "
-                                                     "political life, offering principles for judgment rather than ready-made policies."},
-    {"term": "Rerum Novarum", "def": "Pope Leo XIII's 1891 encyclical on labour and capital, the foundation of "
-                                     "modern Catholic social teaching."},
-    {"term": "Integral ecology", "def": "The idea that human, social and environmental concerns are interconnected "
-                                        "and must be addressed together."},
-    {"term": "Common good", "def": "The sum of conditions that let people and communities flourish — the good of "
-                                   "all and of each, not merely the majority."},
+    {"term": "Encyclical", "def": "A formal letter from the pope, circulated to the whole Church and usually the "
+                                  "wider world — the heavyweight format of Catholic teaching, reserved for things "
+                                  "the author wants on the record."},
+    {"term": "Social Doctrine of the Church", "def": "A century-plus body of teaching on how we live together — "
+                                                     "work, power, money, technology. Notably, it offers principles "
+                                                     "to reason with, not policies to copy; this document applies "
+                                                     "those old principles to a very new thing."},
+    {"term": "Rerum Novarum", "def": "Leo XIII's 1891 letter on labour and capital, written into the upheaval of "
+                                     "industrialization. It started this whole tradition — and the present pope "
+                                     "takes its name and its 135th anniversary as his cue."},
+    {"term": "Integral ecology", "def": "Francis's framing that the human, the social, and the environmental are "
+                                        "one connected problem — you can't fix one while wrecking another. Here it "
+                                        "stretches to include our technological habitat too."},
+    {"term": "Common good", "def": "Not the greatest good for the greatest number, but the good of all and of each "
+                                   "— a higher bar that refuses to average away the person who gets left out."},
 ]
 
 # Each external reference is a stable, canonical source. URLs are verified by build_and_verify.
@@ -179,13 +184,13 @@ COMMENTARY = [
              "more important one."},
     {"timestamp": 7400,
      "label": "On work, when the machines are good at it",
-     "text": "Here is the passage that should give pause to anyone who builds the tools that do the work. "
+     "text": "This is the passage that should give pause to anyone who builds the tools that do the work. "
              "The claim is not the easy one — that automation costs jobs — but a harder one: that work is "
              "a place where a person becomes someone, not merely earns. It is a quiet rebuttal to the "
              "comfortable answer that we will automate the toil and pay people to be free. Toil and "
-             "meaning, it suggests, are braided together in ways a transfer payment doesn't reach. You "
-             "needn't share the theology to feel the weight of the question: when we make work optional, "
-             "what exactly are we freeing people for?"},
+             "meaning, the encyclical insists, are braided together in ways a transfer payment doesn't "
+             "reach — which makes 'we'll just give them an income' a smaller mercy than it sounds, and "
+             "leaves the real question for the people building the machines, not the people losing the work."},
     {"timestamp": 10980,
      "label": "On disarming words, and the civilization of love",
      "text": "By the late chapters the encyclical turns from machines to manners — to how we speak to "

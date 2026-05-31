@@ -1,20 +1,36 @@
-// Companion guide: renders grounded concept cards, director's commentary, glossary,
-// and further reading from docs/guide/<book>.json. Every "▶ listen" jumps into the
-// player at the passage's timestamp. No runtime LLM — pure static data.
+// Companion guide: renders grounded concept cards, director's commentary, glossary, and
+// further reading from docs/guide/<book>.json. Each "▶ listen" deep-links into the player
+// at the passage (voice-independent: chapter + fraction). No runtime LLM — pure static data.
 
 const $ = (id) => document.getElementById(id);
 const BOOK = new URLSearchParams(location.search).get("book") || "magnifica-humanitas";
 
-// Voice-independent deep link: chapter + fraction-within-chapter. The player resolves
-// the fraction against whichever voice the listener has selected, so the jump lands on
-// the right passage regardless of voice (the voices differ in length by ~10%).
+// Voice-independent deep link: chapter + fraction-within-chapter. The player resolves the
+// fraction against whichever voice is selected, so the jump lands on the right passage
+// regardless of voice (the voices differ in length by ~10%).
 function listenHref(c) {
   return `player.html?book=${encodeURIComponent(BOOK)}&ch=${c.chapter}&f=${c.fraction}`;
+}
+
+function slug(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+// Open a concept card by slug and bring it into view (the target may be collapsed).
+function openConcept(s) {
+  const target = document.getElementById("c-" + s);
+  if (!target) return;
+  target.open = true;
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+  target.classList.add("flash");
+  setTimeout(() => target.classList.remove("flash"), 1200);
 }
 
 function conceptCard(c) {
   const el = document.createElement("details");
   el.className = "concept";
+  el.id = "c-" + slug(c.title);
+
   const sum = document.createElement("summary");
   sum.textContent = c.title;
   el.appendChild(sum);
@@ -24,10 +40,8 @@ function conceptCard(c) {
   body.innerHTML =
     `<p class="blurb"></p>` +
     `<blockquote class="quote"></blockquote>` +
-    `<div class="cite">` +
-      `<span class="ch"></span>` +
-      `<a class="listen" href="${listenHref(c)}">▶ listen from here</a>` +
-    `</div>`;
+    `<div class="cite"><span class="ch"></span>` +
+    `<a class="listen" href="${listenHref(c)}">▶ listen from here</a></div>`;
   body.querySelector(".blurb").textContent = c.blurb;
   body.querySelector(".quote").textContent = `“${c.quote}”`;
   body.querySelector(".ch").textContent = `Chapter ${c.chapter} — ${c.chapter_title}`;
@@ -47,25 +61,18 @@ function conceptCard(c) {
     });
     body.appendChild(rel);
   }
+
   el.appendChild(body);
   return el;
-}
-
-// Open a concept card by slug and bring it into view (related-link target may be collapsed).
-function openConcept(s) {
-  const target = document.getElementById("c-" + s);
-  if (!target) return;
-  target.open = true;
-  target.scrollIntoView({ behavior: "smooth", block: "center" });
-  target.classList.add("flash");
-  setTimeout(() => target.classList.remove("flash"), 1200);
 }
 
 function commentaryItem(c) {
   const el = document.createElement("details");
   el.className = "aside";
   const sum = document.createElement("summary");
-  sum.innerHTML = `<span class="aside-label"></span> <a class="listen" href="${listenHref(c)}">▶ listen</a>`;
+  sum.innerHTML =
+    `<span class="aside-label"></span> ` +
+    `<a class="listen" href="${listenHref(c)}">▶ listen</a>`;
   sum.querySelector(".aside-label").textContent = c.label;
   el.appendChild(sum);
   const p = document.createElement("p");
@@ -75,14 +82,7 @@ function commentaryItem(c) {
   return el;
 }
 
-async function init() {
-  let g;
-  try {
-    g = await (await fetch(`guide/${BOOK}.json`, { cache: "no-cache" })).json();
-  } catch {
-    $("app").innerHTML = '<div class="error">Companion not available for this book.</div>';
-    return;
-  }
+function render(g) {
   $("intro").textContent = g.intro || "";
 
   const cont = $("concepts");
@@ -121,6 +121,28 @@ async function init() {
       li.appendChild(span);
     }
     fr.appendChild(li);
+  }
+}
+
+async function init() {
+  let g;
+  try {
+    g = await (await fetch(`guide/${BOOK}.json`, { cache: "no-cache" })).json();
+  } catch {
+    $("app").innerHTML = '<div class="error">Companion not available for this book.</div>';
+    return;
+  }
+  // Render inside its own guard: a bug here must never leave a silently blank page.
+  try {
+    render(g);
+  } catch (err) {
+    const intro = $("intro");
+    if (intro) {
+      intro.innerHTML =
+        'Something went wrong building this page. The audiobook still works — ' +
+        '<a href="player.html?book=' + encodeURIComponent(BOOK) + '">back to the player</a>.';
+    }
+    console.error("companion render failed:", err);
   }
 }
 
