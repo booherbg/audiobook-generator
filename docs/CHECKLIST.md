@@ -31,3 +31,12 @@ Notes:
   Live manifest confirmed: 2 voices, 17 chapters.
 - Manual cross-browser/device matrix below: pending hands-on pass by a human (the player uses
   standard HTMLAudioElement + Media Session; desktop keyboard row verified in code/logic tests).
+- 2026-05-30: Tier 2 shipped — generic `audiobook generate <url>` (resumable, multi-voice-safe),
+  list/audition/qa/deploy commands, README; pytest 31 (incl. multi-voice manifest regression test).
+- 2026-05-30: Tier 3 shipped — companion guide (guide.html) with 12 concept cards whose quotes are
+  extracted VERBATIM from source (12/12 independently verified), chapter+timestamp deep-links into
+  the player (?t=), glossary, 4 further-reading links (all verified 200), and a clearly-labelled AI
+  director's-commentary track. Passed an adversarial editorial audit (fidelity/neutrality/clarity/
+  anti-drivel → REVISE findings applied).
+- 2026-05-30: Final audit — pytest 31 + node:test 7/7 green; all 9 live endpoints 200 (player +
+  audio both voices + companion); git clean & pushed. GOAL COMPLETE.
