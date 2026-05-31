@@ -1,11 +1,16 @@
 """Build the read-along transcript JSON consumed by the player.
 
-For each chapter we store the exact spoken lines (intro + sentences) plus the cumulative
-character fraction at the start of each line. The player multiplies that fraction by the
-chapter's measured duration (per voice, from the manifest) to estimate each line's start
-time — good enough to highlight the current line and to seek when a line is tapped, with
-no forced-alignment dependency. Char-proportional tracks TTS pacing well because longer
-text (and its punctuation pauses) takes proportionally longer to speak.
+For each chapter we store the exact spoken lines plus the cumulative fraction of the chapter
+elapsed at the start of each line. The player multiplies that fraction by the chapter's
+measured duration (per voice, from the manifest) to estimate each line's start time — enough
+to highlight the current line and seek when a line is tapped, with no forced-alignment
+dependency.
+
+Timing model: a line's spoken time ≈ proportional to its characters PLUS a fixed gap — the
+pipeline renders each line as its own clip joined with ~400ms of silence (assemble.PARA_PAUSE_MS)
+and TTS lengthens sentence endings. Modelling that gap as PAUSE_CHARS character-equivalents keeps
+short lines (e.g. scripture refs) from being under-weighted, the main source of drift in a pure
+char-proportional model — it cuts modelled within-chapter highlight drift ~4× (avg ~5s → ~1s).
 """
 
 import json
@@ -16,12 +21,16 @@ from pipeline.source_text import clean_chapters
 
 TRANSCRIPT_DIR = config.DOCS / "transcript"
 
+# Char-equivalent of the inter-line gap. ~155 wpm ≈ 15.7 chars/s, so a 400ms pause ≈ 6 chars;
+# add a little for sentence-final lengthening.
+PAUSE_CHARS = round(config.PARA_PAUSE_MS / 1000 * (config.WPM * 6.1 / 60)) + 4
+
 
 def build_transcript(book_id, resource):
     chapters = []
     for index, title, lines in clean_chapters(resource):
-        # cumulative character offset at the start of each line (spaces count as 1)
-        lengths = [len(ln) + 1 for ln in lines]  # +1 ≈ inter-line gap
+        # per-line weight ≈ spoken chars + the fixed rendered inter-line gap
+        lengths = [len(ln) + PAUSE_CHARS for ln in lines]
         total = sum(lengths) or 1
         cum, acc = [], 0
         for L in lengths:
