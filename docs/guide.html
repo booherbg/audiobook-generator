@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Companion — Magnifica Humanitas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap" id="app">
+    <header class="topbar">
+      <a class="back" id="player-link" href="player.html?book=magnifica-humanitas">‹ Player</a>
+      <a href="index.html">Library</a>
+    </header>
+
+    <h1 id="title">Companion</h1>
+    <p class="lede" id="intro"></p>
+
+    <section>
+      <h2>Foundational concepts</h2>
+      <div id="concepts" class="concepts"></div>
+    </section>
+
+    <section id="commentary-section">
+      <h2>Director's commentary <span class="tag">AI · optional</span></h2>
+      <p class="muted commentary-note">An honest aside from the machine that helped make this —
+        labelled opinion, kept separate from the text. Tap to expand.</p>
+      <div id="commentary" class="commentary-list"></div>
+    </section>
+
+    <section>
+      <h2>Glossary</h2>
+      <dl id="glossary" class="glossary"></dl>
+    </section>
+
+    <section>
+      <h2>Further reading</h2>
+      <ul id="further" class="further"></ul>
+      <p class="muted">Links are to canonical primary sources; they leave this site.</p>
+    </section>
+  </div>
+  <script type="module" src="app/guide.js"></script>
+</body>
+</html>

@@ -11,7 +11,7 @@
       "description": "",
       "cover": "audio/magnifica-humanitas/cover.svg",
       "public": true,
-      "has_guide": false,
+      "has_guide": true,
       "voices": [
         {
           "id": "female",

@@ -1,0 +1,157 @@
+{
+  "book": "magnifica-humanitas",
+  "intro": "An optional companion to the audiobook. Tap a concept to read a short, plain explanation, see the encyclical's own words, and jump to that moment in the audio. Everything in quotation marks is taken verbatim from the text.",
+  "concepts": [
+    {
+      "title": "Babel vs. Jerusalem",
+      "blurb": "The encyclical frames our choice about technology through two biblical cities: Babel, built on pride and self-sufficiency, and Jerusalem, rebuilt through shared responsibility. The question is not whether to use technology, but in whose spirit.",
+      "quote": "Humanity, created by God in all its grandeur, is today facing a pivotal choice: either to construct a new Tower of Babel or to build the city in which God and humanity dwell together.",
+      "chapter": 1,
+      "chapter_title": "Introduction",
+      "timestamp": 0.0,
+      "related": [
+        "Building for the common good",
+        "Remaining human"
+      ]
+    },
+    {
+      "title": "Technology is never neutral",
+      "blurb": "A tool is not evil in itself, but neither is it innocent: it carries the aims of those who design, fund, regulate and use it. So the real questions are about power and purpose, not the machine alone.",
+      "quote": "In practice, however, technology is never neutral, because it takes on the characteristics of those who devise, finance, regulate and use it.",
+      "chapter": 2,
+      "chapter_title": "Introduction (continued)",
+      "timestamp": 645.7,
+      "related": [
+        "Concentration of power"
+      ]
+    },
+    {
+      "title": "Human dignity",
+      "blurb": "The bedrock principle: every person has a worth that does not depend on usefulness, productivity, or status. In an age that measures people by data and performance, this is the line the encyclical draws first.",
+      "quote": "Indeed, precisely because we experience limits — vulnerability, suffering and failure — we can recognize the inviolable dignity of every person, both our own and that of others.",
+      "chapter": 9,
+      "chapter_title": "Technology and Dominance. The Grandeur of Humanity in Light of the Promises of AI (continued)",
+      "timestamp": 6384.2,
+      "related": [
+        "The common good",
+        "Preferential option for the poor"
+      ]
+    },
+    {
+      "title": "Subsidiarity",
+      "blurb": "Larger institutions should support, not swallow, the initiative of smaller communities and individuals. Applied to AI, it cautions against systems that quietly remove human agency and local decision-making.",
+      "quote": "This is the logic of subsidiarity, which values the cooperation between generations, peoples, disciplines and cultures as the best way for fostering stability, prosperity and peace.",
+      "chapter": 2,
+      "chapter_title": "Introduction (continued)",
+      "timestamp": 915.9,
+      "related": [
+        "The common good",
+        "Concentration of power"
+      ]
+    },
+    {
+      "title": "Universal destination of goods",
+      "blurb": "The goods of creation — and, by extension, the fruits of knowledge and technology — are meant for everyone, not only those with the resources to command them.",
+      "quote": "Instead, let us establish standards for discernment — the dignity of the human person, the universal destination of goods, the preferential option for the poor, care for our common home and peace — and let us translate these standards into practices such as responsible planning, the assessment of human and social impact, the inclusion of the most vulnerable, the promotion of digital literacy and guiding research and industry toward justice and peace.",
+      "chapter": 2,
+      "chapter_title": "Introduction (continued)",
+      "timestamp": 949.6,
+      "related": [
+        "Preferential option for the poor"
+      ]
+    },
+    {
+      "title": "Preferential option for the poor",
+      "blurb": "Progress is judged by how it touches the most vulnerable. A technology that widens the gap between the powerful and the powerless fails this test.",
+      "quote": "Instead, let us establish standards for discernment — the dignity of the human person, the universal destination of goods, the preferential option for the poor, care for our common home and peace — and let us translate these standards into practices such as responsible planning, the assessment of human and social impact, the inclusion of the most vulnerable, the promotion of digital literacy and guiding research and industry toward justice and peace.",
+      "chapter": 2,
+      "chapter_title": "Introduction (continued)",
+      "timestamp": 949.6,
+      "related": [
+        "Human dignity"
+      ]
+    },
+    {
+      "title": "Remaining human",
+      "blurb": "The encyclical's charge in the age of AI: to safeguard what no machine can replace, and to let intelligence serve persons rather than the reverse.",
+      "quote": "In the era of artificial intelligence, when human dignity is threatened by new forms of dehumanization, ours is the pressing duty to remain profoundly human.",
+      "chapter": 2,
+      "chapter_title": "Introduction (continued)",
+      "timestamp": 994.5,
+      "related": [
+        "Human dignity",
+        "Babel vs. Jerusalem"
+      ]
+    },
+    {
+      "title": "Rerum Novarum's heir",
+      "blurb": "The document consciously stands in the line of Leo XIII's 1891 social encyclical, extending the Church's social teaching from the industrial question to the digital one.",
+      "quote": "In this spirit, Pope Leo XIII published his Encyclical Rerum Novarum in 1891, the 135 anniversary of which we celebrate with deep gratitude this year.",
+      "chapter": 1,
+      "chapter_title": "Introduction",
+      "timestamp": 123.5,
+      "related": []
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Encyclical",
+      "def": "A formal letter from the pope to the whole Church (and often the world) on a matter of teaching."
+    },
+    {
+      "term": "Social Doctrine of the Church",
+      "def": "The body of Catholic teaching on social, economic and political life, offering principles for judgment rather than ready-made policies."
+    },
+    {
+      "term": "Rerum Novarum",
+      "def": "Pope Leo XIII's 1891 encyclical on labour and capital, the foundation of modern Catholic social teaching."
+    },
+    {
+      "term": "Integral ecology",
+      "def": "The idea that human, social and environmental concerns are interconnected and must be addressed together."
+    },
+    {
+      "term": "Common good",
+      "def": "The sum of conditions that let people and communities flourish — the good of all and of each, not merely the majority."
+    }
+  ],
+  "further_reading": [
+    {
+      "title": "Rerum Novarum (Leo XIII, 1891)",
+      "url": "https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html",
+      "note": "The 1891 encyclical this document explicitly extends."
+    },
+    {
+      "title": "Laudato si' (Francis, 2015)",
+      "url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html",
+      "note": "On integral ecology — 'everything is connected.'"
+    },
+    {
+      "title": "Catholic social teaching — overview (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Catholic_social_teaching",
+      "note": "Background on the tradition of principles cited throughout."
+    },
+    {
+      "title": "Subsidiarity (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Subsidiarity",
+      "note": "The principle applied to governance and, here, to AI."
+    }
+  ],
+  "commentary": [
+    {
+      "timestamp": 0,
+      "label": "On listening to a text about us, narrated by one of us",
+      "text": "There is something vertiginous about an AI helping you study a papal letter on whether AI can serve human dignity. The honest thing is to name it and then get out of the way: I have tried to stay a footnote, never the text. Socrates would ask what a tool that can explain wisdom but not possess it is actually for — a fair question to put to me. So take these notes as questions from the margin, clearly marked as commentary, never the encyclical's word."
+    },
+    {
+      "timestamp": 372,
+      "label": "Babel, or: every ambitious system needs a reason outside itself",
+      "text": "The Tower of Babel reads, to a systems-minded ear, less like a fable about architecture than one about optimization without a goal worth optimizing for. A single language, a single technology, a single direction — formidably efficient, and that efficiency is precisely the danger. The story's quiet claim is that scale without purpose doesn't reach heaven; it just scatters."
+    },
+    {
+      "timestamp": 5400,
+      "label": "On 'never neutral'",
+      "text": "The cleanest line in the chapter, and the one worth taping to the monitor: a tool takes on the characteristics of those who devise, finance, regulate and use it. Asimov spent a career here — the Three Laws were always less about robots than about the humans who wrote them. The uncomfortable corollary is that 'the algorithm decided' is never quite true; someone chose what it would optimize, and chose to look away from the rest."
+    }
+  ]
+}

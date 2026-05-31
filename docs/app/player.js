@@ -40,12 +40,29 @@ async function init() {
   idx = resume ? clamp(resume.chapter | 0, 0, vm.chapters.length - 1) : 0;
   completed = new Set((resume && resume.completed) || []);
 
+  // Deep link from the companion guide: ?t=<absolute seconds> → find the chapter
+  // containing that time (using the current voice's durations) and seek within it.
+  let seekTo = resume ? resume.time : 0;
+  const tParam = new URLSearchParams(location.search).get("t");
+  if (tParam !== null && !Number.isNaN(Number(tParam))) {
+    let rem = Math.max(0, Number(tParam));
+    for (let i = 0; i < vm.chapters.length; i++) {
+      const d = vm.chapters[i].duration[voiceId] || 0;
+      if (rem < d || i === vm.chapters.length - 1) { idx = i; seekTo = rem; break; }
+      rem -= d;
+    }
+  }
+
   renderHead();
   renderVoices();
   $("speed").value = String(prefs.speed || 1);
   audio.playbackRate = Number($("speed").value);
+  if (vm.hasGuide) {
+    const link = document.getElementById("companion-link");
+    if (link) { link.style.display = ""; link.href = `guide.html?book=${vm.id}`; }
+  }
 
-  loadChapter(idx, resume ? resume.time : 0, false);
+  loadChapter(idx, seekTo, false);
   wireControls();
   wireMediaSession();
   wireKeyboard();
