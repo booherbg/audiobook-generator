@@ -113,9 +113,13 @@ def build_guide(book_id, resource, concepts, glossary, further_reading, commenta
     data = {
         "book": book_id,
         "intro": (
-            "An optional companion to the audiobook. Tap a concept to read a short, plain "
-            "explanation, see the encyclical's own words, and jump to that moment in the "
-            "audio. Everything in quotation marks is taken verbatim from the text."
+            "A companion to the reading — not a replacement for it. This encyclical asks "
+            "whether our tools can serve human dignity rather than crowd it out, so there is "
+            "a quiet irony in an AI keeping notes in its margins. The honest answer is "
+            "restraint: everything below points back to the text in the author's own words, "
+            "each quotation is verbatim, and every opinion is labelled as mine, not his. "
+            "Follow a thread if you're curious; close the tab and just listen if you're not. "
+            "Either is a good way to spend the hours."
         ),
         "concepts": cards,
         "glossary": glossary,

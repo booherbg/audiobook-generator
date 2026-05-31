@@ -184,3 +184,11 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; animation: none !important; }
 }
+
+/* ── Companion: authored framing ── */
+.companion-sub { color: var(--muted); margin: -2px 0 14px; font-size: 1rem; }
+.lede { line-height: 1.6; }
+.section-note { color: var(--muted); font-size: .9rem; line-height: 1.55; margin: 0 0 14px; max-width: 60ch; }
+.listen-demo { color: var(--accent); white-space: nowrap; }
+.companion-foot { margin: 32px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line); }
+.companion-foot p { color: var(--muted); font-size: .92rem; line-height: 1.6; max-width: 62ch; font-style: italic; }

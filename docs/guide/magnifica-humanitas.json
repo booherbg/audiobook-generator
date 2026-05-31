@@ -1,6 +1,6 @@
 {
   "book": "magnifica-humanitas",
-  "intro": "An optional companion to the audiobook. Tap a concept to read a short, plain explanation, see the encyclical's own words, and jump to that moment in the audio. Everything in quotation marks is taken verbatim from the text.",
+  "intro": "A companion to the reading — not a replacement for it. This encyclical asks whether our tools can serve human dignity rather than crowd it out, so there is a quiet irony in an AI keeping notes in its margins. The honest answer is restraint: everything below points back to the text in the author's own words, each quotation is verbatim, and every opinion is labelled as mine, not his. Follow a thread if you're curious; close the tab and just listen if you're not. Either is a good way to spend the hours.",
   "concepts": [
     {
       "title": "Babel or the Beloved City",
@@ -207,6 +207,22 @@
       "chapter_title": "Introduction (continued)",
       "fraction": 0.07482,
       "timestamp": 650.0
+    },
+    {
+      "label": "On 'responsibility, transparency and the governance of AI'",
+      "text": "To hear a papal letter say 'responsibility, transparency and the governance of AI' is to watch two vocabularies that rarely meet shake hands — the curia and the all-hands deck. The quiet claim underneath is that these aren't engineering niceties bolted on at the end, but the minimum a powerful tool owes the people it acts upon. Transparency, in this frame, isn't a dashboard; it's whether a person can still be held answerable when the system is wrong. That's a harder property to ship than accuracy — and, the encyclical would say, a more important one.",
+      "chapter": 8,
+      "chapter_title": "Technology and Dominance. The Grandeur of Humanity in Light of the Promises of AI (continued)",
+      "fraction": 0.39646,
+      "timestamp": 5740.0
+    },
+    {
+      "label": "On work, when the machines are good at it",
+      "text": "Here is the passage that should give pause to anyone who builds the tools that do the work. The claim is not the easy one — that automation costs jobs — but a harder one: that work is a place where a person becomes someone, not merely earns. It is a quiet rebuttal to the comfortable answer that we will automate the toil and pay people to be free. Toil and meaning, it suggests, are braided together in ways a transfer payment doesn't reach. You needn't share the theology to feel the weight of the question: when we make work optional, what exactly are we freeing people for?",
+      "chapter": 10,
+      "chapter_title": "Safeguarding Humanity at a Time of Transformation. Truth, Work, Freedom",
+      "fraction": 0.40586,
+      "timestamp": 7400.0
     },
     {
       "label": "On disarming words, and the civilization of love",

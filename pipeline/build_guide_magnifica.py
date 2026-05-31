@@ -167,6 +167,24 @@ COMMENTARY = [
              "here — the Three Laws were always less about robots than about the humans who wrote them. The "
              "uncomfortable corollary is that 'the algorithm decided' is never quite true; someone chose "
              "what it would optimize, and chose to look away from the rest."},
+    {"timestamp": 5740,
+     "label": "On 'responsibility, transparency and the governance of AI'",
+     "text": "To hear a papal letter say 'responsibility, transparency and the governance of AI' is to "
+             "watch two vocabularies that rarely meet shake hands — the curia and the all-hands deck. "
+             "The quiet claim underneath is that these aren't engineering niceties bolted on at the end, "
+             "but the minimum a powerful tool owes the people it acts upon. Transparency, in this frame, "
+             "isn't a dashboard; it's whether a person can still be held answerable when the system is "
+             "wrong. That's a harder property to ship than accuracy — and, the encyclical would say, a "
+             "more important one."},
+    {"timestamp": 7400,
+     "label": "On work, when the machines are good at it",
+     "text": "Here is the passage that should give pause to anyone who builds the tools that do the work. "
+             "The claim is not the easy one — that automation costs jobs — but a harder one: that work is "
+             "a place where a person becomes someone, not merely earns. It is a quiet rebuttal to the "
+             "comfortable answer that we will automate the toil and pay people to be free. Toil and "
+             "meaning, it suggests, are braided together in ways a transfer payment doesn't reach. You "
+             "needn't share the theology to feel the weight of the question: when we make work optional, "
+             "what exactly are we freeing people for?"},
     {"timestamp": 10980,
      "label": "On disarming words, and the civilization of love",
      "text": "By the late chapters the encyclical turns from machines to manners — to how we speak to "
