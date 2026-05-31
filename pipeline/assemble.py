@@ -44,10 +44,15 @@ def stitch_wavs(wav_paths, out_wav, pause_ms: int = PARA_PAUSE_MS) -> Path:
 
 
 def encode_mp3(in_wav, out_mp3, title="", album="", artist="", track=0) -> Path:
+    # loudnorm hits -16 LUFS; a final-stage alimiter guarantees the sample peak stays
+    # below full scale even after the lossy MP3 encode (loudnorm's own TP target is a
+    # pre-encode inter-sample estimate that lame can push back over 0 on loud material).
+    af = (
+        f"loudnorm=I={LUFS}:TP={TRUE_PEAK}:LRA={LRA},"
+        "alimiter=level_in=1:level_out=1:limit=0.85:attack=5:release=50:level=disabled"
+    )
     cmd = [
-        "ffmpeg", "-y", "-i", str(in_wav),
-        # loudnorm to -16 LUFS with a -1.5 dBFS peak ceiling → no sample clipping.
-        "-af", f"loudnorm=I={LUFS}:TP={TRUE_PEAK}:LRA={LRA}",
+        "ffmpeg", "-y", "-i", str(in_wav), "-af", af,
         "-ac", "1", "-ar", str(OUT_SR), "-codec:a", "libmp3lame", "-b:a", MP3_BITRATE,
     ]
     for key, val in (("title", title), ("album", album), ("artist", artist)):

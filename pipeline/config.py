@@ -14,7 +14,8 @@ SAMPLE_RATE = 24000        # Kokoro native output
 OUT_SR = 44100             # final MP3 sample rate
 MP3_BITRATE = "64k"        # mono spoken-word
 LUFS = -16.0               # EBU R128 integrated loudness target
-TRUE_PEAK = -1.5           # dBTP ceiling
+TRUE_PEAK = -2.0           # loudnorm TP target; -2 leaves headroom so the lossy
+                           # MP3 encode doesn't push the sample peak back above 0 dBFS
 LRA = 11.0                 # loudness range
 PARA_PAUSE_MS = 400        # silence between paragraphs
 

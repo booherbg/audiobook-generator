@@ -67,21 +67,28 @@ def _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters):
 
 
 def _write_manifest(args, book_id, title, chapters, selected, voices_cfg, src):
-    """Rebuild the book entry from audio actually on disk (resume-safe)."""
+    """Rebuild the book entry from audio actually on disk (resume-safe).
+
+    Scans EVERY voice configured in voices.yaml — not just the `selected` ones for this
+    run — so a single-voice re-render (e.g. --voices male) never drops the other voice's
+    chapters from the manifest. A voice is included if it has a chapter-01 mp3 on disk.
+    """
+    present = [v for v in voices_cfg
+              if (config.AUDIO_ROOT / book_id / v / "chapter-01.mp3").exists()]
     book_chapters = []
     for ch in chapters:
         files, durs = {}, {}
-        for vid in selected:
+        for vid in present:
             mp3 = config.AUDIO_ROOT / book_id / vid / f"chapter-{ch.index:02d}.mp3"
             if mp3.exists() and mp3.stat().st_size > 1000:
                 files[vid] = mp3.relative_to(config.DOCS).as_posix()
                 durs[vid] = round(probe(mp3)["duration"], 1)
-        if len(files) == len(selected):  # only fully-rendered chapters
+        if files and len(files) == len(present):  # only chapters complete for all present voices
             book_chapters.append({"index": ch.index, "title": ch.title, "files": files, "duration": durs})
     manifest = load_manifest(config.MANIFEST)
-    insert_book(manifest, _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters))
+    insert_book(manifest, _book_dict(args, book_id, title, present, voices_cfg, src, book_chapters))
     save_manifest(config.MANIFEST, manifest)
-    print(f"manifest: {len(book_chapters)}/{len(chapters)} chapters complete", flush=True)
+    print(f"manifest: {len(book_chapters)}/{len(chapters)} chapters, voices={present}", flush=True)
 
 
 def cmd_generate(args):
