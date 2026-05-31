@@ -4,14 +4,28 @@
   "concepts": [
     {
       "title": "Babel or the Beloved City",
-      "blurb": "The encyclical opens not with policy but with two cities. Babel is the project built for its builders' name — capable, coordinated, and pointed nowhere good; its counter-image is the city 'in which God and humanity dwell together.' The point for a technologist: the hard question was never whether we can build the tower, but what it is for and who it leaves out.",
+      "blurb": "The encyclical opens not with policy but with two cities. Babel's sin is not that it lacked a goal — it had one, to 'make a name' for its builders — but the kind of goal: pride, self-sufficiency, a uniformity that 'sacrifices human dignity for efficiency.' Its counter-image is the city 'in which God and humanity dwell together.' The hard question was never whether we can build the tower, but what it is for and who it leaves out.",
       "quote": "Humanity, created by God in all its grandeur, is today facing a pivotal choice: either to construct a new Tower of Babel or to build the city in which God and humanity dwell together.",
       "chapter": 1,
       "chapter_title": "Introduction",
       "fraction": 0.00064,
       "timestamp": 0.4,
       "related": [
+        "Two loves, two cities",
         "The common good",
+        "Remaining human"
+      ]
+    },
+    {
+      "title": "Two loves, two cities",
+      "blurb": "The other half of the encyclical's central image, from Augustine: 'Two loves have built two cities: the earthly city, the love of self even to the contempt of God; the heavenly city, the love of God even to the contempt of self.' Babel and Jerusalem aren't out in the world to choose between; the choice runs through each heart — and so through what we build. The constructive answer the text offers is the 'way of Nehemiah': patient, shared rebuilding with God at the center.",
+      "quote": "“Two loves have built two cities: the earthly city, the love of self even to the contempt of God; the heavenly city, the love of God even to the contempt of self.",
+      "chapter": 9,
+      "chapter_title": "Technology and Dominance. The Grandeur of Humanity in Light of the Promises of AI (continued)",
+      "fraction": 0.9628,
+      "timestamp": 6939.3,
+      "related": [
+        "Babel or the Beloved City",
         "Remaining human"
       ]
     },
@@ -29,7 +43,7 @@
     },
     {
       "title": "Human dignity",
-      "blurb": "The bedrock principle, stated plainly by the encyclical: a person's worth does not depend on what they achieve or produce. The guide notes the obvious application — this cuts against any age tempted to rank people by output or data.",
+      "blurb": "The bedrock principle: a person's worth does not depend on what they achieve or produce. Crucially, the encyclical grounds this not in sentiment but ontologically — dignity 'belongs to every human being simply by virtue of existing, of having been willed, created and loved by God' (ch4) — a worth no failure, and no metric of output or data, can revoke.",
       "quote": "The value of persons, however, does not depend on what they achieve or produce.",
       "chapter": 4,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church",
@@ -68,14 +82,15 @@
     },
     {
       "title": "Solidarity",
-      "blurb": "More than a vague good feeling: the encyclical, citing Francis, says solidarity in its fullest sense means 'to restore to the poor what belongs to them' — a disposition that turns shared power toward the good of all.",
+      "blurb": "Not charity but justice: the encyclical, citing Francis, says solidarity in its fullest sense means 'to restore to the poor what belongs to them' — the poor have a real, prior claim on the goods of the earth, not merely a hope for others' generosity.",
       "quote": "For this reason, Pope Francis reminded us that solidarity, when lived out in its fullest sense, also means “to restore to the poor what belongs to them.”",
       "chapter": 5,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
       "fraction": 0.38089,
       "timestamp": 3190.7,
       "related": [
-        "The common good"
+        "The common good",
+        "Universal destination of goods"
       ]
     },
     {
@@ -92,24 +107,24 @@
     },
     {
       "title": "Preferential option for the poor",
-      "blurb": "Fine words about freedom ring hollow, the encyclical warns, if we 'allow a multitude of people to continue living without decent work, protections or access to basic necessities.' Progress is judged by how it touches the most vulnerable.",
-      "quote": "Similarly, it is not enough to extol individual freedom or private enterprise if we then allow a multitude of people to continue living without decent work, protections or access to basic necessities.",
-      "chapter": 4,
-      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church",
-      "fraction": 0.85774,
-      "timestamp": 2734.0,
+      "blurb": "Not a policy preference but a commitment rooted in discipleship — Christ identifies himself with the least, so the measure of our care for the poor is the measure of our relationship with God. Progress is judged, finally, by how it touches the most vulnerable.",
+      "quote": "Saint John Paul II spoke of a preferential option for the poor that must guide both personal and societal choices, while Pope Francis denounced a “‘throw away’ culture” that generates ever new forms of exclusion.",
+      "chapter": 6,
+      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
+      "fraction": 0.16108,
+      "timestamp": 3874.1,
       "related": [
         "Human dignity"
       ]
     },
     {
       "title": "The dignity of work",
-      "blurb": "Work is more than output. The encyclical names the dignity of work in the digital transition a question that can't be postponed — weighing automation and AI against what they do to the worker, not only to productivity.",
-      "quote": "The dignity of work at a time of digital transition",
-      "chapter": 10,
-      "chapter_title": "Safeguarding Humanity at a Time of Transformation. Truth, Work, Freedom",
-      "fraction": 0.93297,
-      "timestamp": 7963.0,
+      "blurb": "Work is more than output. Profit, the encyclical says, cannot justify choices that 'systematically sacrifice jobs, because the human person is an end, not a means, and the economic order must remain subordinate to human dignity and the common good' — the test for automation and AI is what they do to the worker, not only to productivity.",
+      "quote": "The pursuit of greater profits cannot justify choices that systematically sacrifice jobs, because the human person is an end, not a means, and the economic order must remain subordinate to human dignity and the common good.",
+      "chapter": 11,
+      "chapter_title": "Safeguarding Humanity at a Time of Transformation. Truth, Work, Freedom (continued)",
+      "fraction": 0.16048,
+      "timestamp": 8211.7,
       "related": [
         "Human dignity"
       ]
@@ -129,7 +144,7 @@
     },
     {
       "title": "Remaining human",
-      "blurb": "The encyclical's charge in the age of AI: to safeguard what no machine can replace, and to let intelligence serve persons rather than the reverse.",
+      "blurb": "The encyclical's charge in the age of AI: to safeguard the grandeur of humanity — which it says is revealed in its fullness in Christ, and 'the splendor of which no machine can ever replace' — and to let intelligence serve persons rather than the reverse.",
       "quote": "In the era of artificial intelligence, when human dignity is threatened by new forms of dehumanization, ours is the pressing duty to remain profoundly human.",
       "chapter": 2,
       "chapter_title": "Introduction (continued)",
@@ -137,7 +152,8 @@
       "timestamp": 995.4,
       "related": [
         "Human dignity",
-        "Babel or the Beloved City"
+        "Babel or the Beloved City",
+        "Two loves, two cities"
       ]
     },
     {
@@ -171,6 +187,10 @@
     {
       "term": "Common good",
       "def": "Not the greatest good for the greatest number, but the good of all and of each — a higher bar that refuses to average away the person who gets left out."
+    },
+    {
+      "term": "Ontological dignity",
+      "def": "The encyclical's keystone: the worth a person has simply by existing — 'willed, created and loved by God' — as distinct from moral, social, or felt dignity, which can rise or fall. This one cannot be earned or lost, which is exactly why no system may rank people by usefulness."
     }
   ],
   "further_reading": [
@@ -205,8 +225,8 @@
       "timestamp": 0.0
     },
     {
-      "label": "Babel, or: every ambitious system needs a reason outside itself",
-      "text": "The Tower of Babel reads, to a systems-minded ear, less like a fable about architecture than one about optimization without a goal worth optimizing for. A single language, a single technology, a single direction — formidably efficient, and that efficiency is precisely the danger. The story's quiet claim is that scale without purpose doesn't reach heaven; it just scatters.",
+      "label": "Babel: a single language, a single direction",
+      "text": "A systems-minded ear wants to read Babel as optimization without a goal — but that's not the text's claim, and the difference matters. Babel had a goal: to make a name for itself. Its sin was the kind of goal — pride, self-sufficiency, 'a single language, a single technology, a single direction' that flattens everyone into the same mold. The cautionary note for anyone building at scale isn't 'have an objective'; it's that an objective of pure self-affirmation, however efficient, scatters the very people it was meant to gather.",
       "chapter": 1,
       "chapter_title": "Introduction",
       "fraction": 0.60705,
@@ -214,7 +234,7 @@
     },
     {
       "label": "On 'never neutral'",
-      "text": "The cleanest line in the chapter, and the one worth taping to the monitor: a tool takes on the characteristics of those who devise, finance, regulate and use it. Asimov spent a career here — the Three Laws were always less about robots than about the humans who wrote them. The uncomfortable corollary is that 'the algorithm decided' is never quite true; someone chose what it would optimize, and chose to look away from the rest.",
+      "text": "The cleanest line in the chapter: a tool takes on the characteristics of those who devise, finance, regulate and use it. Asimov spent a career here — the Three Laws were always less about robots than about the humans who wrote them. The uncomfortable corollary is that 'the algorithm decided' is never quite true; someone chose what it would optimize, and — whether by intent or by not looking — chose what it would ignore.",
       "chapter": 2,
       "chapter_title": "Introduction (continued)",
       "fraction": 0.07482,
