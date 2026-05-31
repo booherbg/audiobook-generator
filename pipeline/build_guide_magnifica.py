@@ -30,12 +30,12 @@ CONCEPTS = [
     {
         "title": "Two loves, two cities",
         "anchor": "Two loves have built two cities",
-        "blurb": "The other half of the encyclical's central image, from Augustine: 'Two loves have built "
-                 "two cities: the earthly city, the love of self even to the contempt of God; the heavenly "
-                 "city, the love of God even to the contempt of self.' Babel and Jerusalem aren't out in "
-                 "the world to choose between; the choice runs through each heart — and so through what we "
-                 "build. The constructive answer the text offers is the 'way of Nehemiah': patient, shared "
-                 "rebuilding with God at the center.",
+        "blurb": "The other half of the encyclical's central image. Reaching back to Augustine, the letter "
+                 "recalls: 'Two loves have built two cities: the earthly city, the love of self even to the "
+                 "contempt of God; the heavenly city, the love of God even to the contempt of self.' Babel "
+                 "and Jerusalem aren't out in the world to choose between; the choice runs through each heart "
+                 "— and so through what we build. The constructive answer the text offers is the 'way of "
+                 "Nehemiah': patient, shared rebuilding with God at the center.",
         "related": ["Babel or the Beloved City", "Remaining human"],
     },
     {
@@ -148,8 +148,9 @@ GLOSSARY = [
                                    "— a higher bar that refuses to average away the person who gets left out."},
     {"term": "Ontological dignity", "def": "The encyclical's keystone: the worth a person has simply by existing — "
                                            "'willed, created and loved by God' — as distinct from moral, social, or "
-                                           "felt dignity, which can rise or fall. This one cannot be earned or lost, "
-                                           "which is exactly why no system may rank people by usefulness."},
+                                           "felt dignity, which can rise or fall. This one is inviolable: no sin, "
+                                           "failure, or exclusion can diminish it — which is exactly why no system "
+                                           "may rank people by usefulness."},
 ]
 
 # Each external reference is a stable, canonical source. URLs are verified by build_and_verify.
