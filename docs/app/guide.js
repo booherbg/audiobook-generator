@@ -2,13 +2,14 @@
 // and further reading from docs/guide/<book>.json. Every "▶ listen" jumps into the
 // player at the passage's timestamp. No runtime LLM — pure static data.
 
-import { formatTime } from "./logic.js";
-
 const $ = (id) => document.getElementById(id);
 const BOOK = new URLSearchParams(location.search).get("book") || "magnifica-humanitas";
 
-function listenHref(ts) {
-  return `player.html?book=${encodeURIComponent(BOOK)}&t=${Math.floor(ts)}`;
+// Voice-independent deep link: chapter + fraction-within-chapter. The player resolves
+// the fraction against whichever voice the listener has selected, so the jump lands on
+// the right passage regardless of voice (the voices differ in length by ~10%).
+function listenHref(c) {
+  return `player.html?book=${encodeURIComponent(BOOK)}&ch=${c.chapter}&f=${c.fraction}`;
 }
 
 function conceptCard(c) {
@@ -25,7 +26,7 @@ function conceptCard(c) {
     `<blockquote class="quote"></blockquote>` +
     `<div class="cite">` +
       `<span class="ch"></span>` +
-      `<a class="listen" href="${listenHref(c.timestamp)}">▶ listen (${formatTime(c.timestamp)})</a>` +
+      `<a class="listen" href="${listenHref(c)}">▶ listen from here</a>` +
     `</div>`;
   body.querySelector(".blurb").textContent = c.blurb;
   body.querySelector(".quote").textContent = `“${c.quote}”`;
@@ -38,7 +39,7 @@ function commentaryItem(c) {
   const el = document.createElement("details");
   el.className = "aside";
   const sum = document.createElement("summary");
-  sum.innerHTML = `<span class="aside-label"></span> <a class="listen" href="${listenHref(c.timestamp)}">▶ ${formatTime(c.timestamp)}</a>`;
+  sum.innerHTML = `<span class="aside-label"></span> <a class="listen" href="${listenHref(c)}">▶ listen</a>`;
   sum.querySelector(".aside-label").textContent = c.label;
   el.appendChild(sum);
   const p = document.createElement("p");

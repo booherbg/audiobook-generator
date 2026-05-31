@@ -50,22 +50,37 @@ async function init() {
   idx = resume ? clamp(resume.chapter | 0, 0, vm.chapters.length - 1) : 0;
   completed = new Set((resume && resume.completed) || []);
 
-  // Deep link from the companion (?t=<absolute seconds>): find the chapter containing
-  // that time (using the current voice's durations) and seek within it.
+  // Deep link from the companion. Preferred form is voice-independent: ?ch=<n>&f=<0..1>,
+  // resolved against the CURRENT voice's chapter duration so it lands on the right passage
+  // whichever voice is selected. (?t=<absolute seconds> still supported as a fallback.)
   let seekTo = resume ? resume.time : 0;
-  let autostart = false;
+  let cameFromLink = false;
   const params = new URLSearchParams(location.search);
+  const chParam = params.get("ch");
+  const fParam = params.get("f");
   const tParam = params.get("t");
-  if (tParam !== null && !Number.isNaN(Number(tParam))) {
+  if (chParam !== null && fParam !== null) {
+    const ci = vm.chapters.findIndex((c) => String(c.index) === String(chParam));
+    if (ci >= 0) {
+      idx = ci;
+      const frac = clamp(Number(fParam) || 0, 0, 0.999);
+      seekTo = frac * (vm.chapters[ci].duration[voiceId] || 0);
+      cameFromLink = true;
+    }
+  } else if (tParam !== null && !Number.isNaN(Number(tParam))) {
     let rem = Math.max(0, Number(tParam));
     for (let i = 0; i < vm.chapters.length; i++) {
       const d = vm.chapters[i].duration[voiceId] || 0;
       if (rem < d || i === vm.chapters.length - 1) { idx = i; seekTo = rem; break; }
       rem -= d;
     }
-    autostart = true;            // arriving from a "listen" link → start playing the passage
-    readAlong = true;            // and show the words, so the jump is visible
+    cameFromLink = true;
   }
+  // Arriving from a "listen" link: show the words so the jump is visible. Do NOT force
+  // autoplay — mobile blocks it and a surprise blast on desktop is jarring; the visible
+  // highlight + a ready Play button invite the tap. (Audit fix.)
+  if (cameFromLink) readAlong = true;
+  const autostart = false;
 
   renderHead();
   renderVoices();

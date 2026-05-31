@@ -179,3 +179,8 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
 .companion-callout .cc-title { font-weight: 600; color: var(--accent); }
 .companion-callout .cc-title::after { content: " ▸"; }
 .companion-callout .cc-desc { display: block; color: var(--muted); font-size: .9rem; margin-top: 2px; }
+
+/* Respect reduced-motion: disable the smooth transitions/animations site-wide. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; animation: none !important; }
+}

@@ -8,7 +8,8 @@
       "quote": "Humanity, created by God in all its grandeur, is today facing a pivotal choice: either to construct a new Tower of Babel or to build the city in which God and humanity dwell together.",
       "chapter": 1,
       "chapter_title": "Introduction",
-      "timestamp": 0.0,
+      "fraction": 0.00064,
+      "timestamp": 0.4,
       "related": [
         "The common good",
         "Remaining human"
@@ -20,7 +21,8 @@
       "quote": "In practice, however, technology is never neutral, because it takes on the characteristics of those who devise, finance, regulate and use it.",
       "chapter": 2,
       "chapter_title": "Introduction (continued)",
-      "timestamp": 645.7,
+      "fraction": 0.06776,
+      "timestamp": 646.5,
       "related": [
         "Concentration of power"
       ]
@@ -31,7 +33,8 @@
       "quote": "The value of persons, however, does not depend on what they achieve or produce.",
       "chapter": 4,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church",
-      "timestamp": 2380.5,
+      "fraction": 0.4194,
+      "timestamp": 2375.7,
       "related": [
         "The common good",
         "Preferential option for the poor"
@@ -43,7 +46,8 @@
       "quote": "We can describe it as the social expression of the dignity recognized in every person.",
       "chapter": 4,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church",
-      "timestamp": 2787.7,
+      "fraction": 0.90531,
+      "timestamp": 2772.9,
       "related": [
         "Subsidiarity",
         "Solidarity"
@@ -55,7 +59,8 @@
       "quote": "The Social Doctrine of the Church refers to subsidiarity as the principle according to which the role of individuals, families, local communities and intermediary organizations should not be supplanted by higher-level authorities.",
       "chapter": 5,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
-      "timestamp": 3267.6,
+      "fraction": 0.48856,
+      "timestamp": 3286.9,
       "related": [
         "The common good",
         "Concentration of power"
@@ -67,7 +72,8 @@
       "quote": "For this reason, Pope Francis reminded us that solidarity, when lived out in its fullest sense, also means “to restore to the poor what belongs to them.”",
       "chapter": 5,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
-      "timestamp": 3174.7,
+      "fraction": 0.38089,
+      "timestamp": 3190.7,
       "related": [
         "The common good"
       ]
@@ -78,7 +84,8 @@
       "quote": "First of all, this principle reminds us that the earth’s goods — soil, water, air and natural resources — are given by God to the entire human family to sustain the lives of all, and that every person has an inherent right to the use of such goods, both now and in the future.",
       "chapter": 5,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
-      "timestamp": 3076.4,
+      "fraction": 0.26694,
+      "timestamp": 3088.8,
       "related": [
         "Preferential option for the poor"
       ]
@@ -89,7 +96,8 @@
       "quote": "Similarly, it is not enough to extol individual freedom or private enterprise if we then allow a multitude of people to continue living without decent work, protections or access to basic necessities.",
       "chapter": 4,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church",
-      "timestamp": 2747.9,
+      "fraction": 0.85774,
+      "timestamp": 2734.0,
       "related": [
         "Human dignity"
       ]
@@ -100,7 +108,8 @@
       "quote": "In a context where the wealth of nations depends increasingly on knowledge and technology, when these goods remain concentrated in the hands of a few, without adequate forms of sharing and access, a new imbalance is created that contradicts the universal destination of goods.",
       "chapter": 5,
       "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
-      "timestamp": 3196.0,
+      "fraction": 0.40556,
+      "timestamp": 3212.7,
       "related": [
         "Technology is never neutral",
         "Subsidiarity"
@@ -112,7 +121,8 @@
       "quote": "In the era of artificial intelligence, when human dignity is threatened by new forms of dehumanization, ours is the pressing duty to remain profoundly human.",
       "chapter": 2,
       "chapter_title": "Introduction (continued)",
-      "timestamp": 994.5,
+      "fraction": 0.76947,
+      "timestamp": 995.4,
       "related": [
         "Human dignity",
         "Babel vs. Jerusalem"
@@ -124,7 +134,8 @@
       "quote": "In this spirit, Pope Leo XIII published his Encyclical Rerum Novarum in 1891, the 135 anniversary of which we celebrate with deep gratitude this year.",
       "chapter": 1,
       "chapter_title": "Introduction",
-      "timestamp": 123.5,
+      "fraction": 0.20343,
+      "timestamp": 124.7,
       "related": []
     }
   ],
@@ -174,24 +185,36 @@
   ],
   "commentary": [
     {
-      "timestamp": 0,
       "label": "On listening to a text about us, narrated by one of us",
-      "text": "There is something vertiginous about an AI helping you study a papal letter on whether AI can serve human dignity. The honest thing is to name it and then get out of the way: I have tried to stay a footnote, never the text. Socrates would ask what a tool that can explain wisdom but not possess it is actually for — a fair question to put to me. So take these notes as questions from the margin, clearly marked as commentary, never the encyclical's word."
+      "text": "There is something vertiginous about an AI helping you study a papal letter on whether AI can serve human dignity. The honest thing is to name it and then get out of the way: I have tried to stay a footnote, never the text. Socrates would ask what a tool that can explain wisdom but not possess it is actually for — a fair question to put to me. So take these notes as questions from the margin, clearly marked as commentary, never the encyclical's word.",
+      "chapter": 1,
+      "chapter_title": "Introduction",
+      "fraction": 0.0,
+      "timestamp": 0.0
     },
     {
-      "timestamp": 372,
       "label": "Babel, or: every ambitious system needs a reason outside itself",
-      "text": "The Tower of Babel reads, to a systems-minded ear, less like a fable about architecture than one about optimization without a goal worth optimizing for. A single language, a single technology, a single direction — formidably efficient, and that efficiency is precisely the danger. The story's quiet claim is that scale without purpose doesn't reach heaven; it just scatters."
+      "text": "The Tower of Babel reads, to a systems-minded ear, less like a fable about architecture than one about optimization without a goal worth optimizing for. A single language, a single technology, a single direction — formidably efficient, and that efficiency is precisely the danger. The story's quiet claim is that scale without purpose doesn't reach heaven; it just scatters.",
+      "chapter": 1,
+      "chapter_title": "Introduction",
+      "fraction": 0.60705,
+      "timestamp": 372.0
     },
     {
-      "timestamp": 650,
       "label": "On 'never neutral'",
-      "text": "The cleanest line in the chapter, and the one worth taping to the monitor: a tool takes on the characteristics of those who devise, finance, regulate and use it. Asimov spent a career here — the Three Laws were always less about robots than about the humans who wrote them. The uncomfortable corollary is that 'the algorithm decided' is never quite true; someone chose what it would optimize, and chose to look away from the rest."
+      "text": "The cleanest line in the chapter, and the one worth taping to the monitor: a tool takes on the characteristics of those who devise, finance, regulate and use it. Asimov spent a career here — the Three Laws were always less about robots than about the humans who wrote them. The uncomfortable corollary is that 'the algorithm decided' is never quite true; someone chose what it would optimize, and chose to look away from the rest.",
+      "chapter": 2,
+      "chapter_title": "Introduction (continued)",
+      "fraction": 0.07482,
+      "timestamp": 650.0
     },
     {
-      "timestamp": 10980,
       "label": "On disarming words, and the civilization of love",
-      "text": "By the late chapters the encyclical turns from machines to manners — to how we speak to and about one another. It is a quietly radical move: in a book on artificial intelligence, the most concrete instruction is to disarm our own words. The smallest unit of the civilization of love turns out to be the ordinary person deciding not to be cruel online today — which is both less impressive and far harder than building a better model."
+      "text": "By the late chapters the encyclical turns from machines to manners — to how we speak to and about one another. It is a quietly radical move: in a book on artificial intelligence, the most concrete instruction is to disarm our own words. The smallest unit of the civilization of love turns out to be the ordinary person deciding not to be cruel online today — which is both less impressive and far harder than building a better model.",
+      "chapter": 14,
+      "chapter_title": "The Culture of Power and the Civilization of Love (continued)",
+      "fraction": 0.087,
+      "timestamp": 10980.0
     }
   ]
 }
