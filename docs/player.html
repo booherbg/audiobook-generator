@@ -11,7 +11,8 @@
     <header class="topbar">
       <a class="back" href="index.html">‹ Library</a>
       <span class="topbar-right">
-        <a id="companion-link" href="#" style="display:none">Companion</a>
+        <a id="companion-link" href="#" style="display:none"
+           title="Explore the key ideas: concept cards, commentary, glossary">Companion ▸</a>
         <a class="about-link" href="about.html">About</a>
       </span>
     </header>
@@ -24,6 +25,12 @@
         <p id="book-author" class="author"></p>
       </div>
     </section>
+
+    <a id="companion-callout" class="companion-callout" href="#" style="display:none">
+      <span class="cc-title">Companion guide</span>
+      <span class="cc-desc">Foundational ideas, an AI commentary track, and links that jump
+        you straight to the passage — optional, alongside the listen.</span>
+    </a>
 
     <section class="now" aria-live="polite">
       <p class="now-label">Now playing</p>
@@ -66,6 +73,8 @@
               aria-controls="readalong" title="Show the text and follow along (R)">
         Read along
       </button>
+      <button id="jump-current" class="jump-current" style="display:none"
+              title="Scroll back to the line being read">↓ Current line</button>
       <span class="readalong-hint">follow the exact text as it’s read — tap any line to jump there</span>
     </section>
     <section id="readalong" class="readalong" style="display:none" aria-label="Read-along transcript">

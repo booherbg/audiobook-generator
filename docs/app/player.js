@@ -29,6 +29,8 @@ let transcript = null;        // { chapters: [{index,title,lines,starts}] }
 let readAlong = false;        // panel open?
 let lineEls = [];             // current chapter's rendered line elements
 let lastLine = -1;            // last highlighted line index (avoid redundant DOM work)
+let autoScroll = true;        // follow the current line (off once the user scrolls away)
+let lastAutoScrollAt = 0;     // timestamp of our own programmatic scroll (ignore those)
 
 async function init() {
   let manifest;
@@ -70,8 +72,11 @@ async function init() {
   $("speed").value = String(prefs.speed || 1);
   audio.playbackRate = Number($("speed").value);
   if (vm.hasGuide) {
+    const href = `guide.html?book=${encodeURIComponent(vm.id)}`;
     const link = $("companion-link");
-    if (link) { link.style.display = ""; link.href = `guide.html?book=${vm.id}`; }
+    if (link) { link.style.display = ""; link.href = href; }
+    const callout = $("companion-callout");
+    if (callout) { callout.style.display = ""; callout.href = href; }
   }
 
   await loadTranscript();
@@ -237,6 +242,9 @@ function renderReadAlong() {
   if (!box) return;
   lineEls = [];
   lastLine = -1;
+  autoScroll = true;                       // new chapter → follow again
+  const jb = $("jump-current");
+  if (jb) jb.style.display = "none";
   box.innerHTML = "";
   const tc = chapterLines();
   if (!tc) {
@@ -257,6 +265,17 @@ function renderReadAlong() {
   });
 }
 
+// Scroll WITHIN the read-along panel (never the whole window) to centre a line.
+function scrollLineIntoPanel(el) {
+  const panel = $("readalong");
+  if (!panel || !el) return;
+  const pr = panel.getBoundingClientRect();
+  const er = el.getBoundingClientRect();
+  const delta = (er.top - pr.top) - (panel.clientHeight / 2 - el.clientHeight / 2);
+  lastAutoScrollAt = Date.now();
+  panel.scrollTop += delta;
+}
+
 function updateReadAlong() {
   if (!readAlong || !lineEls.length) return;
   const tc = chapterLines();
@@ -268,11 +287,27 @@ function updateReadAlong() {
   if (li === lastLine) return;
   if (lastLine >= 0 && lineEls[lastLine]) lineEls[lastLine].classList.remove("ra-current");
   if (li >= 0 && lineEls[li]) {
-    const el = lineEls[li];
-    el.classList.add("ra-current");
-    el.scrollIntoView({ block: "center", behavior: "smooth" });
+    lineEls[li].classList.add("ra-current");
+    if (autoScroll) scrollLineIntoPanel(lineEls[li]);
   }
   lastLine = li;
+}
+
+function jumpToCurrent() {
+  autoScroll = true;
+  const btn = $("jump-current");
+  if (btn) btn.style.display = "none";
+  lastLine = -1;            // force re-highlight + re-scroll
+  updateReadAlong();
+}
+
+function onPanelScroll() {
+  if (Date.now() - lastAutoScrollAt < 250) return;  // our own scroll — ignore
+  if (autoScroll) {
+    autoScroll = false;
+    const btn = $("jump-current");
+    if (btn) btn.style.display = "";
+  }
 }
 
 function applyReadAlongVisibility() {
@@ -298,6 +333,10 @@ function wireControls() {
   $("speed").addEventListener("change", () => setSpeed(Number($("speed").value)));
   const ra = $("readalong-toggle");
   if (ra) ra.addEventListener("click", toggleReadAlong);
+  const panel = $("readalong");
+  if (panel) panel.addEventListener("scroll", onPanelScroll, { passive: true });
+  const jump = $("jump-current");
+  if (jump) jump.addEventListener("click", jumpToCurrent);
 
   const seek = $("seek");
   seek.addEventListener("input", () => {
@@ -323,6 +362,9 @@ function wireControls() {
     if (saveTick++ % 20 === 0) saveResume();
     updatePositionState();
   });
+  // Update the read-along highlight on any seek, even while paused (e.g. arriving from a
+  // companion link with autoplay blocked, or tapping a line while paused).
+  audio.addEventListener("seeked", () => { updateProgress(); });
   audio.addEventListener("ended", () => {
     completed.add(chapter().index);
     saveResume();

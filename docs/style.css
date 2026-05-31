@@ -158,3 +158,24 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
   background: var(--panel-2); color: var(--text);
   border-left: 3px solid var(--accent); padding-left: 9px; font-weight: 500;
 }
+
+/* ── Read-along: jump-to-current + comfort ── */
+.jump-current {
+  background: var(--accent); color: #1a1710; border: none; border-radius: 10px;
+  padding: 9px 13px; cursor: pointer; font-size: .88rem; font-weight: 600; min-height: 40px;
+}
+.jump-current:hover { background: var(--accent-2); }
+.jump-current:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.ra-line { color: #c4bba6; }                 /* a touch brighter than --muted for long reading */
+.voice button[aria-pressed="true"] { box-shadow: 0 0 0 1px var(--accent); }
+
+/* ── Companion callout (discoverability without clutter) ── */
+.companion-callout {
+  display: block; background: var(--panel); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent); border-radius: var(--radius);
+  padding: 12px 16px; margin: 0 0 14px; color: var(--text);
+}
+.companion-callout:hover { border-color: var(--accent-2); text-decoration: none; }
+.companion-callout .cc-title { font-weight: 600; color: var(--accent); }
+.companion-callout .cc-title::after { content: " ▸"; }
+.companion-callout .cc-desc { display: block; color: var(--muted); font-size: .9rem; margin-top: 2px; }
