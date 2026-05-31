@@ -1,5 +1,8 @@
 {
   "private": true,
   "type": "module",
-  "description": "Static audiobook player (no build step). Tests: node --test tests/"
+  "description": "Static audiobook player (no build step).",
+  "scripts": {
+    "test": "node --test \"tests/*.mjs\""
+  }
 }

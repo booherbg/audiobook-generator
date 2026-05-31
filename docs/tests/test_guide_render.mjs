@@ -68,6 +68,10 @@ test("companion guide renders all sections (no blank page)", async () => {
   assert.equal(reg.glossary.children.length, guideJson.glossary.length * 2);
   assert.equal(reg.further.children.length, guideJson.further_reading.length);
   assert.ok(reg.intro._text.length > 0, "intro text must be set");
+  // The render guard must NOT have fired — i.e. intro is the real intro, not the
+  // "Something went wrong" fallback. This makes a future render throw fail loudly here.
+  assert.ok(!/something went wrong/i.test(reg.intro._html || ""),
+    "render fallback must not have triggered");
 });
 
 test("every concept card gets an id, and related cross-links resolve to one", async () => {
