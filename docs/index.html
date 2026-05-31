@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Audiobook Library</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <strong>Audiobook Library</strong>
+      <a href="about.html">About</a>
+    </header>
+    <p class="lede">Freely-shared texts, narrated locally and played in your browser.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script type="module">
+    import { buildViewModel, totalDuration, formatTime } from "./app/logic.js";
+    const grid = document.getElementById("grid");
+    try {
+      const m = await (await fetch("manifest.json", { cache: "no-cache" })).json();
+      if (!m.books || !m.books.length) {
+        grid.innerHTML = '<p class="muted">No books yet.</p>';
+      }
+      for (const b of m.books || []) {
+        const vm = buildViewModel(m, b.id);
+        const vid = vm.voices[0] && vm.voices[0].id;
+        const a = document.createElement("a");
+        a.className = "card";
+        a.href = `player.html?book=${encodeURIComponent(b.id)}`;
+        a.innerHTML =
+          `<img src="${vm.cover}" alt="" />` +
+          `<div><div class="t">${vm.title}</div>` +
+          `<div class="a">${vm.author}</div>` +
+          `<div class="m">${vm.chapters.length} chapters · ${formatTime(totalDuration(vm, vid))}</div></div>`;
+        grid.appendChild(a);
+      }
+    } catch {
+      grid.innerHTML = '<p class="error">Could not load the library.</p>';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+"""Audio QA helpers: intelligibility (WER vs source) and signal parsing for the
+ffmpeg loudnorm / silencedetect output, plus a duration sanity check.
+"""
+
+import json
+import re
+
+import jiwer
+
+from pipeline.config import WPM
+
+_S_START = re.compile(r"silence_start:\s*([\d.]+)")
+_S_DUR = re.compile(r"silence_duration:\s*([\d.]+)")
+
+
+def _prep(s: str) -> str:
+    s = re.sub(r"[^\w\s]", " ", s.lower())
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def wer(reference: str, hypothesis: str) -> float:
+    """Word error rate after lowercasing and stripping punctuation."""
+    ref, hyp = _prep(reference), _prep(hypothesis)
+    if not ref:
+        return 0.0 if not hyp else 1.0
+    return jiwer.wer(ref, hyp)
+
+
+def parse_loudnorm(text: str) -> dict:
+    """Parse ffmpeg loudnorm print_format=json output → integrated loudness + true peak."""
+    start, end = text.rfind("{"), text.rfind("}")
+    data = json.loads(text[start : end + 1])
+    return {"input_i": float(data["input_i"]), "input_tp": float(data["input_tp"])}
+
+
+def parse_silences(text: str) -> list[tuple[float, float]]:
+    starts = _S_START.findall(text)
+    durs = _S_DUR.findall(text)
+    return [(float(s), float(d)) for s, d in zip(starts, durs)]
+
+
+def within_duration_band(actual_sec: float, words: int, wpm: int = WPM, tol: float = 0.4) -> bool:
+    expected = words / wpm * 60.0
+    if expected <= 0:
+        return actual_sec >= 0
+    return abs(actual_sec - expected) <= tol * expected
+
+
+_WHISPER = {}
+
+
+def transcribe(path, model_size: str = "base") -> str:
+    """Transcribe an audio file with faster-whisper (downloads model on first use)."""
+    from faster_whisper import WhisperModel
+
+    if model_size not in _WHISPER:
+        _WHISPER[model_size] = WhisperModel(model_size, device="cpu", compute_type="int8")
+    segments, _ = _WHISPER[model_size].transcribe(str(path), language="en")
+    return " ".join(s.text for s in segments)
+
+
+def transcribe_clip(path, seconds: float, model_size: str = "base") -> str:
+    """Transcribe just the first `seconds` of an audio file."""
+    import subprocess
+    from pipeline.config import BUILD
+
+    tmp = BUILD / "qa_clip.wav"
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", str(path), "-t", str(seconds), "-ac", "1", "-ar", "16000", str(tmp)],
+        capture_output=True, text=True, check=True,
+    )
+    return transcribe(tmp, model_size)
+
+
+def measure_silences(path, noise_db: int = -40, min_dur: float = 3.0) -> list[tuple[float, float]]:
+    import subprocess
+
+    r = subprocess.run(
+        ["ffmpeg", "-i", str(path), "-af", f"silencedetect=noise={noise_db}dB:d={min_dur}", "-f", "null", "-"],
+        capture_output=True, text=True,
+    )
+    return parse_silences(r.stderr)
+
+
+def sample_peak_dbfs(path) -> float:
+    """Actual maximum sample level in dBFS via astats. >= 0 means real digital
+    clipping. (Distinct from loudnorm's inter-sample 'true peak' estimate, which is
+    not meaningful for lossy spoken-word audio.)"""
+    import re
+    import subprocess
+
+    r = subprocess.run(
+        ["ffmpeg", "-i", str(path), "-af", "astats=metadata=1", "-f", "null", "-"],
+        capture_output=True, text=True,
+    )
+    peaks = [float(m) for m in re.findall(r"Peak level dB:\s*(-?[\d.]+)", r.stderr)]
+    return max(peaks) if peaks else 0.0

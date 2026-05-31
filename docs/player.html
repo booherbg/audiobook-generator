@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Audiobook</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap player" id="app">
+    <header class="topbar">
+      <a class="back" href="index.html">‹ Library</a>
+      <a class="about-link" href="about.html">About</a>
+    </header>
+
+    <section class="book-head">
+      <img id="cover" class="cover" alt="" />
+      <div class="book-meta">
+        <h1 id="book-title"></h1>
+        <p id="book-subtitle" class="subtitle"></p>
+        <p id="book-author" class="author"></p>
+      </div>
+    </section>
+
+    <section class="now" aria-live="polite">
+      <p class="now-label">Now playing</p>
+      <h2 id="now-title">—</h2>
+    </section>
+
+    <section class="transport">
+      <div class="controls">
+        <button id="btn-prev" class="ctl" aria-label="Previous chapter" title="Previous">⏮</button>
+        <button id="btn-back15" class="ctl" aria-label="Back 15 seconds" title="Back 15s">↺15</button>
+        <button id="btn-play" class="ctl play" aria-label="Play" title="Play / Pause">▶</button>
+        <button id="btn-fwd30" class="ctl" aria-label="Forward 30 seconds" title="Forward 30s">30↻</button>
+        <button id="btn-next" class="ctl" aria-label="Next chapter" title="Next">⏭</button>
+      </div>
+      <div class="seekrow">
+        <span id="cur-time" class="time">0:00</span>
+        <input id="seek" class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek within chapter" />
+        <span id="tot-time" class="time">0:00</span>
+      </div>
+      <div class="optionsrow">
+        <div class="voice" id="voice-toggle" role="group" aria-label="Narrator voice"></div>
+        <label class="speed">Speed
+          <select id="speed" aria-label="Playback speed">
+            <option value="0.75">0.75×</option>
+            <option value="1" selected>1×</option>
+            <option value="1.25">1.25×</option>
+            <option value="1.5">1.5×</option>
+            <option value="1.75">1.75×</option>
+            <option value="2">2×</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="chapters">
+      <h2>Chapters</h2>
+      <ol id="chapter-list" class="chapter-list"></ol>
+    </section>
+
+    <audio id="audio" preload="metadata"></audio>
+  </div>
+  <script type="module" src="app/player.js"></script>
+</body>
+</html>

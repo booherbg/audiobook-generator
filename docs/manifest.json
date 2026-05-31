@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "books": [
+    {
+      "id": "magnifica-humanitas",
+      "title": "Magnifica Humanitas",
+      "subtitle": "On Safeguarding the Human Person in the Time of Artificial Intelligence",
+      "author": "Pope Leo XIV",
+      "date": "2026-05-15",
+      "source_url": "https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
+      "description": "",
+      "cover": "audio/magnifica-humanitas/cover.svg",
+      "public": true,
+      "has_guide": false,
+      "voices": [
+        {
+          "id": "female",
+          "label": "Heart — warm US female",
+          "engine": "kokoro",
+          "ref": "af_heart"
+        },
+        {
+          "id": "male",
+          "label": "Michael — friendly US male",
+          "engine": "kokoro",
+          "ref": "am_michael"
+        }
+      ],
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Introduction",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-01.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-01.mp3"
+          },
+          "duration": {
+            "female": 612.8,
+            "male": 672.4
+          }
+        },
+        {
+          "index": 2,
+          "title": "Introduction (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-02.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-02.mp3"
+          },
+          "duration": {
+            "female": 497.2,
+            "male": 543.5
+          }
+        },
+        {
+          "index": 3,
+          "title": "A Dynamic Approach Faithful to the Gospel",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-03.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-03.mp3"
+          },
+          "duration": {
+            "female": 922.9,
+            "male": 1001.7
+          }
+        },
+        {
+          "index": 4,
+          "title": "Foundations and Principles of the Social Doctrine of the Church",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-04.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-04.mp3"
+          },
+          "duration": {
+            "female": 817.4,
+            "male": 892.3
+          }
+        },
+        {
+          "index": 5,
+          "title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-05.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-05.mp3"
+          },
+          "duration": {
+            "female": 893.6,
+            "male": 972.4
+          }
+        },
+        {
+          "index": 6,
+          "title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-06.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-06.mp3"
+          },
+          "duration": {
+            "female": 808.0,
+            "male": 880.3
+          }
+        },
+        {
+          "index": 7,
+          "title": "Technology and Dominance. The Grandeur of Humanity in Light of the Promises of AI",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-07.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-07.mp3"
+          },
+          "duration": {
+            "female": 863.6,
+            "male": 945.4
+          }
+        },
+        {
+          "index": 8,
+          "title": "Technology and Dominance. The Grandeur of Humanity in Light of the Promises of AI (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-08.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-08.mp3"
+          },
+          "duration": {
+            "female": 818.5,
+            "male": 893.5
+          }
+        },
+        {
+          "index": 9,
+          "title": "Technology and Dominance. The Grandeur of Humanity in Light of the Promises of AI (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-09.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-09.mp3"
+          },
+          "duration": {
+            "female": 732.5,
+            "male": 801.4
+          }
+        },
+        {
+          "index": 10,
+          "title": "Safeguarding Humanity at a Time of Transformation. Truth, Work, Freedom",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-10.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-10.mp3"
+          },
+          "duration": {
+            "female": 1068.1,
+            "male": 1163.7
+          }
+        },
+        {
+          "index": 11,
+          "title": "Safeguarding Humanity at a Time of Transformation. Truth, Work, Freedom (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-11.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-11.mp3"
+          },
+          "duration": {
+            "female": 1103.7,
+            "male": 1201.4
+          }
+        },
+        {
+          "index": 12,
+          "title": "Safeguarding Humanity at a Time of Transformation. Truth, Work, Freedom (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-12.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-12.mp3"
+          },
+          "duration": {
+            "female": 897.9,
+            "male": 978.9
+          }
+        },
+        {
+          "index": 13,
+          "title": "The Culture of Power and the Civilization of Love",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-13.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-13.mp3"
+          },
+          "duration": {
+            "female": 865.0,
+            "male": 943.6
+          }
+        },
+        {
+          "index": 14,
+          "title": "The Culture of Power and the Civilization of Love (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-14.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-14.mp3"
+          },
+          "duration": {
+            "female": 905.7,
+            "male": 989.6
+          }
+        },
+        {
+          "index": 15,
+          "title": "The Culture of Power and the Civilization of Love (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-15.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-15.mp3"
+          },
+          "duration": {
+            "female": 716.1,
+            "male": 789.8
+          }
+        },
+        {
+          "index": 16,
+          "title": "Conclusion",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-16.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-16.mp3"
+          },
+          "duration": {
+            "female": 594.1,
+            "male": 653.2
+          }
+        },
+        {
+          "index": 17,
+          "title": "Conclusion (continued)",
+          "files": {
+            "female": "audio/magnifica-humanitas/female/chapter-17.mp3",
+            "male": "audio/magnifica-humanitas/male/chapter-17.mp3"
+          },
+          "duration": {
+            "female": 507.6,
+            "male": 556.0
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Player voices → Kokoro voice refs, plus a pronunciation lexicon applied during
+# normalization (term → spoken form). Lexicon is tuned after listening.
+voices:
+  female:
+    ref: af_heart
+    label: "Heart — warm US female"
+  male:
+    ref: am_michael
+    label: "Michael — friendly US male"
+
+lexicon: {}
