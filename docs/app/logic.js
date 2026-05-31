@@ -53,6 +53,29 @@ export function totalDuration(vm, voiceId) {
   return vm.chapters.reduce((sum, c) => sum + (c.duration[voiceId] || 0), 0);
 }
 
+// Read-along: `starts` is an ascending array of per-line start fractions in [0,1).
+// Returns the index of the line active at `fraction` (= currentTime / duration),
+// i.e. the last line whose start is <= fraction. Binary search; -1 if before the first.
+export function currentLineIndex(starts, fraction) {
+  let lo = 0, hi = starts.length - 1, ans = -1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    if (starts[mid] <= fraction) {
+      ans = mid;
+      lo = mid + 1;
+    } else {
+      hi = mid - 1;
+    }
+  }
+  return ans;
+}
+
+// Seek target (seconds) for tapping line `i`: its start fraction × chapter duration.
+export function lineStartSeconds(starts, i, duration) {
+  if (i < 0 || i >= starts.length) return 0;
+  return starts[i] * (duration || 0);
+}
+
 export function resumeKey(bookId) {
   return `audiobook:resume:${bookId}`;
 }

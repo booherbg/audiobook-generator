@@ -44,7 +44,10 @@
         <span id="tot-time" class="time">0:00</span>
       </div>
       <div class="optionsrow">
-        <div class="voice" id="voice-toggle" role="group" aria-label="Narrator voice"></div>
+        <div class="voice-group">
+          <span class="voice-label">Voice</span>
+          <div class="voice" id="voice-toggle" role="group" aria-label="Narrator voice"></div>
+        </div>
         <label class="speed">Speed
           <select id="speed" aria-label="Playback speed">
             <option value="0.75">0.75×</option>
@@ -56,6 +59,17 @@
           </select>
         </label>
       </div>
+    </section>
+
+    <section class="readalong-bar">
+      <button id="readalong-toggle" class="readalong-toggle" aria-expanded="false"
+              aria-controls="readalong" title="Show the text and follow along (R)">
+        Read along
+      </button>
+      <span class="readalong-hint">follow the exact text as it’s read — tap any line to jump there</span>
+    </section>
+    <section id="readalong" class="readalong" style="display:none" aria-label="Read-along transcript">
+      <div id="readalong-lines" class="readalong-lines"></div>
     </section>
 
     <section class="chapters">

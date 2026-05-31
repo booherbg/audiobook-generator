@@ -4,7 +4,9 @@ import { test } from "node:test";
 import {
   buildViewModel,
   clamp,
+  currentLineIndex,
   formatTime,
+  lineStartSeconds,
   nextIndex,
   offsetOnVoiceSwitch,
   prevIndex,
@@ -79,4 +81,22 @@ test("json store round-trip + fallback", () => {
   writeJSON(store, "k", { a: 1 });
   assert.deepEqual(readJSON(store, "k", null), { a: 1 });
   assert.equal(readJSON(store, "missing", "def"), "def");
+});
+
+test("currentLineIndex (read-along highlight)", () => {
+  const starts = [0, 0.25, 0.5, 0.75];
+  assert.equal(currentLineIndex(starts, 0), 0);
+  assert.equal(currentLineIndex(starts, 0.1), 0);
+  assert.equal(currentLineIndex(starts, 0.25), 1);
+  assert.equal(currentLineIndex(starts, 0.6), 2);
+  assert.equal(currentLineIndex(starts, 0.99), 3);
+  assert.equal(currentLineIndex(starts, -0.1), -1); // before first line
+});
+
+test("lineStartSeconds (tap-to-seek)", () => {
+  const starts = [0, 0.5, 0.75];
+  assert.equal(lineStartSeconds(starts, 1, 600), 300);
+  assert.equal(lineStartSeconds(starts, 2, 600), 450);
+  assert.equal(lineStartSeconds(starts, 0, 600), 0);
+  assert.equal(lineStartSeconds(starts, 9, 600), 0); // out of range
 });

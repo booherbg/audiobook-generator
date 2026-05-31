@@ -1,7 +1,9 @@
 import {
   buildViewModel,
   clamp,
+  currentLineIndex,
   formatTime,
+  lineStartSeconds,
   nextIndex,
   offsetOnVoiceSwitch,
   prefsKey,
@@ -22,6 +24,12 @@ let seeking = false;
 let completed = new Set();
 let saveTick = 0;
 
+// Read-along state
+let transcript = null;        // { chapters: [{index,title,lines,starts}] }
+let readAlong = false;        // panel open?
+let lineEls = [];             // current chapter's rendered line elements
+let lastLine = -1;            // last highlighted line index (avoid redundant DOM work)
+
 async function init() {
   let manifest;
   try {
@@ -33,17 +41,19 @@ async function init() {
   vm = buildViewModel(manifest, id);
   if (!vm) return showError("Book not found.");
 
-  const prefs = readJSON(localStorage, prefsKey(), { speed: 1 });
+  const prefs = readJSON(localStorage, prefsKey(), { speed: 1, readAlong: false });
   const resume = readJSON(localStorage, resumeKey(vm.id), null);
   voiceId = (resume && resume.voice) || vm.voices[0].id;
   if (!vm.voices.some((v) => v.id === voiceId)) voiceId = vm.voices[0].id;
   idx = resume ? clamp(resume.chapter | 0, 0, vm.chapters.length - 1) : 0;
   completed = new Set((resume && resume.completed) || []);
 
-  // Deep link from the companion guide: ?t=<absolute seconds> → find the chapter
-  // containing that time (using the current voice's durations) and seek within it.
+  // Deep link from the companion (?t=<absolute seconds>): find the chapter containing
+  // that time (using the current voice's durations) and seek within it.
   let seekTo = resume ? resume.time : 0;
-  const tParam = new URLSearchParams(location.search).get("t");
+  let autostart = false;
+  const params = new URLSearchParams(location.search);
+  const tParam = params.get("t");
   if (tParam !== null && !Number.isNaN(Number(tParam))) {
     let rem = Math.max(0, Number(tParam));
     for (let i = 0; i < vm.chapters.length; i++) {
@@ -51,6 +61,8 @@ async function init() {
       if (rem < d || i === vm.chapters.length - 1) { idx = i; seekTo = rem; break; }
       rem -= d;
     }
+    autostart = true;            // arriving from a "listen" link → start playing the passage
+    readAlong = true;            // and show the words, so the jump is visible
   }
 
   renderHead();
@@ -58,11 +70,15 @@ async function init() {
   $("speed").value = String(prefs.speed || 1);
   audio.playbackRate = Number($("speed").value);
   if (vm.hasGuide) {
-    const link = document.getElementById("companion-link");
+    const link = $("companion-link");
     if (link) { link.style.display = ""; link.href = `guide.html?book=${vm.id}`; }
   }
 
-  loadChapter(idx, seekTo, false);
+  await loadTranscript();
+  readAlong = readAlong || !!prefs.readAlong;
+  applyReadAlongVisibility();
+
+  loadChapter(idx, seekTo, autostart);
   wireControls();
   wireMediaSession();
   wireKeyboard();
@@ -130,6 +146,7 @@ function loadChapter(i, seekTo = 0, autoplay = false) {
   audio.addEventListener("loadedmetadata", setPos);
   $("now-title").textContent = chapter().title;
   renderChapters();
+  renderReadAlong();
   updateMediaMetadata();
   saveResume();
   updatePlayButton();
@@ -181,6 +198,7 @@ function updateProgress() {
   if (!seeking) $("seek").value = audio.currentTime || 0;
   $("cur-time").textContent = formatTime(audio.currentTime || 0);
   $("tot-time").textContent = formatTime(d);
+  updateReadAlong();
 }
 
 function saveResume() {
@@ -195,7 +213,80 @@ function saveResume() {
 function setSpeed(value) {
   audio.playbackRate = value;
   $("speed").value = String(value);
-  writeJSON(localStorage, prefsKey(), { speed: value });
+  writeJSON(localStorage, prefsKey(), { speed: value, readAlong });
+}
+
+// ── Read-along ──────────────────────────────────────────────────────────────
+async function loadTranscript() {
+  try {
+    transcript = await (await fetch(`transcript/${vm.id}.json`, { cache: "no-cache" })).json();
+  } catch {
+    transcript = null;  // feature simply absent if the file isn't there
+  }
+  const toggle = $("readalong-toggle");
+  if (toggle && !transcript) toggle.style.display = "none";
+}
+
+function chapterLines() {
+  if (!transcript) return null;
+  return transcript.chapters.find((c) => c.index === chapter().index) || null;
+}
+
+function renderReadAlong() {
+  const box = $("readalong-lines");
+  if (!box) return;
+  lineEls = [];
+  lastLine = -1;
+  box.innerHTML = "";
+  const tc = chapterLines();
+  if (!tc) {
+    box.innerHTML = '<p class="muted">Transcript unavailable for this chapter.</p>';
+    return;
+  }
+  tc.lines.forEach((text, i) => {
+    const p = document.createElement("p");
+    p.className = "ra-line";
+    p.textContent = text;
+    p.addEventListener("click", () => {
+      const d = audio.duration || curDur() || 0;
+      audio.currentTime = lineStartSeconds(tc.starts, i, d);
+      if (audio.paused) audio.play().catch(() => {});
+    });
+    box.appendChild(p);
+    lineEls.push(p);
+  });
+}
+
+function updateReadAlong() {
+  if (!readAlong || !lineEls.length) return;
+  const tc = chapterLines();
+  if (!tc) return;
+  const d = audio.duration || curDur() || 0;
+  if (!d) return;
+  const frac = (audio.currentTime || 0) / d;
+  const li = currentLineIndex(tc.starts, frac);
+  if (li === lastLine) return;
+  if (lastLine >= 0 && lineEls[lastLine]) lineEls[lastLine].classList.remove("ra-current");
+  if (li >= 0 && lineEls[li]) {
+    const el = lineEls[li];
+    el.classList.add("ra-current");
+    el.scrollIntoView({ block: "center", behavior: "smooth" });
+  }
+  lastLine = li;
+}
+
+function applyReadAlongVisibility() {
+  const panel = $("readalong");
+  const toggle = $("readalong-toggle");
+  if (panel) panel.style.display = readAlong ? "" : "none";
+  if (toggle) toggle.setAttribute("aria-expanded", String(readAlong));
+}
+
+function toggleReadAlong() {
+  readAlong = !readAlong;
+  applyReadAlongVisibility();
+  writeJSON(localStorage, prefsKey(), { speed: Number($("speed").value), readAlong });
+  if (readAlong) { lastLine = -1; updateReadAlong(); }
 }
 
 function wireControls() {
@@ -205,6 +296,8 @@ function wireControls() {
   $("btn-next").addEventListener("click", () => goNext());
   $("btn-prev").addEventListener("click", goPrev);
   $("speed").addEventListener("change", () => setSpeed(Number($("speed").value)));
+  const ra = $("readalong-toggle");
+  if (ra) ra.addEventListener("click", toggleReadAlong);
 
   const seek = $("seek");
   seek.addEventListener("input", () => {
@@ -303,6 +396,8 @@ function wireKeyboard() {
       let i = opts.indexOf(Number($("speed").value));
       i = clamp(i + (e.key === "]" ? 1 : -1), 0, opts.length - 1);
       setSpeed(opts[i]);
+    } else if (e.key.toLowerCase() === "r") {
+      toggleReadAlong();
     }
   });
 }
