@@ -251,6 +251,15 @@ def main():
     tout, nch, nlines = build_transcript(BOOK_ID, resource)
     print(f"wrote {tout}: {nch} chapters, {nlines} read-along lines")
 
+    # Full-text reader (same source) — a clean local "read the whole thing" page.
+    from pipeline.fulltext import build_fulltext
+
+    book = next((b for b in load_manifest(config.MANIFEST)["books"] if b["id"] == BOOK_ID), {})
+    fout, fch, flines = build_fulltext(
+        BOOK_ID, resource, title=book.get("title", ""), author=book.get("author", ""),
+        subtitle=book.get("subtitle", ""), source_url=book.get("source_url", ""))
+    print(f"wrote {fout}: {fch} chapters, {flines} paragraphs")
+
 
 if __name__ == "__main__":
     main()

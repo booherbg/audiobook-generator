@@ -43,7 +43,10 @@ function conceptCard(c) {
     `<div class="cite"><span class="ch"></span>` +
     `<a class="listen" href="${listenHref(c)}">▶ listen from here</a></div>`;
   body.querySelector(".blurb").textContent = c.blurb;
-  body.querySelector(".quote").textContent = `“${c.quote}”`;
+  // Strip any quotation marks the source line already carries so we don't double them up
+  // (some verbatim lines are themselves quotations, e.g. the Augustine citation).
+  const bare = c.quote.replace(/^["“”']+/, "").replace(/["“”']+$/, "");
+  body.querySelector(".quote").textContent = `“${bare}”`;
   body.querySelector(".ch").textContent = `Chapter ${c.chapter} — ${c.chapter_title}`;
 
   if (c.related && c.related.length) {

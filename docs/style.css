@@ -201,3 +201,15 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
   0% { box-shadow: 0 0 0 2px var(--accent); }
   100% { box-shadow: 0 0 0 2px transparent; }
 }
+
+/* ── Full-text reader ── */
+.reader-note { color: var(--muted); font-size: .9rem; line-height: 1.55; margin: 0 0 18px; max-width: 62ch; }
+.reader-toc { display: flex; flex-direction: column; gap: 2px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 6px; margin: 0 0 24px; }
+.toc-link { color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: .92rem; }
+.toc-link:hover { background: var(--panel-2); color: var(--accent); text-decoration: none; }
+.reader-text { max-width: 64ch; }
+.reader-chapter { margin: 0 0 34px; scroll-margin-top: 12px; }
+.reader-ch-title { font-size: 1.15rem; color: var(--accent); margin: 28px 0 12px; }
+.reader-text p { color: #d7cfbe; line-height: 1.7; margin: 0 0 14px; }
+.reader-listen { display: inline-block; margin-top: 6px; color: var(--accent); font-size: .85rem; }

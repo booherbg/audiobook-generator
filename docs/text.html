@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Full text — Magnifica Humanitas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap reader" id="app">
+    <header class="topbar">
+      <a class="back" id="player-link" href="player.html?book=magnifica-humanitas">‹ Player</a>
+      <a href="index.html">Library</a>
+    </header>
+
+    <h1 id="title">Full text</h1>
+    <p class="companion-sub" id="byline"></p>
+    <p class="reader-note" id="src-note"></p>
+
+    <nav class="reader-toc" id="toc" aria-label="Chapters"></nav>
+
+    <article id="text" class="reader-text"></article>
+
+    <footer class="companion-foot">
+      <p id="foot-note"></p>
+    </footer>
+  </div>
+  <script type="module" src="app/text.js"></script>
+</body>
+</html>
