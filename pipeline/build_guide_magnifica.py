@@ -84,9 +84,10 @@ CONCEPTS = [
     },
     {
         "title": "The dignity of work",
-        "anchor": "dignity of human work",
-        "blurb": "Work is more than output: the encyclical weighs automation and AI against what they "
-                 "do to the dignity of human work, not only to productivity.",
+        "anchor": "dignity of work at a time of digital transition",
+        "blurb": "Work is more than output. The encyclical names the dignity of work in the digital "
+                 "transition a question that can't be postponed — weighing automation and AI against "
+                 "what they do to the worker, not only to productivity.",
         "related": ["Human dignity"],
     },
     {
@@ -102,7 +103,7 @@ CONCEPTS = [
         "anchor": "remain profoundly human",
         "blurb": "The encyclical's charge in the age of AI: to safeguard what no machine can replace, "
                  "and to let intelligence serve persons rather than the reverse.",
-        "related": ["Human dignity", "Babel vs. Jerusalem"],
+        "related": ["Human dignity", "Babel or the Beloved City"],
     },
     {
         "title": "Rerum Novarum's heir",
