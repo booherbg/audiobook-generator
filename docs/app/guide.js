@@ -31,8 +31,34 @@ function conceptCard(c) {
   body.querySelector(".blurb").textContent = c.blurb;
   body.querySelector(".quote").textContent = `“${c.quote}”`;
   body.querySelector(".ch").textContent = `Chapter ${c.chapter} — ${c.chapter_title}`;
+
+  if (c.related && c.related.length) {
+    const rel = document.createElement("div");
+    rel.className = "related";
+    rel.append("see also: ");
+    c.related.forEach((title, i) => {
+      const a = document.createElement("a");
+      a.className = "related-link";
+      a.href = "#c-" + slug(title);
+      a.textContent = title;
+      a.addEventListener("click", (e) => { e.preventDefault(); openConcept(slug(title)); });
+      rel.appendChild(a);
+      if (i < c.related.length - 1) rel.append(" · ");
+    });
+    body.appendChild(rel);
+  }
   el.appendChild(body);
   return el;
+}
+
+// Open a concept card by slug and bring it into view (related-link target may be collapsed).
+function openConcept(s) {
+  const target = document.getElementById("c-" + s);
+  if (!target) return;
+  target.open = true;
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+  target.classList.add("flash");
+  setTimeout(() => target.classList.remove("flash"), 1200);
 }
 
 function commentaryItem(c) {
