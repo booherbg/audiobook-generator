@@ -37,7 +37,7 @@ for every book. It is not a rubber stamp.
 
 4. **Apply the findings**, re-grounding every change in verbatim source text (fix anchors, deepen
    blurbs, add missing concepts, correct the commentary). Rebuild
-   (`python -m pipeline.build_guide_<id>`), re-validate (`build/validate_guide.py`).
+   (`python -m pipeline.build_guide_<id>`), re-validate (`scripts/validate_guide.py`).
 
 5. **Re-run one confirming audit** (the domain expert is usually enough) to verify the fixes
    landed and the verdict is now **HONORS.** Apply only quick wins from the second pass.

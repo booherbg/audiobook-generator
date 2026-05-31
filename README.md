@@ -44,6 +44,16 @@ text of what you want; it returns a URL, then run `generate`. `generate` is **re
 (skips chapters already rendered, validates their duration) and **multi-voice safe** (a
 single-voice re-render preserves the other voice in the manifest).
 
+## Adding another book
+
+Follow the **[playbook](docs/playbook/README.md)** — a pull-and-go runbook from a source URL to
+a deployed, critic-reviewed, QA-passed edition, with deep references for the
+[data contracts](docs/playbook/data-contracts.md),
+[companion authoring](docs/playbook/companion-authoring.md),
+[the critic panel](docs/playbook/critic-panel.md), and
+[the QA audit](docs/playbook/qa-audit.md). The contract each edition must satisfy is the
+[expansion spec](docs/superpowers/specs/2026-05-31-book-expansion-spec.md).
+
 ## Audio quality
 
 Every track is mono 64 kbps MP3, loudness-normalized to −16 LUFS with a true-peak limiter

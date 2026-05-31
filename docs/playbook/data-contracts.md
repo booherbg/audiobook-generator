@@ -108,7 +108,7 @@ builder copies the whole line containing it.
   `anchor` to a phrase inside it; the builder pulls the line. This is the no-hallucination
   guarantee — see [companion-authoring.md](companion-authoring.md).
 - `related` entries are matched by slug to other cards' titles. A typo = a dead link; the
-  integrity check (`build/validate_guide.py`) fails on it.
+  integrity check (`scripts/validate_guide.py`) fails on it.
 - Commentary is authored in **absolute seconds** (default-voice timeline) and converted to
   `{chapter, fraction}` by the builder, so it survives a voice switch like everything else.
 
