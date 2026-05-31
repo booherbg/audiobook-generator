@@ -3,14 +3,14 @@
   "intro": "An optional companion to the audiobook. Tap a concept to read a short, plain explanation, see the encyclical's own words, and jump to that moment in the audio. Everything in quotation marks is taken verbatim from the text.",
   "concepts": [
     {
-      "title": "Babel vs. Jerusalem",
-      "blurb": "The encyclical frames our choice about technology through two biblical cities: Babel, built on pride and self-sufficiency, and Jerusalem, rebuilt through shared responsibility. The question is not whether to use technology, but in whose spirit.",
+      "title": "Babel or the Beloved City",
+      "blurb": "The encyclical frames our choice about technology through two biblical images: Babel, built on pride and self-sufficiency, and its counter-image, the city 'in which God and humanity dwell together.' The question is not whether to use technology, but in whose spirit.",
       "quote": "Humanity, created by God in all its grandeur, is today facing a pivotal choice: either to construct a new Tower of Babel or to build the city in which God and humanity dwell together.",
       "chapter": 1,
       "chapter_title": "Introduction",
       "timestamp": 0.0,
       "related": [
-        "Building for the common good",
+        "The common good",
         "Remaining human"
       ]
     },
@@ -27,48 +27,83 @@
     },
     {
       "title": "Human dignity",
-      "blurb": "The bedrock principle: every person has a worth that does not depend on usefulness, productivity, or status. In an age that measures people by data and performance, this is the line the encyclical draws first.",
-      "quote": "Indeed, precisely because we experience limits — vulnerability, suffering and failure — we can recognize the inviolable dignity of every person, both our own and that of others.",
-      "chapter": 9,
-      "chapter_title": "Technology and Dominance. The Grandeur of Humanity in Light of the Promises of AI (continued)",
-      "timestamp": 6384.2,
+      "blurb": "The bedrock principle, stated plainly by the encyclical: a person's worth does not depend on what they achieve or produce. The guide notes the obvious application — this cuts against any age tempted to rank people by output or data.",
+      "quote": "The value of persons, however, does not depend on what they achieve or produce.",
+      "chapter": 4,
+      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church",
+      "timestamp": 2380.5,
       "related": [
         "The common good",
         "Preferential option for the poor"
       ]
     },
     {
+      "title": "The common good",
+      "blurb": "The encyclical calls the common good 'the social expression of the dignity recognized in every person' — not the sum of individual interests but the good of all and of each, the standard against which 'progress' is to be measured.",
+      "quote": "We can describe it as the social expression of the dignity recognized in every person.",
+      "chapter": 4,
+      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church",
+      "timestamp": 2787.7,
+      "related": [
+        "Subsidiarity",
+        "Solidarity"
+      ]
+    },
+    {
       "title": "Subsidiarity",
-      "blurb": "Larger institutions should support, not swallow, the initiative of smaller communities and individuals. Applied to AI, it cautions against systems that quietly remove human agency and local decision-making.",
-      "quote": "This is the logic of subsidiarity, which values the cooperation between generations, peoples, disciplines and cultures as the best way for fostering stability, prosperity and peace.",
-      "chapter": 2,
-      "chapter_title": "Introduction (continued)",
-      "timestamp": 915.9,
+      "blurb": "The role of individuals, families and local communities should not be supplanted by higher authorities. Applied to AI, it cautions against systems that quietly remove human agency and local decision-making.",
+      "quote": "The Social Doctrine of the Church refers to subsidiarity as the principle according to which the role of individuals, families, local communities and intermediary organizations should not be supplanted by higher-level authorities.",
+      "chapter": 5,
+      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
+      "timestamp": 3267.6,
       "related": [
         "The common good",
         "Concentration of power"
       ]
     },
     {
+      "title": "Solidarity",
+      "blurb": "More than a vague good feeling: the encyclical, citing Francis, says solidarity in its fullest sense means 'to restore to the poor what belongs to them' — a disposition that turns shared power toward the good of all.",
+      "quote": "For this reason, Pope Francis reminded us that solidarity, when lived out in its fullest sense, also means “to restore to the poor what belongs to them.”",
+      "chapter": 5,
+      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
+      "timestamp": 3174.7,
+      "related": [
+        "The common good"
+      ]
+    },
+    {
       "title": "Universal destination of goods",
-      "blurb": "The goods of creation — and, by extension, the fruits of knowledge and technology — are meant for everyone, not only those with the resources to command them.",
-      "quote": "Instead, let us establish standards for discernment — the dignity of the human person, the universal destination of goods, the preferential option for the poor, care for our common home and peace — and let us translate these standards into practices such as responsible planning, the assessment of human and social impact, the inclusion of the most vulnerable, the promotion of digital literacy and guiding research and industry toward justice and peace.",
-      "chapter": 2,
-      "chapter_title": "Introduction (continued)",
-      "timestamp": 949.6,
+      "blurb": "The earth's goods are 'given by God to the entire human family to sustain the lives of all' — and the encyclical extends the principle to knowledge and technology, meant for everyone, not only those with the resources to command them.",
+      "quote": "First of all, this principle reminds us that the earth’s goods — soil, water, air and natural resources — are given by God to the entire human family to sustain the lives of all, and that every person has an inherent right to the use of such goods, both now and in the future.",
+      "chapter": 5,
+      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
+      "timestamp": 3076.4,
       "related": [
         "Preferential option for the poor"
       ]
     },
     {
       "title": "Preferential option for the poor",
-      "blurb": "Progress is judged by how it touches the most vulnerable. A technology that widens the gap between the powerful and the powerless fails this test.",
-      "quote": "Instead, let us establish standards for discernment — the dignity of the human person, the universal destination of goods, the preferential option for the poor, care for our common home and peace — and let us translate these standards into practices such as responsible planning, the assessment of human and social impact, the inclusion of the most vulnerable, the promotion of digital literacy and guiding research and industry toward justice and peace.",
-      "chapter": 2,
-      "chapter_title": "Introduction (continued)",
-      "timestamp": 949.6,
+      "blurb": "Fine words about freedom ring hollow, the encyclical warns, if we 'allow a multitude of people to continue living without decent work, protections or access to basic necessities.' Progress is judged by how it touches the most vulnerable.",
+      "quote": "Similarly, it is not enough to extol individual freedom or private enterprise if we then allow a multitude of people to continue living without decent work, protections or access to basic necessities.",
+      "chapter": 4,
+      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church",
+      "timestamp": 2747.9,
       "related": [
         "Human dignity"
+      ]
+    },
+    {
+      "title": "Concentration of power",
+      "blurb": "When goods like algorithms, platforms and data 'remain concentrated in the hands of a few, without adequate forms of sharing and access, a new imbalance is created' — a central worry the encyclical raises about today's AI.",
+      "quote": "In a context where the wealth of nations depends increasingly on knowledge and technology, when these goods remain concentrated in the hands of a few, without adequate forms of sharing and access, a new imbalance is created that contradicts the universal destination of goods.",
+      "chapter": 5,
+      "chapter_title": "Foundations and Principles of the Social Doctrine of the Church (continued)",
+      "timestamp": 3196.0,
+      "related": [
+        "Technology is never neutral",
+        "Subsidiarity"
       ]
     },
     {
@@ -152,6 +187,11 @@
       "timestamp": 5400,
       "label": "On 'never neutral'",
       "text": "The cleanest line in the chapter, and the one worth taping to the monitor: a tool takes on the characteristics of those who devise, finance, regulate and use it. Asimov spent a career here — the Three Laws were always less about robots than about the humans who wrote them. The uncomfortable corollary is that 'the algorithm decided' is never quite true; someone chose what it would optimize, and chose to look away from the rest."
+    },
+    {
+      "timestamp": 10980,
+      "label": "On disarming words, and the civilization of love",
+      "text": "By the late chapters the encyclical turns from machines to manners — to how we speak to and about one another. It is a quietly radical move: in a book on artificial intelligence, the most concrete instruction is to disarm our own words. The smallest unit of the civilization of love turns out to be the ordinary person deciding not to be cruel online today — which is both less impressive and far harder than building a better model."
     }
   ]
 }
