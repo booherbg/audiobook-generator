@@ -9,7 +9,9 @@ free manifestos** on technology and the human future.
 
 This is a queue, not a promise. Each item carries a **copyright verdict** because the project's
 rule is firm: *reproduce only what is freely/legally shareable; never compete with commercial
-works; never pirate.* Status is the first filter, thematic relevance the second.
+works; never pirate.* Status is the first filter, thematic relevance the second. The reasoning
+behind those verdicts — first sale, fair use, the public-domain term rules, how to get permission,
+and the Vatican-specific question — is the **[Copyright and permissions playbook](#copyright-and-permissions-playbook)** near the end.
 
 > **How to read the status column**
 > - **PD** — public domain (US, pre-1930 by the 95-year rule, or a government work). Free to reproduce.
@@ -187,6 +189,161 @@ any of these can ship with **zero new audio**.
 - **The Vatican line:** reproduce encyclicals with attribution to vatican.va, never sold separately — the posture the project already holds.
 - **When unsure, it's a "VERIFY," not a "yes."** Flag it, link out, don't host.
 - **Honesty in curation:** present later folklore (Golem of Prague, the "ancient robot" headlines) as what it is; exclude debunked pseudo-history (Vimanas).
+
+---
+
+# Copyright and permissions playbook
+
+> **Not legal advice.** This is sourced general information to reason with, gathered from the US
+> Copyright Office, Cornell LII, Stanford, the Authors Alliance, and the leading cases — **not a
+> legal opinion, and I am not a lawyer.** Copyright is fact-specific and the cost of being wrong is
+> real (statutory damages run $750–$150,000 *per work*). **Before relying on fair use for any whole
+> in-copyright work, or publishing anything in copyright, consult a qualified IP attorney.** Several
+> university libraries offer free copyright-determination help; the Authors Alliance publishes
+> excellent plain-English guides.
+
+The project's whole premise is *reproduce only what is freely/legally shareable; never compete with
+commercial works; never pirate.* This section is the durable reference for that — so the next
+person building a book doesn't have to re-derive it.
+
+## The one principle that decides almost everything: PRIVATE vs PUBLIC
+
+Copyright analysis splits hard along whether anyone else can access the result.
+
+| | **PRIVATE** (just you) | **PUBLIC** (this website) |
+|---|---|---|
+| Narrating / digitizing a book **you own** | Legally gray but **widely tolerated, low-risk** — like ripping your own CD, *as long as it never leaves your own use* | **Clearly infringing** for in-copyright works — it's reproduction **+** distribution **+** a derivative work, all at once |
+| "Lend one digital copy at a time" | n/a | **Not a recognized safe harbor** — see *Hachette v. Internet Archive* below |
+| Does owning the book help? | — | **No.** First sale covers the *object*, not copying |
+| Does "it's free / non-commercial" help? | — | Helps **one** of four fair-use factors; does **not** rescue copying a whole marketed work |
+
+The instant a second person can reach it, the private-use rationale evaporates. The public site
+must be built on **public-domain, openly-licensed, or permission-granted** works — full stop.
+
+## Why first sale / "lending like a friend" does NOT authorize the public site
+
+- **First-sale doctrine (17 U.S.C. §109):** buying a copy — **new or used** — lets you resell, lend,
+  or give away *that physical copy*. It says nothing about **reproduction** (§106(1)) or **derivative
+  works** (§106(2)). Digitizing or narrating is reproduction + a derivative work; first sale doesn't
+  touch either. **New vs. used is identical legally** — the only difference is that authors earn a
+  royalty on new sales and nothing on used (an *ethics* point, not a *rights* point).
+- **"Only one person at a time" (Controlled Digital Lending):** litigated and **rejected**. In
+  *Hachette v. Internet Archive* (S.D.N.Y. 2023, aff'd 2d Cir. 2024), the Internet Archive owned
+  print copies and lent **one digital copy at a time** — and **lost**. The courts held the
+  one-to-one ratio doesn't cure the underlying *reproduction*. An individual hobby site is in a
+  *weaker* position than a nonprofit library, and the library lost. "Lend like a friend" is a moral
+  intuition, not a legal right.
+- **Digital ≠ physical** (*Capitol Records v. ReDigi*, 2d Cir. 2018): you can't move a digital file
+  without copying it, so first sale never reaches digital lending/resale.
+
+## Does "never making money" change it? (Helps a little; not a free pass)
+
+Non-commercial use weighs in your favor on **factor 1** of the four-factor fair-use test
+(17 U.S.C. §107) — and shifts who must prove market harm. It does **not** authorize reproducing a
+*whole* in-copyright work that has a commercial market: that fails factor 3 (you took 100%) and
+factor 4 (your free audiobook substitutes for the publisher's audiobook/ebook — and factor 4 is
+"the single most important," *Harper & Row*). In *A&M v. Napster*, free wholesale copying still lost.
+The Copyright Office says it plainly: not all noncommercial uses are fair.
+
+**Narration specifically:** making an audiobook is itself one of the author's exclusive rights (a
+"sound recording" derivative + reproduction + distribution). Even a *free* narration of an
+in-copyright book is normally infringement absent a license. The accessibility exception (Chafee,
+§121) and library exception (§108) exist but require being an "authorized entity" / qualifying
+library doing non-systematic copying — a public hobby site almost certainly doesn't fit.
+
+**The safe zone fair use *does* cover:** brief, purposeful **quotation inside your own original
+commentary/criticism** (no magic word count — quote only what your point needs, and attribute).
+That's exactly what the companions already do with Guardini/Arendt. Original commentary *about* a
+work can be transformative; reproducing the *text* (even as audio) is not.
+
+## Copyright term & how to verify a work's status (as of 2026)
+
+- **Published ≤ 1930 →** US **public domain now** (95-year rule; advances every Jan 1 — "Public
+  Domain Day"). No renewal check; just confirm the publication year. *Mumford's* Technics and
+  Civilization *(1934) frees up Jan 1, 2030.*
+- **1931–1963 →** the **opportunity and the trap**: required renewal in the 28th year; a *large
+  fraction were never renewed and are PD now* — but **you must check** (next bullet).
+- **1964–1977 →** automatic renewal; 95 years; **assume in copyright.**
+- **1978+ →** life + 70 (or 95/120 corporate); **assume in copyright** unless explicitly PD-dedicated
+  (CC0) or a US Government work. Modern copyright **does not "renew"** — it's a fixed term; the
+  renewal question only exists for pre-1964 works.
+
+**How to check a 1931–1963 US work** (the procedure): ① **Stanford Copyright Renewal Database**
+(title + author) → ② if nothing, confirm in the **Catalog of Copyright Entries** for years X+27…X+29
+(both halves; via the Online Books Page renewal guide / Google Books / archive.org) → ③ cross-check
+**HathiTrust** for an existing determination → ④ **foreign-origin flag:** the GATT/URAA restoration
+can keep a foreign work under US copyright *despite* a missing renewal — escalate. Renewal **found →
+protected; none found across all of the above → well-supported PD conclusion.** Document the search.
+
+## Legal paths to in-copyright *themes* (ranked, most→least reliable)
+
+1. **Get written permission.** Publishers/estates handle this routinely. Find the holder (the
+   **WATCH database** lists author estates; the publisher's permissions dept controls reproduction;
+   *audio rights may be held separately*). Send a specific request — what text, what use, free +
+   non-commercial, where hosted, attribution. **Accessibility / educational framing makes "yes" much
+   more likely.** "No reply" ≠ permission; get it in writing. (Template below.)
+2. **Use CC / openly-released works.** Verified, on-theme, license-checked: **Kevin Kelly,** *Out of
+   Control* (CC BY); **Cory Doctorow** novels (CC BY-NC-SA, derivatives explicitly allowed); **Peter
+   Watts,** *Blindsight* (CC BY-NC-SA, on consciousness); **Lessig,** *Free Culture* / *Remix*
+   (CC BY-NC); **GNU Manifesto** (verbatim-copy license); **Cluetrain Manifesto** (CC BY-SA).
+   ⚠ **The "ND" trap:** NoDerivatives licenses (most **TED talks**; Stross's *Accelerando*) **block**
+   editing into an audiobook. **BY / BY-SA are fine; ND is a wall.** And "freely *viewable*" (a
+   YouTube/TED talk) ≠ "freely *licensed*" to reproduce.
+3. **Build companions on free secondary sources + brief fair-use quotation.** Reproduce/adapt
+   **CC BY / BY-SA** material (Wikipedia, Wikisource, open-access journals like PLOS/much of DOAJ);
+   **link** (don't re-host) free-to-read-but-copyrighted sources (**Stanford Encyclopedia of
+   Philosophy**, IEP). Engage an in-copyright primary work through scholarship *about* it that you
+   *don't* reproduce — the "further reading / commentary" pattern.
+4. **Wait for the public domain.** Zero risk; the line advances each Jan 1, and the unrenewed
+   1931–1963 pool is bigger than people expect.
+
+### Permissions email template (adapt)
+
+> **Subject:** Permission request — non-commercial audio read-along of [TITLE] by [AUTHOR]
+>
+> Dear [Permissions Dept / Estate of (Author) / (Agent)],
+> I run a **free, non-commercial** educational site, [SITE] ([URL]), that pairs spoken-word audio
+> with synchronized read-along text to support reading, comprehension, and accessibility. It carries
+> **no ads, no fees, no donations.** I request permission to (1) produce an original audio recording
+> and (2) display the read-along text of: **[TITLE] / [AUTHOR] / [ISBN] / portion: [whole / chs X–Y]**,
+> hosted at [URL]. I'll include any rights notice + attribution you specify (e.g. "[TITLE] © [YEAR]
+> [HOLDER]. Used by permission."), will not sell or monetize it, and will remove it on request. If
+> you're not the right holder for these (incl. separate **audio** rights), a pointer would be
+> gratefully received. — [NAME, SITE, EMAIL]
+
+## The Vatican question (it's our two existing books, so it matters)
+
+**Short answer: yes, what we're doing fits — with honest nuance, and it differs by book.**
+
+- **Rerum Novarum (1891): firmest possible ground — US public domain by age**, regardless of any
+  Vatican claim. Pre-1929 works are PD in the US, and **public-domain English translations exist**
+  (Wikisource's 1903-lineage text, New Advent, papalencyclicals.net). *Best practice: source the
+  read-along from a clearly pre-1929 translation rather than copying the current vatican.va HTML,
+  whose specific modern edition is the part LEV would claim.*
+- **Modern encyclicals (the 2026 text): in copyright — we rely on Libreria Editrice Vaticana's
+  permission, not the public domain.** LEV's formal 2005 decree is broad ("every moral copyright…
+  permanently and throughout the world"), **but its stated operating policy** (reported when the
+  decree took effect) is permissive for exactly our use: *news/others may publish full texts free
+  **provided they cite the Vatican copyright**; payment is due only if a text is **published
+  separately as a commercial product.*** Our posture — **free, non-commercial, attributed to
+  Libreria Editrice Vaticana, linking to vatican.va as authoritative, never sold separately** — sits
+  squarely inside that permission and outside the paid trigger.
+- **Honest caveats:** (i) that permission is **conditional** — the attribution and the
+  not-sold-separately posture are *load-bearing*, keep them; (ii) the permission was articulated for
+  *publishing text*, and we extend it to an *audiobook format* — a reasonable but not explicitly-
+  blessed application; (iii) the "perpetual copyright" claim is real as an *assertion* but there is
+  **no perpetual copyright in US law** ("limited Times"), so for the 1891 text US public domain
+  governs regardless. The Vatican has historically *wanted* its teaching spread widely; enforcement
+  examples involve **commercial** anthologies sold for profit, not free attributed reproductions.
+- **For certainty on the modern texts:** keep the attribution + non-commercial + not-sold-separately
+  posture, and consider simply **asking LEV/USCCB for written permission for the audiobook format**.
+
+## A one-line status to record per book
+
+When adding a book, write its copyright basis in the build notes (and ideally the manifest), e.g.:
+*"PD by age (pub. 1891; Wikisource 1903 translation)"* · *"CC BY 4.0 (kk.org)"* ·
+*"LEV permission — free/non-commercial/attributed/not-sold-separately"* · *"written permission on
+file, [date]"*. Future-you (and any contributor) should never have to guess why a text is here.
 
 ---
 
