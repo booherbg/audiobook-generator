@@ -38,9 +38,10 @@ CONCEPTS = [
         "title": "The condition of the workers",
         "anchor": "some opportune remedy must be found quickly for the misery and wretchedness",
         "blurb": "The encyclical's starting point is not theory but a wound: the real misery of "
-                 "working people after the guilds were gone and nothing had replaced them. Leo "
-                 "XIII writes into the upheaval of industrialization, and he refuses to look away "
-                 "from it. Everything that follows is an attempt to answer this suffering justly.",
+                 "working people — which Leo XIII lays at the door of the old guilds' abolition with "
+                 "nothing put in their place. He writes into the upheaval of industrialization, and "
+                 "he refuses to look away from it. Everything that follows is an attempt to answer "
+                 "this suffering justly.",
         "related": ["The false remedy of socialism", "The State's special care for the poor"],
     },
     {

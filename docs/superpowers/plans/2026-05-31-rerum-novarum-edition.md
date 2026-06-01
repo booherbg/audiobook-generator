@@ -221,3 +221,30 @@ Per [critic-panel.md](../../playbook/critic-panel.md). **Loop until HONORS.**
 - **`build/` is gitignored** — tracked tooling lives in `scripts/`, the chapter map in tracked
   `data/`. The cached source HTML stays in `build/`.
 - Connection can drop tool output — write results to files and Read them; keep commands small.
+
+## Critic loop outcome (Task 8)
+
+Three critics (English/economic historian, educator, mystical/church-historian+theologian) read
+the companion + chapter breakdown against the source. All three returned
+**MOSTLY-HONORS-WITH-FIXES** and converged. Fixes applied (all re-grounded verbatim): added a
+"Goods are meant for all" concept + glossary term (the universal destination of goods is in RN
+itself, not a later correction); re-grounded the living wage in natural justice (not "human
+need/market"); added a Ch9 "Rest, and the rights of God" card (the *imago Dei* dignity grounding);
+reframed wealth as stewardship before the eternal Judge; corrected the distributive-justice
+glossary; flagged the guild narrative as Leo's telling (both the ch1 and ch11 cards); fixed the
+commentary's grounding to Aquinas + the eternal law (not "Aristotle") and "socialism" (not
+"Marxism") of its moment; retitled Ch4 "Inequality, the Church, and the Two Classes"; relabeled
+the (fictional) *Magnifica Humanitas* as a creative companion, not real magisterium.
+
+Confirming pass: **historian → HONORS, theologian → HONORS.** Goal gate met.
+
+**Accurate note on the Ch12/Ch13 boundary** (correcting an over-stated rationale): `resection`
+cuts at the boundaries of whatever text units it's handed, which by the time it runs are
+SENTENCE-level (the cleaning pipeline sentence-splits before resection). Leo's numbered paragraph
+§59 straddles the seam — its first sentence ("Such rules and regulations…") closes the
+associations material, then it pivots to the peroration ("Is it not rash to conjecture the future
+from the past…"). The Ch13 anchor lands on §59's *second* sentence, so the boundary falls *inside*
+§59 by design — which keeps the entire historically-resonant peroration intact in the closing
+chapter. The cost is one transitional bridge-sentence opening Ch13; it is verbatim, in Leo's
+order, and misleads no one. (It is NOT true that the mechanism "never splits a source paragraph" —
+it splits at sentence units; that earlier framing was wrong.)
