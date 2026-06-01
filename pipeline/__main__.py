@@ -233,6 +233,11 @@ def cmd_qa(args):
             mp3 = config.DOCS / mentry["files"][vid]
             dur = probe(mp3)["duration"]
             loud = measure_loudness(mp3)
+            # Real maximum sample level (astats), not loudnorm's predicted inter-sample
+            # true-peak: the latter routinely reads a hair above 0 on perfectly clean
+            # spoken-word MP3s and is not meaningful for lossy audio. >= 0 dBFS here is
+            # ACTUAL digital clipping. (See build/verify_all.py and the project memory.)
+            peak = Q.sample_peak_dbfs(mp3)
             silences = Q.measure_silences(mp3, min_dur=3.0)
             hyp = Q.transcribe_clip(mp3, args.sample_sec)
             ref_sample = " ".join(ref_words[: max(len(hyp.split()), 1)])
@@ -240,18 +245,18 @@ def cmd_qa(args):
             ok = (
                 wer <= args.wer_max
                 and abs(loud["input_i"] - config.LUFS) <= 2.0
-                and loud["input_tp"] <= 0.0  # no real clipping
+                and peak < 0.0  # no real clipping (astats sample peak)
                 and len(silences) == 0
                 and Q.within_duration_band(dur, words)
             )
             overall = overall and ok
             rows.append({
                 "index": ch.index, "voice": vid, "wer": round(wer, 3),
-                "lufs": round(loud["input_i"], 2), "tp": round(loud["input_tp"], 2),
+                "lufs": round(loud["input_i"], 2), "peak": round(peak, 2),
                 "dur": round(dur, 1), "words": words, "silences": len(silences), "ok": ok,
             })
             print(f"  ch{ch.index:02d} {vid:6s} wer={wer:.3f} lufs={loud['input_i']:5.1f} "
-                  f"dur={dur:4.0f}s {'OK' if ok else 'FAIL'}", flush=True)
+                  f"peak={peak:5.2f} dur={dur:4.0f}s {'OK' if ok else 'FAIL'}", flush=True)
     report = {"passed": overall, "book": args.id, "wer_max": args.wer_max, "chapters": rows}
     (config.BUILD / "qa-report.json").write_text(json.dumps(report, indent=2))
     bad = sum(1 for r in rows if not r["ok"])

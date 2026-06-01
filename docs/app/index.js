@@ -2,12 +2,15 @@
 // (work-in-progress editions) are shown normally but carry a "work in progress" badge.
 // The view-model math lives in logic.js so it stays unit-testable.
 
-import { buildViewModel, totalDuration, formatTime } from "./logic.js";
+import { buildViewModel, totalDuration, formatTime, yearOf } from "./logic.js";
 
-// First 4-digit year in the date field ("1891", "2026-05-15" → "1891" / "2026").
-export function bookYear(b) {
-  const m = String(b.date || "").match(/\d{4}/);
-  return m ? m[0] : "";
+// Re-exported for tests; the year logic lives in logic.js (shared with the player).
+export const bookYear = (b) => yearOf(b && b.date);
+
+// Minimal HTML-escape for values interpolated into card innerHTML.
+function esc(s) {
+  return String(s || "").replace(/[&<>"]/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 }
 
 export function bookCard(doc, m, b) {
@@ -17,11 +20,13 @@ export function bookCard(doc, m, b) {
   a.className = b.wip ? "card wip" : "card";
   a.href = `player.html?book=${encodeURIComponent(b.id)}`;
   const badge = b.wip ? '<span class="wip-badge">work in progress</span>' : "";
-  const year = bookYear(b);
-  const author = year ? `${vm.author} · ${year}` : vm.author;
+  const year = yearOf(vm.date);
+  const author = year ? `${esc(vm.author)} · ${year}` : esc(vm.author);
+  const subtitle = vm.subtitle ? `<div class="s">${esc(vm.subtitle)}</div>` : "";
   a.innerHTML =
     `<img src="${vm.cover}" alt="" />` +
-    `<div><div class="t">${vm.title}</div>` +
+    `<div><div class="t">${esc(vm.title)}</div>` +
+    subtitle +
     `<div class="a">${author}</div>` +
     `<div class="m">${vm.chapters.length} chapters · ${formatTime(totalDuration(vm, vid))}</div>` +
     badge +

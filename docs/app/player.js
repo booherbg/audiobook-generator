@@ -11,6 +11,7 @@ import {
   readJSON,
   resumeKey,
   writeJSON,
+  yearOf,
 } from "./logic.js";
 
 const $ = (id) => document.getElementById(id);
@@ -118,7 +119,8 @@ const curDur = () => chapter().duration[voiceId] || 0;
 function renderHead() {
   $("book-title").textContent = vm.title;
   $("book-subtitle").textContent = vm.subtitle;
-  $("book-author").textContent = vm.author;
+  const year = yearOf(vm.date);
+  $("book-author").textContent = year ? `${vm.author} · ${year}` : vm.author;
   if (vm.cover) {
     $("cover").src = vm.cover;
     $("cover").alt = vm.title;

@@ -28,6 +28,12 @@ export function offsetOnVoiceSwitch(t, fromDur, toDur) {
   return clamp(t, 0, toDur || 0);
 }
 
+// First 4-digit year in a date string ("1891", "2026-05-15" → "1891" / "2026"); "" if none.
+export function yearOf(date) {
+  const m = String(date || "").match(/\d{4}/);
+  return m ? m[0] : "";
+}
+
 export function buildViewModel(manifest, bookId) {
   const book = (manifest.books || []).find((b) => b.id === bookId);
   if (!book) return null;
@@ -36,6 +42,7 @@ export function buildViewModel(manifest, bookId) {
     title: book.title,
     subtitle: book.subtitle || "",
     author: book.author || "",
+    date: book.date || "",
     cover: book.cover || "",
     description: book.description || "",
     hasGuide: !!book.has_guide,

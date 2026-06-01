@@ -4,10 +4,10 @@
     {
       "id": "magnifica-humanitas",
       "title": "Magnifica Humanitas",
-      "subtitle": "On Safeguarding the Human Person in the Time of Artificial Intelligence",
-      "author": "Pope Leo XIV",
-      "date": "2026-05-15",
-      "source_url": "https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
+      "subtitle": "",
+      "author": "",
+      "date": "",
+      "source_url": "",
       "description": "",
       "cover": "audio/magnifica-humanitas/cover.svg",
       "public": true,
@@ -310,7 +310,7 @@
             "george": "audio/rerum-novarum/george/chapter-06.mp3"
           },
           "duration": {
-            "george": 354.5
+            "george": 356.9
           }
         },
         {
@@ -340,7 +340,7 @@
             "george": "audio/rerum-novarum/george/chapter-09.mp3"
           },
           "duration": {
-            "george": 379.0
+            "george": 378.7
           }
         },
         {
@@ -370,7 +370,7 @@
             "george": "audio/rerum-novarum/george/chapter-12.mp3"
           },
           "duration": {
-            "george": 486.7
+            "george": 489.7
           }
         },
         {

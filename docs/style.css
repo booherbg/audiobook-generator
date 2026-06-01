@@ -38,7 +38,8 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
 .card:hover { border-color: var(--accent-2); text-decoration: none; }
 .card img { width: 84px; height: 84px; border-radius: 10px; flex: none; background: var(--panel-2); }
 .card .t { font-weight: 600; color: var(--text); }
-.card .a { color: var(--muted); font-size: 0.9rem; }
+.card .s { color: var(--text-2, #c9c2b4); font-size: 0.86rem; font-style: italic; margin-top: 1px; }
+.card .a { color: var(--muted); font-size: 0.9rem; margin-top: 2px; }
 .card .m { color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
 
 /* Book head */

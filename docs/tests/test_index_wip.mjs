@@ -8,8 +8,8 @@ import { bookCard, bookYear, renderLibrary } from "../app/index.js";
 
 const MANIFEST = {
   books: [
-    { id: "visible-book", title: "Visible", author: "A", cover: "c.svg", date: "2026-05-15",
-      voices: [{ id: "v", label: "V" }],
+    { id: "visible-book", title: "Visible", subtitle: "On Subtitles", author: "A",
+      cover: "c.svg", date: "2026-05-15", voices: [{ id: "v", label: "V" }],
       chapters: [{ index: 1, title: "1", files: { v: "x.mp3" }, duration: { v: 60 } }] },
     { id: "wip-book", title: "WIP", author: "B", cover: "c.svg", date: "1891", wip: true,
       voices: [{ id: "v", label: "V" }],
@@ -53,6 +53,13 @@ test("the year appears on the card", () => {
   const wip = bookCard(doc, MANIFEST, MANIFEST.books[1]);
   assert.match(vis.innerHTML, /· 2026/, "visible card shows 2026");
   assert.match(wip.innerHTML, /· 1891/, "wip card shows 1891");
+});
+
+test("the subtitle appears on the card when present, and is omitted when absent", () => {
+  const withSub = bookCard(doc, MANIFEST, MANIFEST.books[0]);
+  const noSub = bookCard(doc, MANIFEST, MANIFEST.books[1]);
+  assert.match(withSub.innerHTML, /class="s">On Subtitles</, "subtitle line rendered");
+  assert.doesNotMatch(noSub.innerHTML, /class="s"/, "no empty subtitle line when absent");
 });
 
 test("renderLibrary renders every book and counts wip", () => {
