@@ -114,6 +114,14 @@ def cmd_generate(args):
     book_id = args.id or slugify(args.title or doc.title)
     title = args.title or doc.title
 
+    # Ensure a cover exists so the library card never shows a broken image. A hand-made
+    # cover is left untouched; this only fills the gap for a new book.
+    from pipeline.cover import ensure_cover
+
+    _, created = ensure_cover(book_id, title, args.author or "", args.subtitle or "")
+    if created:
+        print(f"wrote default cover: audio/{book_id}/cover.svg", flush=True)
+
     start, end = 1, len(chapters)
     if args.chapters:
         a, _, b = args.chapters.partition(":")

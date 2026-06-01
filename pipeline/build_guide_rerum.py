@@ -300,7 +300,7 @@ def main():
 
     out, cards, missing = build_guide(
         BOOK_ID, resource, CONCEPTS, GLOSSARY, FURTHER_READING, COMMENTARY,
-        intro=INTRO, chapter_map=chapter_map)
+        intro=INTRO, chapter_map=chapter_map, repairs=repairs)
     print(f"wrote {out}: {len(cards)} concept cards (source: {resource})")
     if missing:
         print(f"WARNING: anchors not found (dropped): {missing}")

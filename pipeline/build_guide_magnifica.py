@@ -235,10 +235,19 @@ def _default_source():
     raise SystemExit("No source available: pass a URL/file, or fetch build/magnifica.html.")
 
 
+def _repairs():
+    """Optional source-spacing repair map (fixes export artifacts like 'R esponsibility')."""
+    import json
+
+    path = config.ROOT / "data" / "repairs" / f"{BOOK_ID}.json"
+    return json.loads(path.read_text()) if path.exists() else None
+
+
 def main():
     resource = sys.argv[1] if len(sys.argv) > 1 else _default_source()
+    repairs = _repairs()
     out, cards, missing = build_guide(
-        BOOK_ID, resource, CONCEPTS, GLOSSARY, FURTHER_READING, COMMENTARY)
+        BOOK_ID, resource, CONCEPTS, GLOSSARY, FURTHER_READING, COMMENTARY, repairs=repairs)
     print(f"wrote {out}: {len(cards)} concept cards (source: {resource})")
     if missing:
         print(f"WARNING: anchors not found (dropped): {missing}")
@@ -248,7 +257,7 @@ def main():
     # The read-along transcript shares the same source path, so build it here too.
     from pipeline.transcript import build_transcript
 
-    tout, nch, nlines = build_transcript(BOOK_ID, resource)
+    tout, nch, nlines = build_transcript(BOOK_ID, resource, repairs=repairs)
     print(f"wrote {tout}: {nch} chapters, {nlines} read-along lines")
 
     # Full-text reader (same source) — a clean local "read the whole thing" page.
@@ -257,7 +266,7 @@ def main():
     book = next((b for b in load_manifest(config.MANIFEST)["books"] if b["id"] == BOOK_ID), {})
     fout, fch, flines = build_fulltext(
         BOOK_ID, resource, title=book.get("title", ""), author=book.get("author", ""),
-        subtitle=book.get("subtitle", ""), source_url=book.get("source_url", ""))
+        subtitle=book.get("subtitle", ""), source_url=book.get("source_url", ""), repairs=repairs)
     print(f"wrote {fout}: {fch} chapters, {flines} paragraphs")
 
 

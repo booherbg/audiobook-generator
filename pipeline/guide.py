@@ -72,9 +72,9 @@ DEFAULT_INTRO = (
 
 
 def build_guide(book_id, resource, concepts, glossary, further_reading, commentary,
-                manifest_path=None, intro=None, chapter_map=None):
+                manifest_path=None, intro=None, chapter_map=None, repairs=None):
     manifest_path = manifest_path or config.MANIFEST
-    chapters = clean_chapters(resource, chapter_map=chapter_map)
+    chapters = clean_chapters(resource, chapter_map=chapter_map, repairs=repairs)
     titles = {idx: title for idx, title, _ in chapters}
     book = _load_book(manifest_path, book_id)
     voice = _default_voice(book)
