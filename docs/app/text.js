@@ -14,6 +14,8 @@ function render(d) {
   document.title = `Full text — ${d.title || BOOK}`;
   $("title").textContent = d.title || "Full text";
   $("byline").textContent = [d.subtitle, d.author].filter(Boolean).join(" · ");
+  const playerLink = $("player-link");
+  if (playerLink) playerLink.href = `player.html?book=${encodeURIComponent(BOOK)}`;
 
   if (d.source_url) {
     const note = $("src-note");

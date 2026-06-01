@@ -24,19 +24,24 @@ from pipeline.source_text import clean_chapters
 GUIDE_DIR = config.DOCS / "guide"
 
 
-def _voice_timeline(manifest_path, voice):
-    """Return ({index: start_sec}, {index: duration_sec}) for a voice, from the manifest."""
-    book = json.loads(Path(manifest_path).read_text())["books"][0]
+def _load_book(manifest_path, book_id):
+    """The manifest entry for this book, looked up BY ID (not books[0] — a multi-book
+    library has many). Returns {} if the book isn't in the manifest yet."""
+    books = json.loads(Path(manifest_path).read_text()).get("books", [])
+    return next((b for b in books if b.get("id") == book_id), {})
+
+
+def _voice_timeline(book, voice):
+    """Return ({index: start_sec}, {index: duration_sec}) for a voice, from a book entry."""
     starts, durs, t = {}, {}, 0.0
-    for c in book["chapters"]:
+    for c in book.get("chapters", []):
         d = c["duration"].get(voice, 0)
         starts[c["index"]], durs[c["index"]] = t, d
         t += d
     return starts, durs
 
 
-def _default_voice(manifest_path):
-    book = json.loads(Path(manifest_path).read_text())["books"][0]
+def _default_voice(book):
     return book["voices"][0]["id"] if book.get("voices") else "female"
 
 
@@ -55,13 +60,25 @@ def find_quote(chapters, anchor):
     return None
 
 
+DEFAULT_INTRO = (
+    "A companion to the reading — not a replacement for it. This encyclical asks "
+    "whether our tools can serve human dignity rather than crowd it out, so there is "
+    "a quiet irony in an AI keeping notes in its margins. The honest answer is "
+    "restraint: everything below points back to the text in the author's own words, "
+    "each quotation is verbatim, and every opinion is labelled as mine, not his. "
+    "Follow a thread if you're curious; close the tab and just listen if you're not. "
+    "Either is a good way to spend the hours."
+)
+
+
 def build_guide(book_id, resource, concepts, glossary, further_reading, commentary,
-                manifest_path=None):
+                manifest_path=None, intro=None, chapter_map=None):
     manifest_path = manifest_path or config.MANIFEST
-    chapters = clean_chapters(resource)
+    chapters = clean_chapters(resource, chapter_map=chapter_map)
     titles = {idx: title for idx, title, _ in chapters}
-    voice = _default_voice(manifest_path)
-    starts, durs = _voice_timeline(manifest_path, voice)
+    book = _load_book(manifest_path, book_id)
+    voice = _default_voice(book)
+    starts, durs = _voice_timeline(book, voice)
 
     def label_seconds(chapter, fraction):
         """Human-readable timestamp on the default voice (display only)."""
@@ -112,15 +129,11 @@ def build_guide(book_id, resource, concepts, glossary, further_reading, commenta
 
     data = {
         "book": book_id,
-        "intro": (
-            "A companion to the reading — not a replacement for it. This encyclical asks "
-            "whether our tools can serve human dignity rather than crowd it out, so there is "
-            "a quiet irony in an AI keeping notes in its margins. The honest answer is "
-            "restraint: everything below points back to the text in the author's own words, "
-            "each quotation is verbatim, and every opinion is labelled as mine, not his. "
-            "Follow a thread if you're curious; close the tab and just listen if you're not. "
-            "Either is a good way to spend the hours."
-        ),
+        "title": book.get("title", ""),
+        "subtitle": book.get("subtitle", ""),
+        "author": book.get("author", ""),
+        "source_url": book.get("source_url", ""),
+        "intro": intro or DEFAULT_INTRO,
         "concepts": cards,
         "glossary": glossary,
         "further_reading": further_reading,

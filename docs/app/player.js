@@ -86,6 +86,9 @@ async function init() {
   renderVoices();
   $("speed").value = String(prefs.speed || 1);
   audio.playbackRate = Number($("speed").value);
+  // Text link is always available; point it at this book.
+  const textLink = $("text-link");
+  if (textLink) textLink.href = `text.html?book=${encodeURIComponent(vm.id)}`;
   if (vm.hasGuide) {
     const href = `guide.html?book=${encodeURIComponent(vm.id)}`;
     const link = $("companion-link");

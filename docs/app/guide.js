@@ -86,6 +86,22 @@ function commentaryItem(c) {
 }
 
 function render(g) {
+  // Book-aware chrome: title/subtitle and the back/secondary links come from the data +
+  // the book id, so the one companion page serves every book (not just Magnifica).
+  document.title = `Companion — ${g.title || BOOK}`;
+  const titleEl = $("title");
+  if (titleEl && g.title) titleEl.textContent = "Companion";
+  const subEl = document.querySelector(".companion-sub");
+  if (subEl && g.title) {
+    subEl.innerHTML = "to <em></em>";
+    subEl.querySelector("em").textContent = g.title;
+    if (g.author) subEl.append(` — ${g.author}`);
+  }
+  const playerLink = $("player-link");
+  if (playerLink) playerLink.href = `player.html?book=${encodeURIComponent(BOOK)}`;
+  const textLink = document.querySelector('.topbar-right a[href*="text.html"]');
+  if (textLink) textLink.href = `text.html?book=${encodeURIComponent(BOOK)}`;
+
   $("intro").textContent = g.intro || "";
 
   const cont = $("concepts");

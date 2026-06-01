@@ -42,6 +42,9 @@ function setupDom() {
   global.document = {
     getElementById: (id) => reg[id] || null,
     createElement: (t) => makeEl(t),
+    // book-aware chrome uses querySelector for the subtitle + secondary nav links;
+    // null is a safe answer here (guide.js null-guards every such lookup).
+    querySelector: () => null,
   };
   global.location = { search: "?book=magnifica-humanitas", href: "https://x/" };
   global.fetch = async () => ({ json: async () => guideJson });

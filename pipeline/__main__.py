@@ -18,6 +18,7 @@ import yaml
 
 from pipeline import config
 from pipeline.assemble import assemble_chapter, probe
+from pipeline.chapter_map import load_map, resection
 from pipeline.chunk import chunk_document
 from pipeline.clean import clean_paragraph, is_boilerplate
 from pipeline.load import HTMLLoader
@@ -101,6 +102,9 @@ def cmd_generate(args):
     src = resolve(args.resource)
     print(f"loading {src}", flush=True)
     doc = clean_document(HTMLLoader().load(src))
+    if args.chapter_map:
+        doc = resection(doc, load_map(args.chapter_map))
+        print(f"re-sectioned by chapter map: {len(doc.sections)} chapters", flush=True)
     chapters = chunk_document(doc, max_min=args.max_chapter_min)
     book_id = args.id or slugify(args.title or doc.title)
     title = args.title or doc.title
@@ -193,6 +197,8 @@ def cmd_qa(args):
 
     voices_cfg, lexicon = load_voices()
     doc = clean_document(HTMLLoader().load(resolve(args.source)))
+    if args.chapter_map:
+        doc = resection(doc, load_map(args.chapter_map))
     chapters = chunk_document(doc, max_min=args.max_chapter_min)
     manifest = load_manifest(config.MANIFEST)
     book = next((b for b in manifest["books"] if b["id"] == args.id), None)
@@ -263,6 +269,8 @@ def main(argv=None):
     g.add_argument("--source-url", dest="source_url")
     g.add_argument("--voices", help="comma-separated voice ids (default: all in voices.yaml)")
     g.add_argument("--chapters", help="range to render, e.g. 1:3 (1-based, inclusive)")
+    g.add_argument("--chapter-map", help="JSON file of [{title,anchor}] to re-section a "
+                                         "source that has no usable headings")
     g.add_argument("--max-chapter-min", type=float, default=config.MAX_CHAPTER_MIN)
     g.add_argument("--clean", action="store_true", help="delete this book's audio first")
     g.add_argument("--force", action="store_true", help="re-render chapters even if present")
@@ -280,6 +288,8 @@ def main(argv=None):
     q.add_argument("--source", default="build/magnifica.html")
     q.add_argument("--sample-sec", type=float, default=90.0)
     q.add_argument("--wer-max", type=float, default=0.12)
+    q.add_argument("--chapter-map", help="JSON file of [{title,anchor}] (must match the "
+                                         "map used at generate time)")
     q.add_argument("--max-chapter-min", type=float, default=config.MAX_CHAPTER_MIN)
     q.set_defaults(func=cmd_qa)
 
