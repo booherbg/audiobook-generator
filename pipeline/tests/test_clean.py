@@ -5,6 +5,12 @@ def test_clean_strips_footnote_brackets():
     assert clean_paragraph("human dignity.[12]") == "human dignity."
 
 
+def test_clean_strips_inline_paren_footnote_markers():
+    # Older Vatican texts mark citations as parenthesised numbers inline; never narrate them.
+    assert clean_paragraph("the working classes.(1) It is a subject") == "the working classes. It is a subject"
+    assert clean_paragraph("obstacles;(9) that the rich") == "obstacles; that the rich"
+
+
 def test_clean_strips_superscripts():
     assert clean_paragraph("the work¹ of all") == "the work of all"
 

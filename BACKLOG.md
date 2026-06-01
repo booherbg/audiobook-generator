@@ -11,6 +11,18 @@ the 34 MP3s of *Magnifica Humanitas* (17 chapters × 2 voices).
   into the narration at chapter breaks (another ~full audio set per voice).
 - **Additional books** (sci-fi, PDFs) — each is its own audio set.
 
+## Deferred (UX) — "listen while you read" / continuous playback
+The companion and full-text live on separate HTML pages; navigating to them stops the
+audio (the `<audio>` element is destroyed on page load). Two tiers were scoped:
+- **Sticky mini-player (beta).** A mini bar on guide/text pages sharing the main player's
+  resume state; concept "listen" links seek IN-PAGE instead of navigating away. The one
+  seam: navigating *from* the player pauses audio for a single tap to resume (browsers
+  can't carry a playing element across a page load). Clean-ish; deferred for now.
+- **Seamless SPA player (the real fix).** Convert the companion + full-text into in-page
+  panels over a single persistent player so audio never stops — "SoundCloud-style." This
+  is a genuine architecture change (one page, swap panels, route via history API) and the
+  right long-term home for continuous playback. Revisit together.
+
 ## Next big build: the two pillar documents (same full treatment)
 *Magnifica Humanitas* explicitly stands on two prior encyclicals; give each the SAME
 end-to-end treatment we built here (audiobook + read-along transcript + full-text reader +

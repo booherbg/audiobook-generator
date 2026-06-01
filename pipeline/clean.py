@@ -5,6 +5,10 @@ and boilerplate lines. Operates on plain paragraph strings.
 import re
 
 _FOOTNOTE_BRACKET = re.compile(r"\[\d+\]")
+# Inline citation markers as parenthesised numbers, e.g. "…working classes.(1) It is…" or
+# "obstacles;(9) that…". Common in older Vatican texts (Rerum Novarum). Strip the marker but
+# keep surrounding text/punctuation, so it isn't narrated as a stray number.
+_FOOTNOTE_PAREN = re.compile(r"\(\d{1,3}\)")
 _SUPERSCRIPT = re.compile(r"[¹²³⁰-⁹]+")
 _LEADING_NUM = re.compile(r"^\s*\d+\.\s+")
 _WS = re.compile(r"\s+")
@@ -48,6 +52,7 @@ def clean_paragraph(text: str, repairs: dict | None = None) -> str:
     (a heuristic splitter mangles real words like "workers"→"work ers", so we don't guess).
     """
     text = _FOOTNOTE_BRACKET.sub("", text)
+    text = _FOOTNOTE_PAREN.sub("", text)
     text = _SUPERSCRIPT.sub("", text)
     text = _LEADING_NUM.sub("", text)
     text = _PUNCT_NOSPACE.sub(r"\1 \2", text)
