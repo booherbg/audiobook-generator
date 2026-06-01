@@ -99,18 +99,25 @@ swap + Spanish companion + Spanish critic panel; add the audio later when storag
 Captured for later — not committed. Grouped by what they'd grow. Each new *book* is its own
 audio set, so all are storage-gated; the text/companion layer of any of them can ship audio-free.
 
+> **→ The full, copyright-vetted reading list is now [docs/WORK-QUEUE.md](docs/WORK-QUEUE.md).**
+> It traces Magnifica's references back through the CST lineage → philosophy of technology →
+> the ancients (main thread + offshoots), plus two wider runs: world wisdom traditions
+> (Zhuangzi's "machine heart", the Golem, the Gita's karma-yoga) and public-domain sci-fi /
+> free manifestos (Erewhon, R.U.R., The Machine Stops, Kevin Kelly's *Out of Control*). Every
+> item carries a copyright verdict. The summary below is the short version.
+
 **More texts — the natural neighbours.**
 - **Complete the CST arc:** *Quadragesimo Anno* (Pius XI, 1931, names subsidiarity), *Pacem in
   Terris* (John XIII, 1963), *Populorum Progressio* (Paul VI, 1967), *Laborem Exercens* /
   *Centesimus Annus* (JP II). With RN + Laudato si' + Magnifica, this becomes a real, navigable
   library of the whole tradition — and the companions already gesture at these links.
-- **Founding civic/scientific texts in the public domain** (the original "old sci-fi & PDFs"
-  idea, broadened): the US Declaration/Constitution/Federalist, *On Liberty* (Mill), Darwin's
-  *Origin* intro, Einstein's *Relativity* popular exposition, the UN Universal Declaration of
-  Human Rights. Tests the pipeline on non-encyclical structure + the PDF loader (see below).
-- **Public-domain literature / sci-fi** (the user's original "old scifi books"): short works
-  first (a Borges-length story, a single Asimov-era public-domain piece) to prove fiction
-  pacing/voice before a novel-length set.
+- **The ancients Magnifica cites:** *City of God* Bk. XIV (Augustine — the literal source of the
+  Babel/two-cities image), Aristotle's *Ethics*/*Politics*, Aquinas excerpts — all public-domain
+  (use the named PD translations in the work queue). Plus the **UDHR** (1948, free, explicitly cited).
+- **World wisdom run** (secondary): Zhuangzi, the Golem sources, the Bhagavad Gita on work — see
+  the work queue, which separates grounded primary texts from debunked pseudo-history (Vimanas).
+- **Public-domain literature / sci-fi** (the user's original "old scifi books"): start with
+  *Erewhon* / *The Machine Stops* / *R.U.R.* / *Frankenstein* — all PD, all on-theme.
 
 **Deepen the experience (mostly text/JS — cheap, no new audio).**
 - **A library landing that shows the connections** — the three encyclicals as a small annotated
@@ -123,6 +130,21 @@ audio set, so all are storage-gated; the text/companion layer of any of them can
   card (Open Graph tags) when shared.
 - **Accessibility deepening** — a full screen-reader/keyboard audit, prefers-reduced-motion,
   high-contrast pass; partly done, worth a dedicated sweep.
+- **A stated persona for the AI commentator — "the voice in the margin."** Right now the
+  director's-commentary's only anchor is "btw this is an AI." Proposal: give it a *declared lens*
+  — a Stoic-humanist reader in the register of Montaigne + Marcus Aurelius, with the deep-time
+  sensibility of Stephenson/Sagan/Le Guin, Asimov's "the laws are about the humans who wrote
+  them," and a low simmer of Pratchett. **Principle: a declared lens is MORE honest than a hidden
+  default** — it converts an invisible training-set bias into a disclosed one the reader can
+  calibrate against, exactly as verbatim quotes let them check the author. **Hard line: the voice
+  may describe the lens it looks through; it may NEVER invent the eye** — no fabricated name,
+  biography, body, or feelings (that's the "AI pretending to be something it's not" failure the
+  project avoids). Two rationed *moves* in its repertoire: the true "I am one of the new things
+  these texts worried about" reflex, and a Socratic closing question. Encode as a **persona
+  charter** in `docs/playbook/companion-authoring.md` (replacing the lineage-only persona note)
+  + a one-line check in the critic panel's humanist lens, so persona-drift and the dishonest-
+  backstory failure become things the HONORS gate catches. Pairs with the voiced-commentary track
+  below (a spoken voice needs a coherent persona most). Text/playbook change, zero new audio.
 
 **Audio-layer ambitions (storage- and time-gated — revisit deliberately).**
 - The **voiced director's-commentary track** and the **woven "enriched" edition** (already

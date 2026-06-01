@@ -54,6 +54,10 @@ a deployed, critic-reviewed, QA-passed edition, with deep references for the
 [the QA audit](docs/playbook/qa-audit.md). The contract each edition must satisfy is the
 [expansion spec](docs/superpowers/specs/2026-05-31-book-expansion-spec.md).
 
+**What to add next:** [docs/WORK-QUEUE.md](docs/WORK-QUEUE.md) is the curated, copyright-vetted
+reading list — Magnifica's references traced back through Catholic social teaching, the
+philosophy of technology, and the ancients, plus world-wisdom and public-domain-sci-fi runs.
+
 ## Audio quality
 
 Every track is mono 64 kbps MP3, loudness-normalized to −16 LUFS with a true-peak limiter
