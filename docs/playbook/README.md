@@ -1,17 +1,30 @@
 # Playbook — adding another book
 
-This folder is the **pull-and-go guide** for turning a new long-form text into a complete
-edition: chaptered audiobook + web player + read-along transcript + full-text reader +
-grounded companion, reviewed by a critic panel and gated by a world-class QA audit — the
-exact process that produced *Magnifica Humanitas*.
+This folder is the **pull-and-go guide** for turning a long-form text into a complete edition:
+chaptered audiobook + web player + read-along transcript + full-text reader + grounded companion,
+reviewed by a critic panel and gated by a world-class QA audit — the process that produced
+*Magnifica Humanitas* and *Rerum Novarum*.
 
-Open this file, work top to bottom. The four references go deep where a step needs it:
+## Start here — pick your path
+
+| If you want to… | Read |
+|---|---|
+| **Build your own local copies** of the books already here (or swap in a different voice) | **[build-your-own.md](build-your-own.md)** — just run scripts; everything's already in the repo |
+| **Author a *new* book** from a text not yet here | **[authoring-a-new-book.md](authoring-a-new-book.md)** — the two parts (render + LLM-led asset prep) |
+
+A defining idea: **the pipeline contains no LLM and no API keys** — it's deterministic code. The
+LLM is the *operator/author* who prepares the inputs (cleans the text, chapters it, writes the
+companion) and leaves its work as reviewable files in git. Authoring a book is a human+LLM workflow;
+*running* it needs neither. See [authoring-a-new-book.md](authoring-a-new-book.md) for that division
+of labor — it's the heart of how this works in the AI era.
+
+### Deep references (the how-to for each step)
 
 | Doc | What it covers |
 |-----|----------------|
 | [data-contracts.md](data-contracts.md) | The JSON shapes the player reads: `manifest`, `guide`, `transcript`, `text`. The pipeline↔player interface. |
 | [companion-authoring.md](companion-authoring.md) | Authoring the companion (`build_guide_<id>.py`), how read-along + full-text come free, the no-hallucination quote rule, commentary persona. |
-| [critic-panel.md](critic-panel.md) | The "nerd review": three subagents (educator, humanist, domain-expert) read the companion *against the source* and iterate to a **HONORS** verdict. Ready-to-paste prompts + rubric. |
+| [critic-panel.md](critic-panel.md) | The "nerd review": domain-expert reviewers read the companion *against the source* and iterate to a **HONORS** verdict. Ready-to-paste prompts + rubric. |
 | [qa-audit.md](qa-audit.md) | The world-class QA audit: audio gates, site gates, companion integrity, live verification, and the artifact-the-user-sees rule. |
 
 **Two principles run through everything:**

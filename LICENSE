@@ -1,0 +1,51 @@
+MIT License
+
+Copyright (c) 2026 Blaine Booher
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+SCOPE — CODE vs. CONTENT (please read)
+
+The MIT license above covers the SOFTWARE only: the pipeline code, scripts,
+web player, and documentation in this repository (e.g. pipeline/, scripts/,
+docs/app/, docs/*.html, docs/playbook/, the build recipes and maps under
+data/books, data/chapter_maps, data/repairs).
+
+It does NOT cover the CONTENT — the source texts and the audio/companion
+editions derived from them. Those remain the property of their respective
+copyright holders, or are in the public domain, on their own terms:
+
+  • Source texts and rendered audiobooks of papal encyclicals (e.g. the files
+    under data/sources/ and docs/audio/, and the text in docs/guide,
+    docs/transcript, docs/text) are © Libreria Editrice Vaticana, reproduced
+    here freely, non-commercially, with attribution, and not sold separately,
+    per the Holy See's stated permission. The authoritative originals are
+    published at vatican.va.
+
+  • Works that are in the public domain by age (e.g. Rerum Novarum, 1891) are
+    free of copyright as works; specific modern translations may not be.
+
+  • Any future text added to this library carries its own rights; see each
+    book's recipe (data/books/<id>.json "rights") and the copyright &
+    permissions playbook in docs/WORK-QUEUE.md.
+
+In short: you are free to reuse the MACHINERY under MIT; the BOOKS are not the
+project's to relicense, and your use of them is governed by their own rights.
+This notice is informational, not legal advice.

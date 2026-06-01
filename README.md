@@ -44,15 +44,22 @@ text of what you want; it returns a URL, then run `generate`. `generate` is **re
 (skips chapters already rendered, validates their duration) and **multi-voice safe** (a
 single-voice re-render preserves the other voice in the manifest).
 
-## Adding another book
+## Build your own / add a book
 
-Follow the **[playbook](docs/playbook/README.md)** — a pull-and-go runbook from a source URL to
-a deployed, critic-reviewed, QA-passed edition, with deep references for the
-[data contracts](docs/playbook/data-contracts.md),
-[companion authoring](docs/playbook/companion-authoring.md),
-[the critic panel](docs/playbook/critic-panel.md), and
-[the QA audit](docs/playbook/qa-audit.md). The contract each edition must satisfy is the
-[expansion spec](docs/superpowers/specs/2026-05-31-book-expansion-spec.md).
+Two paths, both in the **[playbook](docs/playbook/README.md)**:
+
+- **[Build your own local copies](docs/playbook/build-your-own.md)** of the books already here —
+  render them to MP3 on your machine, or swap in a different voice. Just run scripts; audio is a
+  regenerable build artifact (`audiobook regenerate <id>`), so this is a first-class workflow.
+- **[Author a new book](docs/playbook/authoring-a-new-book.md)** from a text not yet here. Two
+  parts: a deterministic *render* half, and an LLM-led *asset-preparation* half (cleaning,
+  chaptering, the companion, the critic panel). **The pipeline has no LLM and no API keys** — the
+  LLM is the operator/author who prepares the inputs; running the pipeline needs neither.
+
+Deep references: [data contracts](docs/playbook/data-contracts.md) ·
+[companion authoring](docs/playbook/companion-authoring.md) ·
+[critic panel](docs/playbook/critic-panel.md) · [QA audit](docs/playbook/qa-audit.md). The contract
+each edition satisfies is the [expansion spec](docs/superpowers/specs/2026-05-31-book-expansion-spec.md).
 
 **What to add next:** [docs/WORK-QUEUE.md](docs/WORK-QUEUE.md) is the curated, copyright-vetted
 reading list — Magnifica's references traced back through Catholic social teaching, the
@@ -79,8 +86,17 @@ uv run pytest                 # pipeline: cleaning, normalization, chunking, man
 node --test docs/tests/*.mjs  # player logic: time, resume, voice-switch, view model
 ```
 
+## License
+
+The **code** (pipeline, scripts, web player, docs) is **[MIT](LICENSE)** — reuse the machinery
+freely. The **content is not**: the source texts and rendered audiobooks remain © their respective
+holders (e.g. © Libreria Editrice Vaticana, reproduced free/non-commercial/attributed/not-sold-
+separately) or are public domain by age (e.g. *Rerum Novarum*, 1891). Reuse the pipeline under MIT;
+your use of the books is governed by their own rights. See [LICENSE](LICENSE) for the full
+code/content split and `docs/WORK-QUEUE.md` for the per-work copyright detail.
+
 ## Credits
 
-Built by Blaine Booher with Claude. Narration by Kokoro. The first title is hosted by the
+Built by Blaine Booher with Claude. Narration by Kokoro. The first titles are hosted by the
 Vatican and reproduced here for accessible listening; the original is always the authority.
 See `docs/about.html` for the colophon.
