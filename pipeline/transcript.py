@@ -26,9 +26,9 @@ TRANSCRIPT_DIR = config.DOCS / "transcript"
 PAUSE_CHARS = round(config.PARA_PAUSE_MS / 1000 * (config.WPM * 6.1 / 60)) + 4
 
 
-def build_transcript(book_id, resource):
+def build_transcript(book_id, resource, chapter_map=None, repairs=None):
     chapters = []
-    for index, title, lines in clean_chapters(resource):
+    for index, title, lines in clean_chapters(resource, chapter_map=chapter_map, repairs=repairs):
         # per-line weight ≈ spoken chars + the fixed rendered inter-line gap
         lengths = [len(ln) + PAUSE_CHARS for ln in lines]
         total = sum(lengths) or 1

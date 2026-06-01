@@ -14,9 +14,10 @@ from pipeline.source_text import clean_chapters
 TEXT_DIR = config.DOCS / "text"
 
 
-def build_fulltext(book_id, resource, title="", author="", subtitle="", source_url=""):
+def build_fulltext(book_id, resource, title="", author="", subtitle="", source_url="",
+                   chapter_map=None, repairs=None):
     chapters = []
-    for index, ctitle, lines in clean_chapters(resource):
+    for index, ctitle, lines in clean_chapters(resource, chapter_map=chapter_map, repairs=repairs):
         # lines[0] is the spoken chapter-intro ("Title."); the rest are the body sentences.
         body = lines[1:] if len(lines) > 1 else lines
         chapters.append({"index": index, "title": ctitle, "paragraphs": body})

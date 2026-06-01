@@ -19,12 +19,22 @@ def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
+def _optional_json(path):
+    return json.loads(path.read_text()) if path.exists() else None
+
+
 def main():
     book = sys.argv[1] if len(sys.argv) > 1 else "magnifica-humanitas"
     src = sys.argv[2] if len(sys.argv) > 2 else str(config.BUILD / "magnifica.html")
 
+    # Use the same chapter map + repairs the guide was built with (auto-discovered by id),
+    # so the reference text matches exactly what the quotes were extracted from.
+    cmap = _optional_json(config.ROOT / "data" / "chapter_maps" / f"{book}.json")
+    repairs = _optional_json(config.ROOT / "data" / "repairs" / f"{book}.json")
+
     g = json.loads((config.DOCS / "guide" / f"{book}.json").read_text())
-    text = " ".join(s for _, _, lines in clean_chapters(src) for s in lines)
+    text = " ".join(s for _, _, lines in clean_chapters(src, chapter_map=cmap, repairs=repairs)
+                    for s in lines)
     ids = {slug(c["title"]) for c in g["concepts"]}
 
     nonverbatim = [c["title"] for c in g["concepts"] if c["quote"].strip("“”\"'") not in text]
