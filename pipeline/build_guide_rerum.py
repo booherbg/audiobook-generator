@@ -278,7 +278,7 @@ COMMENTARY = [
              "natural law: to band together is a natural right, and a law only binds when it accords "
              "with 'the eternal law of God,' so the State may regulate such societies but not forbid "
              "them. It is a useful reminder that 'new things' are often old needs wearing new "
-             "clothes, which is roughly the whole thesis of reading a 134-year-old letter on the day "
+             "clothes, which is roughly the whole thesis of reading a 135-year-old letter on the day "
              "you happen to be talking to an AI."},
 ]
 
