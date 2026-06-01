@@ -232,6 +232,159 @@
           }
         }
       ]
+    },
+    {
+      "id": "rerum-novarum",
+      "title": "Rerum Novarum",
+      "subtitle": "On Capital and Labor",
+      "author": "Pope Leo XIII",
+      "date": "1891",
+      "source_url": "https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html",
+      "description": "",
+      "cover": "audio/rerum-novarum/cover.svg",
+      "public": true,
+      "has_guide": true,
+      "voices": [
+        {
+          "id": "george",
+          "label": "George — British narrator",
+          "engine": "kokoro",
+          "ref": "bm_george"
+        }
+      ],
+      "chapters": [
+        {
+          "index": 1,
+          "title": "The Spirit of Revolutionary Change",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-01.mp3"
+          },
+          "duration": {
+            "george": 366.2
+          }
+        },
+        {
+          "index": 2,
+          "title": "Property as a Natural Right",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-02.mp3"
+          },
+          "duration": {
+            "george": 444.4
+          }
+        },
+        {
+          "index": 3,
+          "title": "Property and the Family",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-03.mp3"
+          },
+          "duration": {
+            "george": 352.3
+          }
+        },
+        {
+          "index": 4,
+          "title": "Neither Class the Enemy of the Other",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-04.mp3"
+          },
+          "duration": {
+            "george": 311.1
+          }
+        },
+        {
+          "index": 5,
+          "title": "The Mutual Duties of Capital and Labor",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-05.mp3"
+          },
+          "duration": {
+            "george": 310.3
+          }
+        },
+        {
+          "index": 6,
+          "title": "The Truth About Wealth and Poverty",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-06.mp3"
+          },
+          "duration": {
+            "george": 354.5
+          }
+        },
+        {
+          "index": 7,
+          "title": "What the Church Brings",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-07.mp3"
+          },
+          "duration": {
+            "george": 421.8
+          }
+        },
+        {
+          "index": 8,
+          "title": "The Duty of the State to the Worker",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-08.mp3"
+          },
+          "duration": {
+            "george": 628.6
+          }
+        },
+        {
+          "index": 9,
+          "title": "Rest, Hours, and the Vulnerable",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-09.mp3"
+          },
+          "duration": {
+            "george": 379.0
+          }
+        },
+        {
+          "index": 10,
+          "title": "A Living Wage and the Hope of Ownership",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-10.mp3"
+          },
+          "duration": {
+            "george": 403.8
+          }
+        },
+        {
+          "index": 11,
+          "title": "The Right to Associate",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-11.mp3"
+          },
+          "duration": {
+            "george": 404.3
+          }
+        },
+        {
+          "index": 12,
+          "title": "Catholic Associations in Our Day",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-12.mp3"
+          },
+          "duration": {
+            "george": 387.9
+          }
+        },
+        {
+          "index": 13,
+          "title": "A Closing Appeal",
+          "files": {
+            "george": "audio/rerum-novarum/george/chapter-13.mp3"
+          },
+          "duration": {
+            "george": 479.9
+          }
+        }
+      ],
+      "hidden": true
     }
   ]
 }

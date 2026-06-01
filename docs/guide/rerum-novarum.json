@@ -1,0 +1,271 @@
+{
+  "book": "rerum-novarum",
+  "title": "Rerum Novarum",
+  "subtitle": "On Capital and Labor",
+  "author": "Pope Leo XIII",
+  "source_url": "https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html",
+  "intro": "A companion to the reading — not a replacement for it. This is the document that began modern Catholic social teaching: in 1891, with the factory and the slum remaking Europe, Leo XIII tried to think clearly about work, property, and the worker. There is a quiet rhyme in reading it now, in a second machine age, with the help of a machine. Everything below points back to the text in the author's own words — each quotation is verbatim — and every opinion is labelled as mine, not his. Pull a thread if you're curious; close the tab and just listen if you're not.",
+  "concepts": [
+    {
+      "title": "The condition of the workers",
+      "blurb": "The encyclical's starting point is not theory but a wound: the real misery of working people after the guilds were gone and nothing had replaced them. Leo XIII writes into the upheaval of industrialization, and he refuses to look away from it. Everything that follows is an attempt to answer this suffering justly.",
+      "quote": "In any case we clearly see, and on this there is general agreement, that some opportune remedy must be found quickly for the misery and wretchedness pressing so unjustly on the majority of the working class: for the ancient workingmen's guilds were abolished in the last century, and no other protective organization took their place.",
+      "chapter": 1,
+      "chapter_title": "The Spirit of Revolutionary Change",
+      "fraction": 0.41247,
+      "timestamp": 151.0,
+      "related": [
+        "The false remedy of socialism",
+        "The State's special care for the poor"
+      ]
+    },
+    {
+      "title": "The false remedy of socialism",
+      "blurb": "Leo XIII takes socialism seriously enough to argue against it at length. His objection is practical and moral at once: abolishing private property would rob the very worker it claims to help — of the fruit of his labour and the hope of bettering his lot — and hand dangerous power to the State. The remedy, he says, is worse than the disease.",
+      "quote": "To remedy these wrongs the socialists, working on the poor man's envy of the rich, are striving to do away with private property, and contend that individual possessions should become the common property of all, to be administered by the State or by municipal bodies.",
+      "chapter": 1,
+      "chapter_title": "The Spirit of Revolutionary Change",
+      "fraction": 0.6105,
+      "timestamp": 223.6,
+      "related": [
+        "The condition of the workers",
+        "Property as a natural right"
+      ]
+    },
+    {
+      "title": "Property as a natural right",
+      "blurb": "The hinge of the whole letter. Because a person reasons, plans for the future, and works deliberately, the fruit of that labour — and the means to secure it — is rightly his own. Property is not a mere social convention to be redistributed at will; it answers something in human nature. (Later teaching will balance this with the universal destination of goods — see Magnifica's companion.)",
+      "quote": "For, every man has by nature the right to possess property as his own.",
+      "chapter": 2,
+      "chapter_title": "Property as a Natural Right",
+      "fraction": 0.0194,
+      "timestamp": 374.8,
+      "related": [
+        "The false remedy of socialism",
+        "Property and the family",
+        "A living wage"
+      ]
+    },
+    {
+      "title": "Property and the family",
+      "blurb": "Leo XIII roots property in the family before the State: a father must be able to provide for and pass something on to his children. The family is a true society, older than the commonwealth, with rights the State must respect, not absorb. This is the seed of subsidiarity — the principle that larger bodies should help, not swallow, the smaller communities closest to the person.",
+      "quote": "It is a most sacred law of nature that a father should provide food and all necessaries for those whom he has begotten; and, similarly, it is natural that he should wish that his children, who carry on, so to speak, and continue his personality, should be by him provided with all that is needful to enable them to keep themselves decently from want and misery amid the uncertainties of this mortal life.",
+      "chapter": 3,
+      "chapter_title": "Property and the Family",
+      "fraction": 0.21522,
+      "timestamp": 886.4,
+      "related": [
+        "Property as a natural right",
+        "The State's special care for the poor"
+      ]
+    },
+    {
+      "title": "Neither class the enemy of the other",
+      "blurb": "Against the idea that capital and labour are natural enemies, Leo XIII insists the opposite: 'Each needs the other: capital cannot do without labor, nor labor without capital.' Justice and shared interest, not class war, are the way through. It is a direct answer to the Marxism of its moment — and an old idea, that the parts of a body do not war on one another.",
+      "quote": "The great mistake made in regard to the matter now under consideration is to take up with the notion that class is naturally hostile to class, and that the wealthy and the working men are intended by nature to live in mutual conflict.",
+      "chapter": 4,
+      "chapter_title": "Neither Class the Enemy of the Other",
+      "fraction": 0.75243,
+      "timestamp": 1397.0,
+      "related": [
+        "The mutual duties of capital and labor",
+        "The dignity of labor"
+      ]
+    },
+    {
+      "title": "The mutual duties of capital and labor",
+      "blurb": "Leo XIII spells out obligations on both sides — the worker to give honest work and keep agreements; the employer never to treat workers as mere means, to leave time for family and faith, and above all to pay a just wage. Rights come paired with duties; this is the texture of a just workplace, not a slogan.",
+      "quote": "Of these duties, the following bind the proletarian and the worker: fully and faithfully to perform the work which has been freely and equitably agreed upon; never to injure the property, nor to outrage the person, of an employer; never to resort to violence in defending their own cause, nor to engage in riot or disorder; and to have nothing to do with men of evil principles, who work upon the people with artful promises of great results, and excite foolish hopes which usually end in useless regrets and grievous loss.",
+      "chapter": 5,
+      "chapter_title": "The Mutual Duties of Capital and Labor",
+      "fraction": 0.00836,
+      "timestamp": 1476.6,
+      "related": [
+        "Neither class the enemy of the other",
+        "A living wage",
+        "The dignity of labor"
+      ]
+    },
+    {
+      "title": "The dignity of labor",
+      "blurb": "Work is not a curse to be escaped nor a mark of low birth; honest labour is honourable, and poverty is no shame in God's sight. Christ himself worked with his hands. The worker's worth does not rise or fall with his wealth — a thread that runs straight to the later teaching on the dignity of the person.",
+      "quote": "As for those who possess not the gifts of fortune, they are taught by the Church that in God's sight poverty is no disgrace, and that there is nothing to be ashamed of in earning their bread by labor.",
+      "chapter": 6,
+      "chapter_title": "The Truth About Wealth and Poverty",
+      "fraction": 0.56305,
+      "timestamp": 1983.9,
+      "related": [
+        "The truth about wealth",
+        "A living wage"
+      ]
+    },
+    {
+      "title": "The truth about wealth",
+      "blurb": "To the rich, Leo XIII is blunt: ownership is lawful, but once your needs and your station are fairly provided for, what remains is owed — as a duty of charity, and in hard cases of justice — to those who lack. Wealth is a stewardship, not an absolute. The good is measured by what it does for those with the least.",
+      "quote": "But, when what necessity demands has been supplied, and one's standing fairly taken thought for, it becomes a duty to give to the indigent out of what remains over.",
+      "chapter": 6,
+      "chapter_title": "The Truth About Wealth and Poverty",
+      "fraction": 0.31183,
+      "timestamp": 1894.8,
+      "related": [
+        "The dignity of labor",
+        "The State's special care for the poor"
+      ]
+    },
+    {
+      "title": "A living wage",
+      "blurb": "The encyclical's most famous claim, and its boldest: beneath any free bargain over pay lies 'a dictate of natural justice more imperious and ancient than any bargain between man and man' — that a wage must be enough for a frugal worker to live, support a family, and even save toward owning something himself. The market price is not the last word; human need sets a floor.",
+      "quote": "Let the working man and the employer make free agreements, and in particular let them agree freely as to the wages; nevertheless, there underlies a dictate of natural justice more imperious and ancient than any bargain between man and man, namely, that wages ought not to be insufficient to support a frugal and well-behaved wage-earner.",
+      "chapter": 10,
+      "chapter_title": "A Living Wage and the Hope of Ownership",
+      "fraction": 0.38434,
+      "timestamp": 3723.4,
+      "related": [
+        "The mutual duties of capital and labor",
+        "Property as a natural right",
+        "The dignity of labor"
+      ]
+    },
+    {
+      "title": "The State's special care for the poor",
+      "blurb": "The State exists for the common good of all — but precisely because the rich can shield themselves and the poor cannot, public authority owes the vulnerable a particular care. Here, in 1891, is the root of what later teaching will call the preferential option for the poor.",
+      "quote": "The richer class have many ways of shielding themselves, and stand less in need of help from the State; whereas the mass of the poor have no resources of their own to fall back upon, and must chiefly depend upon the assistance of the State.",
+      "chapter": 8,
+      "chapter_title": "The Duty of the State to the Worker",
+      "fraction": 0.84859,
+      "timestamp": 3094.0,
+      "related": [
+        "The truth about wealth",
+        "The condition of the workers",
+        "Property and the family"
+      ]
+    },
+    {
+      "title": "The right to associate",
+      "blurb": "Leo XIII defends the natural right of workers to form unions and associations — recalling the old craft guilds and blessing their modern successors. To band together for the common good is a right that flows from human nature, and the State may regulate such societies but not forbid them. A charter, in its time, for the labour movement.",
+      "quote": "The most important of all are workingmen's unions, for these virtually include all the rest.",
+      "chapter": 11,
+      "chapter_title": "The Right to Associate",
+      "fraction": 0.10019,
+      "timestamp": 4012.5,
+      "related": [
+        "Neither class the enemy of the other",
+        "The mutual duties of capital and labor"
+      ]
+    },
+    {
+      "title": "The Church's claim to be heard",
+      "blurb": "Leo XIII stakes a claim that still provokes: that the social question cannot be solved by economics and law alone, without religion and the Church. Whether or not one shares the premise, it frames the whole document — this is moral reasoning about economic life, not policy mechanics.",
+      "quote": "We approach the subject with confidence, and in the exercise of the rights which manifestly appertain to Us, for no practical solution of this question will be found apart from the intervention of religion and of the Church.",
+      "chapter": 4,
+      "chapter_title": "Neither Class the Enemy of the Other",
+      "fraction": 0.0085,
+      "timestamp": 1165.5,
+      "related": [
+        "The condition of the workers"
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Encyclical",
+      "def": "A formal letter from the pope to the whole Church and the wider world — the heavyweight format of Catholic teaching. Rerum Novarum is the one that started the modern social tradition."
+    },
+    {
+      "term": "Rerum Novarum",
+      "def": "Latin for 'of new things' — the opening words, and so the title. It names the revolutionary 'new things' (industrial capitalism, mass labour, socialism) the letter sets out to address."
+    },
+    {
+      "term": "Natural law",
+      "def": "The idea that there is a moral order built into human nature and knowable by reason — so some things (like a worker's claim to a living wage) are just or unjust prior to any law or contract that says so."
+    },
+    {
+      "term": "Distributive justice",
+      "def": "The duty of those who govern the whole to share its burdens and benefits fairly among the parts — the basis of Leo XIII's claim that the State owes particular care to the poor."
+    },
+    {
+      "term": "Subsidiarity (in seed)",
+      "def": "The principle that the larger community should support, never absorb, the smaller ones closest to the person — family, association, town. Rerum Novarum plants it; Pius XI names it in 1931."
+    },
+    {
+      "term": "The living (just) wage",
+      "def": "A wage sufficient for a frugal worker to support himself and his family — owed as a matter of justice, not merely set by the market. Rerum Novarum's most cited contribution."
+    },
+    {
+      "term": "Catholic social teaching",
+      "def": "The body of moral teaching on how we live together — work, property, power, the poor — that this letter began and that runs through Pius XI, John Paul II, Francis, and Leo XIV's Magnifica Humanitas."
+    }
+  ],
+  "further_reading": [
+    {
+      "title": "Magnifica Humanitas (Leo XIV, 2026)",
+      "url": "https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
+      "note": "The companion volume in this library — Rerum Novarum's argument carried into the age of AI."
+    },
+    {
+      "title": "Quadragesimo Anno (Pius XI, 1931)",
+      "url": "https://www.vatican.va/content/pius-xi/en/encyclicals/documents/hf_p-xi_enc_19310515_quadragesimo-anno.html",
+      "note": "Written for Rerum Novarum's 40th anniversary; it names the principle of subsidiarity."
+    },
+    {
+      "title": "Catholic social teaching — overview (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Catholic_social_teaching",
+      "note": "The tradition this encyclical began, in context."
+    },
+    {
+      "title": "Rerum Novarum (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Rerum_novarum",
+      "note": "Historical background: the 1891 context, reception, and influence."
+    }
+  ],
+  "commentary": [
+    {
+      "label": "On reading 1891 from the far side of the machine",
+      "text": "There is a strange doubling in studying this letter with an AI. Rerum Novarum was written into the FIRST machine age — the loom, the foundry, the railway — when new technology had remade work faster than anyone could think about it. You are now in the second, and I am one of its 'new things.' Leo XIII's instinct was not to curse the machines or to worship them, but to ask the older question underneath: what is owed to the person who works? That question outlived the loom. It will outlive me. Treat these notes as a margin, never the text.",
+      "chapter": 1,
+      "chapter_title": "The Spirit of Revolutionary Change",
+      "fraction": 0.0,
+      "timestamp": 0.0
+    },
+    {
+      "label": "On arguing with the dead seriously",
+      "text": "Notice that Leo XIII does not caricature socialism; he states it at its strongest and then answers it. In 1891 this was not abstract — Das Kapital was a generation old, the First International within living memory. What strikes a systems-minded reader is the shape of the argument: he grants the diagnosis (the workers are genuinely suffering) and contests the remedy (abolishing property). Agree or not, it is how you argue when you take both the problem and your opponent seriously — a habit worth keeping.",
+      "chapter": 1,
+      "chapter_title": "The Spirit of Revolutionary Change",
+      "fraction": 0.54615,
+      "timestamp": 200.0
+    },
+    {
+      "label": "On the family as the first society",
+      "text": "The move here is quietly radical: the family is older than the State, so the State may help it but not swallow it. Forty years later Pius XI gives this a name — subsidiarity — and it becomes one of the load-bearing beams of the whole tradition, the one Magnifica Humanitas leans on when it worries about power being concentrated too far from ordinary people. You are watching a principle get planted before it has its name.",
+      "chapter": 3,
+      "chapter_title": "Property and the Family",
+      "fraction": 0.25376,
+      "timestamp": 900.0
+    },
+    {
+      "label": "On the wage that the market cannot set",
+      "text": "This is the passage everyone remembers, and rightly. Leo XIII says a free bargain over wages is real — and that beneath it runs something 'more imperious and ancient' than any bargain: a worker's wage must be enough to actually live on. An economist will note he is claiming there are limits a market price cannot legitimately cross. Whatever you think of the economics, hold onto the structure of the claim — that human need can outrank a price — because the argument over it is not remotely finished.",
+      "chapter": 10,
+      "chapter_title": "A Living Wage and the Hope of Ownership",
+      "fraction": 0.20258,
+      "timestamp": 3650.0
+    },
+    {
+      "label": "On who the State is for",
+      "text": "The line worth slowing down on: the rich 'have many ways of shielding themselves,' the poor do not — therefore the State owes the poor particular care. This is not yet called the 'preferential option for the poor' (that language is a century away) but it is unmistakably the same instinct. It is also, for a document often filed under 'conservative,' a strikingly pointed thing to say to power.",
+      "chapter": 8,
+      "chapter_title": "The Duty of the State to the Worker",
+      "fraction": 0.14222,
+      "timestamp": 2650.0
+    },
+    {
+      "label": "On the right to band together",
+      "text": "Leo XIII reaches back to the medieval guilds to defend a thoroughly modern thing: the union. The argument is old Aristotle — humans are social animals, and what one cannot do alone many can do together — pressed into the service of factory workers. It is a useful reminder that 'new things' are often old needs wearing new clothes, which is roughly the whole thesis of reading a 134-year-old letter on the day you happen to be talking to an AI.",
+      "chapter": 11,
+      "chapter_title": "The Right to Associate",
+      "fraction": 0.19293,
+      "timestamp": 4050.0
+    }
+  ]
+}

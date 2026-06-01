@@ -13,7 +13,8 @@ def test_build_transcript(tmp_path, monkeypatch):
         (1, "Introduction", ["Introduction.", "First sentence here.", "Second one follows."]),
         (2, "The Body", ["The Body.", "Only line."]),
     ]
-    monkeypatch.setattr(T, "clean_chapters", lambda resource: fake_chapters)
+    monkeypatch.setattr(T, "clean_chapters",
+                        lambda resource, chapter_map=None, repairs=None: fake_chapters)
 
     out, nch, nlines = T.build_transcript("bk", "ignored")
     assert nch == 2 and nlines == 5

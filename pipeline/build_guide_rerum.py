@@ -203,7 +203,7 @@ COMMENTARY = [
              "machines or to worship them, but to ask the older question underneath: what is owed to "
              "the person who works? That question outlived the loom. It will outlive me. Treat these "
              "notes as a margin, never the text."},
-    {"timestamp": 1100,
+    {"timestamp": 200,
      "label": "On arguing with the dead seriously",
      "text": "Notice that Leo XIII does not caricature socialism; he states it at its strongest and "
              "then answers it. In 1891 this was not abstract — Das Kapital was a generation old, the "
@@ -211,14 +211,14 @@ COMMENTARY = [
              "shape of the argument: he grants the diagnosis (the workers are genuinely suffering) "
              "and contests the remedy (abolishing property). Agree or not, it is how you argue when "
              "you take both the problem and your opponent seriously — a habit worth keeping."},
-    {"timestamp": 2400,
+    {"timestamp": 900,
      "label": "On the family as the first society",
      "text": "The move here is quietly radical: the family is older than the State, so the State may "
              "help it but not swallow it. Forty years later Pius XI gives this a name — subsidiarity "
              "— and it becomes one of the load-bearing beams of the whole tradition, the one Magnifica "
              "Humanitas leans on when it worries about power being concentrated too far from ordinary "
              "people. You are watching a principle get planted before it has its name."},
-    {"timestamp": 5400,
+    {"timestamp": 3650,
      "label": "On the wage that the market cannot set",
      "text": "This is the passage everyone remembers, and rightly. Leo XIII says a free bargain over "
              "wages is real — and that beneath it runs something 'more imperious and ancient' than any "
@@ -226,14 +226,14 @@ COMMENTARY = [
              "claiming there are limits a market price cannot legitimately cross. Whatever you think of "
              "the economics, hold onto the structure of the claim — that human need can outrank a price "
              "— because the argument over it is not remotely finished."},
-    {"timestamp": 7200,
+    {"timestamp": 2650,
      "label": "On who the State is for",
      "text": "The line worth slowing down on: the rich 'have many ways of shielding themselves,' the "
              "poor do not — therefore the State owes the poor particular care. This is not yet called "
              "the 'preferential option for the poor' (that language is a century away) but it is "
              "unmistakably the same instinct. It is also, for a document often filed under "
              "'conservative,' a strikingly pointed thing to say to power."},
-    {"timestamp": 9000,
+    {"timestamp": 4050,
      "label": "On the right to band together",
      "text": "Leo XIII reaches back to the medieval guilds to defend a thoroughly modern thing: the "
              "union. The argument is old Aristotle — humans are social animals, and what one cannot do "
