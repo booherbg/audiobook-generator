@@ -17,6 +17,9 @@ _WS = re.compile(r"\s+")
 # like "5.21" (handled only when the trailing char is a LETTER) and abbreviations are
 # already expanded downstream.
 _PUNCT_NOSPACE = re.compile(r"([,;:])([A-Za-z])")
+# Missing space after a closing quote that ends a sentence, e.g. 'soul?"This' -> 'soul?" This'.
+# Requires sentence-ending punctuation + closing quote + a capital, so it never fires mid-word.
+_QUOTE_NOSPACE = re.compile(r'([.?!]["”])([A-Z])')
 
 # End-matter footnote/reference entries, e.g. "2). Deut. 5:21." or "11). Summa theologiae…"
 # — a number, a close-paren, a period, then a citation. These trail many Vatican texts and
@@ -56,7 +59,12 @@ def clean_paragraph(text: str, repairs: dict | None = None) -> str:
     text = _SUPERSCRIPT.sub("", text)
     text = _LEADING_NUM.sub("", text)
     text = _PUNCT_NOSPACE.sub(r"\1 \2", text)
+    text = _QUOTE_NOSPACE.sub(r"\1 \2", text)
     if repairs:
         for bad, good in repairs.items():
-            text = re.sub(rf"\b{re.escape(bad)}\b", good, text)
+            # Anchor with \b only on the sides that start/end with a word char — a key like
+            # "Apostle with," ends in punctuation, where a trailing \b can never match.
+            lead = r"\b" if bad[:1].isalnum() else ""
+            trail = r"\b" if bad[-1:].isalnum() else ""
+            text = re.sub(rf"{lead}{re.escape(bad)}{trail}", good, text)
     return _WS.sub(" ", text).strip()

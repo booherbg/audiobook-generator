@@ -40,6 +40,23 @@ def test_clean_applies_source_repairs():
     assert clean_paragraph("the workers labored", repairs) == "the workers labored"
 
 
+def test_clean_adds_space_after_closing_quote():
+    # Missing space after a sentence-ending closing quote, e.g. 'soul?"This' -> 'soul?" This'.
+    assert clean_paragraph('his soul?"This, as our Lord') == 'his soul?" This, as our Lord'
+    assert clean_paragraph('unto you."Let our') == 'unto you." Let our'
+    # must not touch a quote that isn't sentence-final or isn't followed by a capital
+    assert clean_paragraph('the "good" man') == 'the "good" man'
+
+
+def test_clean_repair_key_ending_in_punctuation():
+    # A repair key ending in punctuation (e.g. "Apostle with,") must still match — the
+    # word-boundary anchor is applied only on sides that start/end with a word char.
+    repairs = {"Apostle with,": "Apostle saith,"}
+    assert clean_paragraph("Whence the Apostle with, Command", repairs) == "Whence the Apostle saith, Command"
+    # a word-bounded key must NOT match inside a longer word
+    assert clean_paragraph("reworked the work", {"work": "WORK"}) == "reworked the WORK"
+
+
 def test_is_boilerplate():
     assert is_boilerplate("Copyright © Dicastero per la Comunicazione")
     assert is_boilerplate("   ")

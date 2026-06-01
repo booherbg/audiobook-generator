@@ -214,10 +214,9 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
 .reader-text p { color: #d7cfbe; line-height: 1.7; margin: 0 0 14px; }
 .reader-listen { display: inline-block; margin-top: 6px; color: var(--accent); font-size: .85rem; }
 
-/* ── Work-in-progress (hidden) editions on the library index ── */
-/* Hidden by default; revealed only while the grid has .show-wip (visitor holds Shift). */
-.card.wip { display: none; position: relative; }
-.grid.show-wip .card.wip { display: flex; outline: 1px dashed var(--line); }
+/* ── Work-in-progress editions on the library index ── */
+/* Shown normally, marked with a small badge so it's clear the edition is still in progress. */
+.card.wip { position: relative; }
 .wip-badge {
   display: inline-block; margin-top: 6px; padding: 1px 8px; border-radius: 999px;
   font-size: .7rem; letter-spacing: .04em; text-transform: uppercase;

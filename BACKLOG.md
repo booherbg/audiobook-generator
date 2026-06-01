@@ -32,11 +32,12 @@ grounded companion with director's commentary), so the three form a small connec
 > runbook for this; the contract is [the expansion spec](docs/superpowers/specs/2026-05-31-book-expansion-spec.md).
 > The method below is the summary; the playbook has the exact commands, prompts, and gates.
 
-1. **Rerum Novarum** — Leo XIII, 1891 (labour & capital; the origin of Catholic Social
-   Teaching, whose 135th anniversary this encyclical marks).
-   Source: https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html
+1. ~~**Rerum Novarum** — Leo XIII, 1891~~ ✅ **SHIPPED** (single British voice "George", 13
+   chapters, companion at HONORS, on the library as a work-in-progress edition).
 2. **Laudato si'** — Francis, 2015 (integral ecology; "everything is connected").
    Source: https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html
+   — The obvious next book: completes the trilogy, the companions already cross-link to it,
+   and the pipeline is now proven on two very different source layouts.
 
 **Method (reuse the pipeline — it's already generic):**
 - `audiobook generate <url> --id <id> --title ... --author ...` → chaptered MP3s + manifest
@@ -92,6 +93,55 @@ which is a great low-cost first slice to prove the path.
 
 **First slice suggestion:** Spanish *Magnifica Humanitas*, text-only (no audio) — proves source
 swap + Spanish companion + Spanish critic panel; add the audio later when storage allows.
+
+## Other bodies of work to consider (idea bank)
+
+Captured for later — not committed. Grouped by what they'd grow. Each new *book* is its own
+audio set, so all are storage-gated; the text/companion layer of any of them can ship audio-free.
+
+**More texts — the natural neighbours.**
+- **Complete the CST arc:** *Quadragesimo Anno* (Pius XI, 1931, names subsidiarity), *Pacem in
+  Terris* (John XIII, 1963), *Populorum Progressio* (Paul VI, 1967), *Laborem Exercens* /
+  *Centesimus Annus* (JP II). With RN + Laudato si' + Magnifica, this becomes a real, navigable
+  library of the whole tradition — and the companions already gesture at these links.
+- **Founding civic/scientific texts in the public domain** (the original "old sci-fi & PDFs"
+  idea, broadened): the US Declaration/Constitution/Federalist, *On Liberty* (Mill), Darwin's
+  *Origin* intro, Einstein's *Relativity* popular exposition, the UN Universal Declaration of
+  Human Rights. Tests the pipeline on non-encyclical structure + the PDF loader (see below).
+- **Public-domain literature / sci-fi** (the user's original "old scifi books"): short works
+  first (a Borges-length story, a single Asimov-era public-domain piece) to prove fiction
+  pacing/voice before a novel-length set.
+
+**Deepen the experience (mostly text/JS — cheap, no new audio).**
+- **A library landing that shows the connections** — the three encyclicals as a small annotated
+  timeline/graph (1891 → 2015 → 2026), since the ideas literally descend from each other.
+- **Cross-edition concept links** — when concept cards in different books name the same idea
+  (subsidiarity, the dignity of work, the common good), link them across editions. The data is
+  already there; it just isn't wired between books yet.
+- **Search / "find a passage"** across a book's full text (and eventually across the library).
+- **Shareable deep-links with a preview** — a concept or passage URL that unfurls a title/quote
+  card (Open Graph tags) when shared.
+- **Accessibility deepening** — a full screen-reader/keyboard audit, prefers-reduced-motion,
+  high-contrast pass; partly done, worth a dedicated sweep.
+
+**Audio-layer ambitions (storage- and time-gated — revisit deliberately).**
+- The **voiced director's-commentary track** and the **woven "enriched" edition** (already
+  above) — both want the continuous-play SPA player to land first.
+- **A second voice for Rerum Novarum** (currently single-voice "George") once storage allows,
+  so it matches Magnifica's choose-your-narrator parity.
+- **Chapter-level "listen in <language>"** once multilingual audio exists.
+
+**Harden the tooling (so the above is cheap and safe).**
+- **PDF loader** — `pipeline/load.py:PDFLoader` is a stub (`spec §20`); needed for the
+  public-domain books that only exist as PDF/scans, and the user's original ask.
+- **Private/password-gated editions** — the user flagged early that future private books should
+  be protectable; not built. (Static-site auth is limited; scope it honestly — likely a simple
+  gate, not real security.)
+- **A real CI run** of `pytest` + `node --test` + `validate_guide` on push, so regressions in a
+  growing library are caught automatically rather than by hand.
+- **An LLM copy-edit pass as a documented step** — the "R esponsibility / arid motive / Apostle
+  saith" class of OCR/export defects can only be caught by a careful reader, not a script. Bake
+  the proofread-against-source critic into the playbook's per-book checklist.
 
 ## Still in scope NOW (no new MP3s)
 - Tier 2: generic `audiobook generate <url>` generator + README.
