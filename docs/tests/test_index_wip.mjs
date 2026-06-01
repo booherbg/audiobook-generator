@@ -62,6 +62,15 @@ test("the subtitle appears on the card when present, and is omitted when absent"
   assert.doesNotMatch(noSub.innerHTML, /class="s"/, "no empty subtitle line when absent");
 });
 
+test("an empty author never produces a leading '· year'", () => {
+  const M = { books: [{ id: "x", title: "T", author: "", date: "2026-05-15", cover: "c.svg",
+    voices: [{ id: "v", label: "V" }],
+    chapters: [{ index: 1, title: "1", files: { v: "x.mp3" }, duration: { v: 60 } }] }] };
+  const card = bookCard(doc, M, M.books[0]);
+  assert.doesNotMatch(card.innerHTML, /class="a">\s*·/, "no stray leading separator");
+  assert.match(card.innerHTML, /class="a">2026</, "just the year when author is empty");
+});
+
 test("renderLibrary renders every book and counts wip", () => {
   const grid = makeEl();
   const { total, wip } = renderLibrary(doc, grid, MANIFEST);

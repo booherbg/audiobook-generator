@@ -20,8 +20,8 @@ export function bookCard(doc, m, b) {
   a.className = b.wip ? "card wip" : "card";
   a.href = `player.html?book=${encodeURIComponent(b.id)}`;
   const badge = b.wip ? '<span class="wip-badge">work in progress</span>' : "";
-  const year = yearOf(vm.date);
-  const author = year ? `${esc(vm.author)} · ${year}` : esc(vm.author);
+  // Join author + year with " · " only when both exist (never a leading "· 2026").
+  const author = [esc(vm.author), yearOf(vm.date)].filter(Boolean).join(" · ");
   const subtitle = vm.subtitle ? `<div class="s">${esc(vm.subtitle)}</div>` : "";
   a.innerHTML =
     `<img src="${vm.cover}" alt="" />` +

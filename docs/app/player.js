@@ -119,8 +119,8 @@ const curDur = () => chapter().duration[voiceId] || 0;
 function renderHead() {
   $("book-title").textContent = vm.title;
   $("book-subtitle").textContent = vm.subtitle;
-  const year = yearOf(vm.date);
-  $("book-author").textContent = year ? `${vm.author} · ${year}` : vm.author;
+  // author + year joined only when both present (avoids a stray leading "· 2026").
+  $("book-author").textContent = [vm.author, yearOf(vm.date)].filter(Boolean).join(" · ");
   if (vm.cover) {
     $("cover").src = vm.cover;
     $("cover").alt = vm.title;
