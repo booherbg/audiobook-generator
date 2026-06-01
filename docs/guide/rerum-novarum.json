@@ -34,7 +34,7 @@
     },
     {
       "title": "Property as a natural right",
-      "blurb": "The hinge of the whole letter. Because a person reasons, plans for the future, and works deliberately, the fruit of that labour — and the means to secure it — is rightly his own. Property is not a mere social convention to be redistributed at will; it answers something in human nature. (Later teaching will balance this with the universal destination of goods — see Magnifica's companion.)",
+      "blurb": "The hinge of the whole letter. Because a person reasons, plans for the future, and works deliberately, the fruit of that labour — and the means to secure it — is rightly his own. Property is not a mere social convention to be redistributed at will; it answers something in human nature. Crucially, Leo XIII does not stop there: in the same breath he holds that owned goods still serve everyone (see 'Goods are meant for all'). Both truths at once — the right is real, and it is not absolute.",
       "quote": "For, every man has by nature the right to possess property as his own.",
       "chapter": 2,
       "chapter_title": "Property as a Natural Right",
@@ -42,8 +42,22 @@
       "timestamp": 374.8,
       "related": [
         "The false remedy of socialism",
+        "Goods are meant for all",
         "Property and the family",
         "A living wage"
+      ]
+    },
+    {
+      "title": "Goods are meant for all",
+      "blurb": "The counterweight to private property — and, crucially, it is in Rerum Novarum itself, not a later correction. Quoting Aquinas, Leo XIII teaches that a person may rightly own things, yet 'should not consider his material possessions as his own, but as common to all, so as to share them without hesitation when others are in need.' Ownership is real; its use is owed. This is what later teaching calls the universal destination of goods — and the seed Magnifica Humanitas carries forward.",
+      "quote": "Moreover, the earth, even though apportioned among private owners, ceases not thereby to minister to the needs of all, inasmuch as there is not one who does not sustain life from what the land produces.",
+      "chapter": 2,
+      "chapter_title": "Property as a Natural Right",
+      "fraction": 0.519,
+      "timestamp": 596.8,
+      "related": [
+        "Property as a natural right",
+        "The truth about wealth"
       ]
     },
     {
@@ -61,10 +75,10 @@
     },
     {
       "title": "Neither class the enemy of the other",
-      "blurb": "Against the idea that capital and labour are natural enemies, Leo XIII insists the opposite: 'Each needs the other: capital cannot do without labor, nor labor without capital.' Justice and shared interest, not class war, are the way through. It is a direct answer to the Marxism of its moment — and an old idea, that the parts of a body do not war on one another.",
+      "blurb": "Against the idea that capital and labour are natural enemies, Leo XIII insists the opposite: 'Each needs the other: capital cannot do without labor, nor labor without capital.' Justice and shared interest, not class war, are the way through. It is a direct answer to the socialism of its moment — and an old idea, that the parts of a body do not war on one another.",
       "quote": "The great mistake made in regard to the matter now under consideration is to take up with the notion that class is naturally hostile to class, and that the wealthy and the working men are intended by nature to live in mutual conflict.",
       "chapter": 4,
-      "chapter_title": "Neither Class the Enemy of the Other",
+      "chapter_title": "Inequality, the Church, and the Two Classes",
       "fraction": 0.75243,
       "timestamp": 1397.0,
       "related": [
@@ -101,20 +115,21 @@
     },
     {
       "title": "The truth about wealth",
-      "blurb": "To the rich, Leo XIII is blunt: ownership is lawful, but once your needs and your station are fairly provided for, what remains is owed — as a duty of charity, and in hard cases of justice — to those who lack. Wealth is a stewardship, not an absolute. The good is measured by what it does for those with the least.",
+      "blurb": "To the rich, Leo XIII is blunt: ownership is lawful, but once your needs and your station are fairly provided for, what remains is owed — as a duty of charity, and in hard cases of justice — to those who lack. Wealth is a stewardship, and Leo frames it before the eternal Judge: a strict account will be asked of how it was used.",
       "quote": "But, when what necessity demands has been supplied, and one's standing fairly taken thought for, it becomes a duty to give to the indigent out of what remains over.",
       "chapter": 6,
       "chapter_title": "The Truth About Wealth and Poverty",
       "fraction": 0.31183,
       "timestamp": 1894.8,
       "related": [
+        "Goods are meant for all",
         "The dignity of labor",
         "The State's special care for the poor"
       ]
     },
     {
       "title": "A living wage",
-      "blurb": "The encyclical's most famous claim, and its boldest: beneath any free bargain over pay lies 'a dictate of natural justice more imperious and ancient than any bargain between man and man' — that a wage must be enough for a frugal worker to live, support a family, and even save toward owning something himself. The market price is not the last word; human need sets a floor.",
+      "blurb": "The encyclical's most famous claim, and its boldest: beneath any free bargain over pay lies 'a dictate of natural justice more imperious and ancient than any bargain between man and man' — that a wage must be enough for a frugal worker to live, support a family, and even save toward owning something himself. Note the ground: not mere need or market economics, but a moral law that binds prior to any contract. And the wage points somewhere — toward the worker one day owning a stake of his own.",
       "quote": "Let the working man and the employer make free agreements, and in particular let them agree freely as to the wages; nevertheless, there underlies a dictate of natural justice more imperious and ancient than any bargain between man and man, namely, that wages ought not to be insufficient to support a frugal and well-behaved wage-earner.",
       "chapter": 10,
       "chapter_title": "A Living Wage and the Hope of Ownership",
@@ -141,8 +156,21 @@
       ]
     },
     {
+      "title": "Rest, and the rights of God",
+      "blurb": "Here is the encyclical's deepest grounding of the worker's dignity — and it is frankly religious. The case for limiting hours and for Sunday rest is not only humane fatigue management: the worker has a soul 'made after the image and likeness of God,' and so 'no man may with impunity outrage that human dignity which God Himself treats with great reverence.' Rest is owed to the person because the person is owed to God. This is the bedrock the later talk of 'the dignity of the person' stands on.",
+      "quote": "No man may with impunity outrage that human dignity which God Himself treats with great reverence, nor stand in the way of that higher life which is the preparation of the eternal life of heaven.",
+      "chapter": 9,
+      "chapter_title": "Rest, Hours, and the Vulnerable",
+      "fraction": 0.30799,
+      "timestamp": 3305.9,
+      "related": [
+        "The dignity of labor",
+        "The mutual duties of capital and labor"
+      ]
+    },
+    {
       "title": "The right to associate",
-      "blurb": "Leo XIII defends the natural right of workers to form unions and associations — recalling the old craft guilds and blessing their modern successors. To band together for the common good is a right that flows from human nature, and the State may regulate such societies but not forbid them. A charter, in its time, for the labour movement.",
+      "blurb": "Leo XIII defends the natural right of workers to form unions and associations — and, in his telling, looks back to the old craft guilds as their forerunners (historians would add that those guilds were also exclusive, restrictive bodies, and that unions and friendly societies were already growing by 1891). To band together for the common good is a right that flows from human nature, and the State may regulate such societies but not forbid them. Note, too, that the unions Leo most commends are explicitly Christian ones.",
       "quote": "The most important of all are workingmen's unions, for these virtually include all the rest.",
       "chapter": 11,
       "chapter_title": "The Right to Associate",
@@ -158,7 +186,7 @@
       "blurb": "Leo XIII stakes a claim that still provokes: that the social question cannot be solved by economics and law alone, without religion and the Church. Whether or not one shares the premise, it frames the whole document — this is moral reasoning about economic life, not policy mechanics.",
       "quote": "We approach the subject with confidence, and in the exercise of the rights which manifestly appertain to Us, for no practical solution of this question will be found apart from the intervention of religion and of the Church.",
       "chapter": 4,
-      "chapter_title": "Neither Class the Enemy of the Other",
+      "chapter_title": "Inequality, the Church, and the Two Classes",
       "fraction": 0.0085,
       "timestamp": 1165.5,
       "related": [
@@ -181,7 +209,7 @@
     },
     {
       "term": "Distributive justice",
-      "def": "The duty of those who govern the whole to share its burdens and benefits fairly among the parts — the basis of Leo XIII's claim that the State owes particular care to the poor."
+      "def": "The duty of those who govern the whole to deal fairly with every class alike. (Leo XIII grounds the State's *particular* care for the poor not in this alone, but in their defencelessness and the common good — the rich 'have many ways of shielding themselves.')"
     },
     {
       "term": "Subsidiarity (in seed)",
@@ -193,14 +221,18 @@
     },
     {
       "term": "Catholic social teaching",
-      "def": "The body of moral teaching on how we live together — work, property, power, the poor — that this letter began and that runs through Pius XI, John Paul II, Francis, and Leo XIV's Magnifica Humanitas."
+      "def": "The body of moral teaching on how we live together — work, property, power, the poor — that this letter began and that runs through Pius XI, John Paul II, and Francis. (Its imagined continuation into the age of AI, Leo XIV's Magnifica Humanitas, is the companion volume in this library — a creative work, not an actual encyclical.)"
+    },
+    {
+      "term": "Universal destination of goods",
+      "def": "The principle that the world's goods are meant for everyone: one may own property, yet must hold it 'as common to all' in use, sharing from one's surplus. Rerum Novarum states it outright (via Aquinas) — it is not a later addition."
     }
   ],
   "further_reading": [
     {
-      "title": "Magnifica Humanitas (Leo XIV, 2026)",
+      "title": "Magnifica Humanitas (the companion volume in this library)",
       "url": "https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
-      "note": "The companion volume in this library — Rerum Novarum's argument carried into the age of AI."
+      "note": "A creative continuation — not an actual encyclical — carrying Rerum Novarum's argument into the age of AI."
     },
     {
       "title": "Quadragesimo Anno (Pius XI, 1931)",
@@ -261,7 +293,7 @@
     },
     {
       "label": "On the right to band together",
-      "text": "Leo XIII reaches back to the medieval guilds to defend a thoroughly modern thing: the union. The argument is old Aristotle — humans are social animals, and what one cannot do alone many can do together — pressed into the service of factory workers. It is a useful reminder that 'new things' are often old needs wearing new clothes, which is roughly the whole thesis of reading a 134-year-old letter on the day you happen to be talking to an AI.",
+      "text": "Leo XIII reaches back to the medieval guilds to defend a thoroughly modern thing: the union. He grounds it where the encyclical grounds most things — in Aquinas and the natural law: to band together is a natural right, and a law only binds when it accords with 'the eternal law of God,' so the State may regulate such societies but not forbid them. It is a useful reminder that 'new things' are often old needs wearing new clothes, which is roughly the whole thesis of reading a 134-year-old letter on the day you happen to be talking to an AI.",
       "chapter": 11,
       "chapter_title": "The Right to Associate",
       "fraction": 0.19293,

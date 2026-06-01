@@ -59,9 +59,22 @@ CONCEPTS = [
         "blurb": "The hinge of the whole letter. Because a person reasons, plans for the future, "
                  "and works deliberately, the fruit of that labour — and the means to secure it — "
                  "is rightly his own. Property is not a mere social convention to be redistributed "
-                 "at will; it answers something in human nature. (Later teaching will balance this "
-                 "with the universal destination of goods — see Magnifica's companion.)",
-        "related": ["The false remedy of socialism", "Property and the family", "A living wage"],
+                 "at will; it answers something in human nature. Crucially, Leo XIII does not stop "
+                 "there: in the same breath he holds that owned goods still serve everyone (see "
+                 "'Goods are meant for all'). Both truths at once — the right is real, and it is not "
+                 "absolute.",
+        "related": ["The false remedy of socialism", "Goods are meant for all", "Property and the family", "A living wage"],
+    },
+    {
+        "title": "Goods are meant for all",
+        "anchor": "ceases not thereby to minister to the needs of all",
+        "blurb": "The counterweight to private property — and, crucially, it is in Rerum Novarum "
+                 "itself, not a later correction. Quoting Aquinas, Leo XIII teaches that a person may "
+                 "rightly own things, yet 'should not consider his material possessions as his own, "
+                 "but as common to all, so as to share them without hesitation when others are in "
+                 "need.' Ownership is real; its use is owed. This is what later teaching calls the "
+                 "universal destination of goods — and the seed Magnifica Humanitas carries forward.",
+        "related": ["Property as a natural right", "The truth about wealth"],
     },
     {
         "title": "Property and the family",
@@ -79,7 +92,7 @@ CONCEPTS = [
         "blurb": "Against the idea that capital and labour are natural enemies, Leo XIII insists "
                  "the opposite: 'Each needs the other: capital cannot do without labor, nor labor "
                  "without capital.' Justice and shared interest, not class war, are the way through. "
-                 "It is a direct answer to the Marxism of its moment — and an old idea, that the "
+                 "It is a direct answer to the socialism of its moment — and an old idea, that the "
                  "parts of a body do not war on one another.",
         "related": ["The mutual duties of capital and labor", "The dignity of labor"],
     },
@@ -107,9 +120,9 @@ CONCEPTS = [
         "blurb": "To the rich, Leo XIII is blunt: ownership is lawful, but once your needs and "
                  "your station are fairly provided for, what remains is owed — as a duty of "
                  "charity, and in hard cases of justice — to those who lack. Wealth is a "
-                 "stewardship, not an absolute. The good is measured by what it does for those "
-                 "with the least.",
-        "related": ["The dignity of labor", "The State's special care for the poor"],
+                 "stewardship, and Leo frames it before the eternal Judge: a strict account will be "
+                 "asked of how it was used.",
+        "related": ["Goods are meant for all", "The dignity of labor", "The State's special care for the poor"],
     },
     {
         "title": "A living wage",
@@ -117,8 +130,10 @@ CONCEPTS = [
         "blurb": "The encyclical's most famous claim, and its boldest: beneath any free bargain over "
                  "pay lies 'a dictate of natural justice more imperious and ancient than any bargain "
                  "between man and man' — that a wage must be enough for a frugal worker to live, "
-                 "support a family, and even save toward owning something himself. The market price "
-                 "is not the last word; human need sets a floor.",
+                 "support a family, and even save toward owning something himself. Note the ground: "
+                 "not mere need or market economics, but a moral law that binds prior to any "
+                 "contract. And the wage points somewhere — toward the worker one day owning a stake "
+                 "of his own.",
         "related": ["The mutual duties of capital and labor", "Property as a natural right", "The dignity of labor"],
     },
     {
@@ -131,13 +146,27 @@ CONCEPTS = [
         "related": ["The truth about wealth", "The condition of the workers", "Property and the family"],
     },
     {
+        "title": "Rest, and the rights of God",
+        "anchor": "No man may with impunity outrage that human dignity which God Himself treats",
+        "blurb": "Here is the encyclical's deepest grounding of the worker's dignity — and it is "
+                 "frankly religious. The case for limiting hours and for Sunday rest is not only "
+                 "humane fatigue management: the worker has a soul 'made after the image and likeness "
+                 "of God,' and so 'no man may with impunity outrage that human dignity which God "
+                 "Himself treats with great reverence.' Rest is owed to the person because the person "
+                 "is owed to God. This is the bedrock the later talk of 'the dignity of the person' "
+                 "stands on.",
+        "related": ["The dignity of labor", "The mutual duties of capital and labor"],
+    },
+    {
         "title": "The right to associate",
         "anchor": "The most important of all are workingmen's unions",
         "blurb": "Leo XIII defends the natural right of workers to form unions and associations — "
-                 "recalling the old craft guilds and blessing their modern successors. To band "
+                 "and, in his telling, looks back to the old craft guilds as their forerunners "
+                 "(historians would add that those guilds were also exclusive, restrictive bodies, "
+                 "and that unions and friendly societies were already growing by 1891). To band "
                  "together for the common good is a right that flows from human nature, and the "
-                 "State may regulate such societies but not forbid them. A charter, in its time, for "
-                 "the labour movement.",
+                 "State may regulate such societies but not forbid them. Note, too, that the unions "
+                 "Leo most commends are explicitly Christian ones.",
         "related": ["Neither class the enemy of the other", "The mutual duties of capital and labor"],
     },
     {
@@ -161,9 +190,10 @@ GLOSSARY = [
     {"term": "Natural law", "def": "The idea that there is a moral order built into human nature and knowable by "
                                    "reason — so some things (like a worker's claim to a living wage) are just or "
                                    "unjust prior to any law or contract that says so."},
-    {"term": "Distributive justice", "def": "The duty of those who govern the whole to share its burdens and "
-                                            "benefits fairly among the parts — the basis of Leo XIII's claim that "
-                                            "the State owes particular care to the poor."},
+    {"term": "Distributive justice", "def": "The duty of those who govern the whole to deal fairly with every "
+                                            "class alike. (Leo XIII grounds the State's *particular* care for the "
+                                            "poor not in this alone, but in their defencelessness and the common "
+                                            "good — the rich 'have many ways of shielding themselves.')"},
     {"term": "Subsidiarity (in seed)", "def": "The principle that the larger community should support, never "
                                               "absorb, the smaller ones closest to the person — family, "
                                               "association, town. Rerum Novarum plants it; Pius XI names it in 1931."},
@@ -172,13 +202,20 @@ GLOSSARY = [
                                               "Rerum Novarum's most cited contribution."},
     {"term": "Catholic social teaching", "def": "The body of moral teaching on how we live together — work, "
                                                 "property, power, the poor — that this letter began and that runs "
-                                                "through Pius XI, John Paul II, Francis, and Leo XIV's Magnifica Humanitas."},
+                                                "through Pius XI, John Paul II, and Francis. (Its imagined "
+                                                "continuation into the age of AI, Leo XIV's Magnifica Humanitas, is "
+                                                "the companion volume in this library — a creative work, not an "
+                                                "actual encyclical.)"},
+    {"term": "Universal destination of goods", "def": "The principle that the world's goods are meant for everyone: "
+                                                      "one may own property, yet must hold it 'as common to all' in "
+                                                      "use, sharing from one's surplus. Rerum Novarum states it "
+                                                      "outright (via Aquinas) — it is not a later addition."},
 ]
 
 FURTHER_READING = [
-    {"title": "Magnifica Humanitas (Leo XIV, 2026)",
+    {"title": "Magnifica Humanitas (the companion volume in this library)",
      "url": "https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
-     "note": "The companion volume in this library — Rerum Novarum's argument carried into the age of AI."},
+     "note": "A creative continuation — not an actual encyclical — carrying Rerum Novarum's argument into the age of AI."},
     {"title": "Quadragesimo Anno (Pius XI, 1931)",
      "url": "https://www.vatican.va/content/pius-xi/en/encyclicals/documents/hf_p-xi_enc_19310515_quadragesimo-anno.html",
      "note": "Written for Rerum Novarum's 40th anniversary; it names the principle of subsidiarity."},
@@ -236,10 +273,12 @@ COMMENTARY = [
     {"timestamp": 4050,
      "label": "On the right to band together",
      "text": "Leo XIII reaches back to the medieval guilds to defend a thoroughly modern thing: the "
-             "union. The argument is old Aristotle — humans are social animals, and what one cannot do "
-             "alone many can do together — pressed into the service of factory workers. It is a useful "
-             "reminder that 'new things' are often old needs wearing new clothes, which is roughly the "
-             "whole thesis of reading a 134-year-old letter on the day you happen to be talking to an AI."},
+             "union. He grounds it where the encyclical grounds most things — in Aquinas and the "
+             "natural law: to band together is a natural right, and a law only binds when it accords "
+             "with 'the eternal law of God,' so the State may regulate such societies but not forbid "
+             "them. It is a useful reminder that 'new things' are often old needs wearing new "
+             "clothes, which is roughly the whole thesis of reading a 134-year-old letter on the day "
+             "you happen to be talking to an AI."},
 ]
 
 
