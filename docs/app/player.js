@@ -9,6 +9,7 @@ import {
   prefsKey,
   prevIndex,
   readJSON,
+  resolveAsset,
   resumeKey,
   writeJSON,
   yearOf,
@@ -113,7 +114,8 @@ const showError = (msg) => {
 };
 
 const chapter = () => vm.chapters[idx];
-const curFile = () => chapter().file[voiceId];
+// Resolve the chapter's MP3 against the optional audio_base (CDN/R2); relative by default.
+const curFile = () => resolveAsset(vm.audioBase, chapter().file[voiceId]);
 const curDur = () => chapter().duration[voiceId] || 0;
 
 function renderHead() {
@@ -122,7 +124,7 @@ function renderHead() {
   // author + year joined only when both present (avoids a stray leading "· 2026").
   $("book-author").textContent = [vm.author, yearOf(vm.date)].filter(Boolean).join(" · ");
   if (vm.cover) {
-    $("cover").src = vm.cover;
+    $("cover").src = resolveAsset(vm.audioBase, vm.cover);
     $("cover").alt = vm.title;
   }
   document.title = `${vm.title} — audiobook`;

@@ -2,7 +2,7 @@
 // (work-in-progress editions) are shown normally but carry a "work in progress" badge.
 // The view-model math lives in logic.js so it stays unit-testable.
 
-import { buildViewModel, totalDuration, formatTime, yearOf } from "./logic.js";
+import { buildViewModel, totalDuration, formatTime, yearOf, resolveAsset } from "./logic.js";
 
 // Re-exported for tests; the year logic lives in logic.js (shared with the player).
 export const bookYear = (b) => yearOf(b && b.date);
@@ -24,7 +24,7 @@ export function bookCard(doc, m, b) {
   const author = [esc(vm.author), yearOf(vm.date)].filter(Boolean).join(" · ");
   const subtitle = vm.subtitle ? `<div class="s">${esc(vm.subtitle)}</div>` : "";
   a.innerHTML =
-    `<img src="${vm.cover}" alt="" />` +
+    `<img src="${esc(resolveAsset(vm.audioBase, vm.cover))}" alt="" />` +
     `<div><div class="t">${esc(vm.title)}</div>` +
     subtitle +
     `<div class="a">${author}</div>` +

@@ -11,6 +11,7 @@ import {
   offsetOnVoiceSwitch,
   prevIndex,
   readJSON,
+  resolveAsset,
   totalDuration,
   writeJSON,
 } from "../app/logic.js";
@@ -79,6 +80,27 @@ test("buildViewModel exposes source_url + rights (attribution must reach the pla
   const bare = buildViewModel({ books: [{ id: "b", title: "T", voices: [], chapters: [] }] }, "b");
   assert.equal(bare.rights, "");
   assert.equal(bare.source_url, "");
+});
+
+test("resolveAsset: relative by default, base-prefixed when set, absolute passthrough", () => {
+  const p = "audio/bk/female/chapter-01.mp3";
+  // No base (today's behavior): path stays relative — GitHub Pages serves it.
+  assert.equal(resolveAsset("", p), p);
+  assert.equal(resolveAsset(undefined, p), p);
+  // Base set (post-migration): prefixed onto the relative path, no double slash.
+  assert.equal(resolveAsset("https://audio.example.org", p), "https://audio.example.org/" + p);
+  assert.equal(resolveAsset("https://audio.example.org/", "/" + p), "https://audio.example.org/" + p);
+  // An already-absolute path is returned untouched (mixed hosting is fine).
+  assert.equal(resolveAsset("https://cdn/", "https://other/x.mp3"), "https://other/x.mp3");
+  assert.equal(resolveAsset("", ""), "");
+});
+
+test("buildViewModel surfaces audio_base from the manifest top level", () => {
+  const m = { audio_base: "https://audio.example.org",
+    books: [{ id: "b", title: "T", voices: [], chapters: [] }] };
+  assert.equal(buildViewModel(m, "b").audioBase, "https://audio.example.org");
+  // default: no audio_base → "" (relative)
+  assert.equal(buildViewModel({ books: [{ id: "b", voices: [], chapters: [] }] }, "b").audioBase, "");
 });
 
 test("totalDuration", () => {

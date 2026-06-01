@@ -165,6 +165,65 @@ audio set, so all are storage-gated; the text/companion layer of any of them can
   saith" class of OCR/export defects can only be caught by a careful reader, not a script. Bake
   the proofread-against-source critic into the playbook's per-book checklist.
 
+## Hosting & sustainability (the audio-bandwidth upgrade path)
+
+**Current state (do nothing yet):** site + MP3s both on **GitHub Pages**. The player already
+lazy-loads (`<audio preload="metadata">`, one chapter loaded only when played, HTTP range/206 for
+seeking), so a browse costs ~0 and a one-chapter listen ~3 MB — not the whole 40–104 MB book. We
+sit far under GitHub Pages' **100 GB/month soft bandwidth** limit (soft = throttle + a polite email
+suggesting a CDN, *not* a surprise bill). **The wall we hit first is storage, not bandwidth:**
+GitHub Pages caps a published site at **~1 GB**, and `docs/audio/` is already ~258 MB across 2
+books.
+
+**Trigger to migrate:** when the repo's `docs/audio/` approaches **~700 MB** (≈ the 3rd–4th book),
+or GitHub emails about bandwidth. Not before — we're nowhere near it.
+
+**The plan: move MP3s + covers to Cloudflare R2 (S3-compatible object store), keep the site +
+manifest on GitHub Pages.** Why R2: **egress (bandwidth) is always $0**, so the bill is decoupled
+from audience size. Storage: first **10 GB free**, then **$0.015/GB-month** — i.e. 20 GB = **$0.15/mo**,
+50 GB = $0.60, 100 GB = $1.35. R2 supports range requests (seeking keeps working). The catch with
+"free egress" (asked + answered): it's Cloudflare's deliberate anti-AWS-lock-in loss-leader, not
+magic — what *is* metered is **operations** (1M writes + 10M reads/mo free, then cheap) and
+**storage**, plus a **credit card on file** (set a billing alert). A few large, lazily-loaded files
+is the ideal low-op case, so none of that bites us. R2 being S3-compatible is the hedge if the deal
+ever changes.
+
+**Accommodation already built (so migration is a config flip, not a code change):** the manifest
+supports an optional top-level **`audio_base`**; `logic.resolveAsset(base, path)` prepends it to
+audio + cover paths, and player/index use it. **Absent today → paths stay relative → current
+behavior exactly** (verified: no `audio_base` in the manifest). Covered by unit tests
+(`resolveAsset`, `audioBase` surfacing).
+
+**Migration runbook (when triggered):**
+1. Create a Cloudflare account + R2 bucket; upload `docs/audio/**` preserving paths
+   (`audio/<book>/<voice>/chapter-NN.mp3`, plus `cover.svg`).
+2. Attach a **custom domain** to the bucket (e.g. `audio.<site>`) — the `r2.dev` URL is
+   rate-limited/dev-only; the custom domain routes through Cloudflare's cache + honors Range.
+3. Set a **CORS** rule allowing the site origin (`GET, HEAD`; expose `Content-Length`,
+   `Content-Range`, `Accept-Ranges`). Don't enable Brotli/gzip on `audio/mpeg` (breaks 206 seeking).
+4. Set `"audio_base": "https://audio.<site>"` at the manifest top level. Done — the player resolves
+   everything there.
+5. Verify seeking returns 206 in devtools; then `git rm docs/audio/**` to drop the repo back under
+   the 1 GB Pages limit (keep the R2 copy; optionally mirror the **public-domain** titles to
+   Internet Archive as a free backup — verify rights before posting the in-copyright 2026 text).
+
+**Alternatives considered:** Backblaze B2 + Cloudflare (also $0 egress via Bandwidth Alliance;
+more wiring) · Internet Archive (free, mission-aligned — good *secondary mirror* for PD titles) ·
+**avoid** Netlify/Vercel for media (both cap bandwidth *harder* than GitHub and Vercel Hobby bars
+non-personal use) · Cloudflare Stream is per-minute video pricing, overkill.
+
+**Donations / "costs only" — decision: take nothing for now.** With R2 the hosting bill is ~$0–$2/mo,
+and the overhead of accepting money (it's personal *taxable* income with no legal "costs-only"
+guarantee unless you set up a fiscal sponsor / 501(c)(3)) dwarfs the cost. For a free site of
+religious + non-commercially-permissioned texts (the Vatican permission is *non-commercial*), a tip
+jar paying a person also reads like monetization — best avoided. **If costs ever become real:** the
+cleanest low-overhead path is **Liberapay** (non-profit, no platform cut) with a plain "donations
+only offset hosting; the project never profits" note; the *provable* costs-only path is **Open
+Collective** + a fiscal host (public budget showing money-in = invoice-paid, surplus $0 — note the
+general-purpose Open Collective Foundation closed end of 2024, so a host would need shopping). A
+formal 501(c)(3) only if it ever becomes substantial. Keep surplus at $0; never offer donor perks
+(that converts a "gift" into a taxable exchange *and* muddies the non-commercial framing).
+
 ## Still in scope NOW (no new MP3s)
 - Tier 2: generic `audiobook generate <url>` generator + README.
 - Tier 3 companion medium as **text/JSON/HTML**: concept cards, grounded study guide,

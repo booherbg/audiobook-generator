@@ -34,6 +34,16 @@ export function yearOf(date) {
   return m ? m[0] : "";
 }
 
+// Resolve a stored relative asset path against an optional base URL. With no base (the
+// default today), paths stay relative to the site — GitHub Pages serves them. Set the
+// manifest's top-level `audio_base` (e.g. an R2/CDN origin) to serve audio + covers from
+// there instead, with no other code change. Absolute (http) paths are returned as-is.
+export function resolveAsset(base, path) {
+  if (!path || /^https?:\/\//i.test(path)) return path || "";
+  if (!base) return path;
+  return base.replace(/\/+$/, "") + "/" + path.replace(/^\/+/, "");
+}
+
 export function buildViewModel(manifest, bookId) {
   const book = (manifest.books || []).find((b) => b.id === bookId);
   if (!book) return null;
@@ -47,6 +57,8 @@ export function buildViewModel(manifest, bookId) {
     description: book.description || "",
     source_url: book.source_url || "",
     rights: book.rights || "",
+    // Optional CDN/object-store origin for audio + covers (manifest top-level). "" = relative.
+    audioBase: manifest.audio_base || "",
     hasGuide: !!book.has_guide,
     voices: book.voices || [],
     chapters: (book.chapters || []).map((c) => ({
