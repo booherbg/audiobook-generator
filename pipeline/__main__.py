@@ -52,18 +52,32 @@ def _load_repairs(path):
     return json.loads(Path(path).read_text(encoding="utf-8")) if path else None
 
 
-def _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters):
+def _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters, existing=None):
+    """Build the manifest entry, PRESERVING existing metadata when an arg isn't supplied.
+
+    A partial re-render (e.g. `generate --chapters 1:1` with no --subtitle) must not wipe
+    the book's subtitle/date/author or flip flags like has_guide/wip back to defaults — a
+    footgun that previously blanked metadata. Args override; otherwise keep what's there.
+    """
+    existing = existing or {}
+
+    def keep(field, arg_val, default=""):
+        return arg_val if arg_val else existing.get(field, default)
+
     return {
         "id": book_id,
-        "title": title,
-        "subtitle": args.subtitle or "",
-        "author": args.author or "",
-        "date": args.date or "",
-        "source_url": src if src.startswith("http") else (args.source_url or ""),
-        "description": args.description or "",
-        "cover": f"audio/{book_id}/cover.svg",
-        "public": True,
-        "has_guide": False,
+        "title": title or existing.get("title", ""),
+        "subtitle": keep("subtitle", args.subtitle),
+        "author": keep("author", args.author),
+        "date": keep("date", args.date),
+        "source_url": (src if src.startswith("http")
+                       else (args.source_url or existing.get("source_url", ""))),
+        "description": keep("description", args.description),
+        "cover": existing.get("cover", f"audio/{book_id}/cover.svg"),
+        "public": existing.get("public", True),
+        "has_guide": existing.get("has_guide", False),
+        # preserve the work-in-progress flag across re-renders (only carry it if set)
+        **({"wip": True} if existing.get("wip") else {}),
         "voices": [
             {"id": v, "label": voices_cfg[v]["label"], "engine": "kokoro", "ref": voices_cfg[v]["ref"]}
             for v in selected
@@ -92,7 +106,9 @@ def _write_manifest(args, book_id, title, chapters, selected, voices_cfg, src):
         if files and len(files) == len(present):  # only chapters complete for all present voices
             book_chapters.append({"index": ch.index, "title": ch.title, "files": files, "duration": durs})
     manifest = load_manifest(config.MANIFEST)
-    insert_book(manifest, _book_dict(args, book_id, title, present, voices_cfg, src, book_chapters))
+    existing = next((b for b in manifest.get("books", []) if b.get("id") == book_id), None)
+    insert_book(manifest, _book_dict(args, book_id, title, present, voices_cfg, src,
+                                     book_chapters, existing))
     save_manifest(config.MANIFEST, manifest)
     print(f"manifest: {len(book_chapters)}/{len(chapters)} chapters, voices={present}", flush=True)
 
