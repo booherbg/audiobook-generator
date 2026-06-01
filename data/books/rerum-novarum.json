@@ -1,0 +1,16 @@
+{
+  "id": "rerum-novarum",
+  "title": "Rerum Novarum",
+  "subtitle": "On Capital and Labor",
+  "author": "Pope Leo XIII",
+  "date": "1891",
+  "source_url": "https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html",
+  "source_file": "data/sources/rerum-novarum.html",
+  "rights": "© Libreria Editrice Vaticana",
+  "voices": ["george"],
+  "chapter_map": "data/chapter_maps/rerum-novarum.json",
+  "repairs": "data/repairs/rerum-novarum.json",
+  "guide_builder": "pipeline.build_guide_rerum",
+  "wip": true,
+  "notes": "1891 text loads as one blob -> needs the chapter map (13 thematic chapters). Single British voice. Public domain by age; also under the LEV cite-attribution permission."
+}

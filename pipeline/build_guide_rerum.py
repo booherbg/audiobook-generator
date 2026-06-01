@@ -293,8 +293,10 @@ def _default_source():
     raise SystemExit("No source available: fetch build/rerum-novarum.html or pass a URL/file.")
 
 
-def main():
-    resource = sys.argv[1] if len(sys.argv) > 1 else _default_source()
+def main(resource=None):
+    # `resource` may be passed programmatically (e.g. by `audiobook regenerate`); fall back to
+    # the CLI arg only when run directly as a script, then to the cached/source default.
+    resource = resource or (sys.argv[1] if len(sys.argv) > 1 else _default_source())
     chapter_map = json.loads(CHAPTER_MAP.read_text())
     repairs = json.loads(REPAIRS.read_text())
 

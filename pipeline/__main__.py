@@ -285,6 +285,66 @@ def cmd_qa(args):
         sys.exit(1)
 
 
+def cmd_regenerate(args):
+    """Rebuild a book end-to-end from its tracked recipe (data/books/<id>.json).
+
+    Audio is a BUILD ARTIFACT, not a precious snapshot: everything needed to reproduce a book
+    lives in git (the recipe + chapter map + repairs + companion script + voices.yaml), and the
+    source text is fetched from its source_url. Re-running is resumable (chapters already on
+    disk and plausibly complete are skipped), so this is safe to re-run after an interruption.
+    Note: TTS/ffmpeg output is reproducible-in-spirit (a fresh QA-passing edition), not
+    necessarily byte-identical to a previous render.
+    """
+    recipe_path = config.ROOT / "data" / "books" / f"{args.id}.json"
+    if not recipe_path.exists():
+        sys.exit(f"no recipe at {recipe_path}; recipes live in data/books/<id>.json")
+    r = json.loads(recipe_path.read_text())
+    print(f"regenerating '{r['id']}' from {recipe_path.relative_to(config.ROOT)}", flush=True)
+
+    # Canonical text = the committed snapshot (data/sources/<id>.html) for byte-stable, offline,
+    # vatican.va-independent reproduction. Fall back to the live source_url only if no snapshot
+    # exists. source_url remains the human attribution reference either way.
+    src_file = r.get("source_file")
+    resource = str(config.ROOT / src_file) if src_file and (config.ROOT / src_file).exists() \
+        else r["source_url"]
+    print(f"  source: {resource}", flush=True)
+
+    # 1) Audio + manifest — reuse cmd_generate by constructing its args from the recipe.
+    gen = argparse.Namespace(
+        resource=resource, id=r["id"], title=r.get("title"), subtitle=r.get("subtitle"),
+        author=r.get("author"), date=r.get("date"), description=r.get("description"),
+        source_url=r["source_url"], rights=r.get("rights"),
+        voices=",".join(r.get("voices") or []) or None,
+        chapters=args.chapters, chapter_map=r.get("chapter_map"), repairs=r.get("repairs"),
+        max_chapter_min=config.MAX_CHAPTER_MIN, clean=args.clean, force=args.force,
+    )
+    if args.skip_audio:
+        print("  (skip-audio: rebuilding text/companion only, not MP3s)", flush=True)
+    else:
+        cmd_generate(gen)
+
+    # 2) Persist the WIP flag from the recipe (generate preserves but never sets it).
+    manifest = load_manifest(config.MANIFEST)
+    for b in manifest.get("books", []):
+        if b.get("id") == r["id"]:
+            if r.get("wip"):
+                b["wip"] = True
+            else:
+                b.pop("wip", None)
+    save_manifest(config.MANIFEST, manifest)
+
+    # 3) Companion + read-along + full-text, via the book's guide builder.
+    builder = r.get("guide_builder")
+    if builder:
+        import importlib
+
+        print(f"  building companion via {builder}", flush=True)
+        importlib.import_module(builder).main(resource)
+
+    print(f"regenerated '{r['id']}'. Run `audiobook qa --id {r['id']}` then `audiobook deploy`.",
+          flush=True)
+
+
 def cmd_deploy(args):
     from pipeline.deploy import deploy
 
@@ -334,6 +394,16 @@ def main(argv=None):
     q.add_argument("--repairs", help="JSON {bad: good} map (must match generate time)")
     q.add_argument("--max-chapter-min", type=float, default=config.MAX_CHAPTER_MIN)
     q.set_defaults(func=cmd_qa)
+
+    r = sub.add_parser("regenerate", help="rebuild a book end-to-end from its recipe "
+                                          "(data/books/<id>.json) — audio is a build artifact")
+    r.add_argument("id", help="book id with a recipe in data/books/<id>.json")
+    r.add_argument("--chapters", help="range to render, e.g. 1:3 (1-based, inclusive)")
+    r.add_argument("--clean", action="store_true", help="delete this book's audio first")
+    r.add_argument("--force", action="store_true", help="re-render chapters even if present")
+    r.add_argument("--skip-audio", action="store_true",
+                   help="rebuild only text/companion/read-along, not MP3s (fast)")
+    r.set_defaults(func=cmd_regenerate)
 
     d = sub.add_parser("deploy", help="commit docs/, push, ensure GitHub Pages")
     d.add_argument("--force", action="store_true", help="deploy even if QA failed")

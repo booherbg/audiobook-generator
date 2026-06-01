@@ -243,8 +243,10 @@ def _repairs():
     return json.loads(path.read_text()) if path.exists() else None
 
 
-def main():
-    resource = sys.argv[1] if len(sys.argv) > 1 else _default_source()
+def main(resource=None):
+    # `resource` may be passed programmatically (e.g. by `audiobook regenerate`); fall back to
+    # the CLI arg only when run directly as a script, then to the cached/source default.
+    resource = resource or (sys.argv[1] if len(sys.argv) > 1 else _default_source())
     repairs = _repairs()
     out, cards, missing = build_guide(
         BOOK_ID, resource, CONCEPTS, GLOSSARY, FURTHER_READING, COMMENTARY, repairs=repairs)

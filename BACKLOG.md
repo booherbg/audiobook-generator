@@ -178,6 +178,44 @@ books.
 **Trigger to migrate:** when the repo's `docs/audio/` approaches **~700 MB** (≈ the 3rd–4th book),
 or GitHub emails about bandwidth. Not before — we're nowhere near it.
 
+### Audio is now a BUILD ARTIFACT (this reframes the whole backup/storage question)
+
+Every book is reproducible from git alone via a tracked **recipe** — so MP3s and companion JSON
+are *build outputs*, not precious snapshots from a particular session. Built this turn:
+- **`data/books/<id>.json`** — the complete declarative build input per book (title, author, voices,
+  `source_file`, `source_url`, `rights`, `chapter_map`, `repairs`, `guide_builder`, `wip`). Nothing
+  lives only in shell/LLM history anymore.
+- **`data/sources/<id>.html`** — the **committed source-text snapshot** (508 KB for both books).
+  This is the canonical text: regeneration reads it, so builds are **offline, byte-stable, and
+  independent of vatican.va** (the live page can drift or 404 — we don't care). `source_url` stays
+  as the attribution reference.
+- **`audiobook regenerate <id>`** — rebuilds a book end-to-end from its recipe (resumable;
+  `--skip-audio` for text/companion only). Verified: text output is **byte-identical across runs**.
+- Recipe-integrity test (`test_recipes.py`) guards that every recipe is complete and its referenced
+  files exist — so "regenerate" can't silently rot.
+
+**Honest caveat:** the *text/companion* layer is deterministic; the **MP3s are reproducible-in-
+spirit, not bit-identical** — Kokoro/ffmpeg produce equivalent, QA-passing audio each run, not the
+same bytes. So "regenerate" means "produce a fresh good edition," which is exactly what we want.
+
+**This answers the three questions that prompted it:**
+- *"git rule to purge old MP3s from history, keep only the newest?"* — **Not needed, and we
+  shouldn't.** Rewriting history on every render is fragile (breaks clones/forks, append-only by
+  design). Instead: once hosting moves off Pages, **stop committing MP3s at all** (add
+  `docs/audio/**/*.mp3` to `.gitignore`) — they become regenerable artifacts hosted on R2. The
+  recipe + source snapshot (tiny, text) is what's version-controlled.
+- *"keep book 1, ignore the rest after Cloudflare?"* — **No need to pick.** Keep *all recipes*
+  (kilobytes), zero MP3s. Nothing arbitrary.
+- *"scripts that always regenerate MP3s cleanly?"* — **Done** (`regenerate`). The one gap to close
+  for full from-scratch reproducibility: a `setup_models.py` run fetches the Kokoro model (already
+  scripted, ~325 MB, not in git — correct, it's a dependency not a source).
+
+**At migration, the `.gitignore` move:** today MP3s are *served from* `docs/audio/` so they must
+stay committed (ignoring them would 404 the live site). Once `audio_base` points at R2, the site no
+longer needs them in-repo → then add the gitignore rule and `git rm --cached` them. Optionally purge
+history with `git-filter-repo`/BFG at that point to shrink `.git` (currently ~405 MB, mostly old MP3
+blobs). Until then, GitHub remains a fine 3rd backup (laptop + GitHub + history).
+
 **The plan: move MP3s + covers to Cloudflare R2 (S3-compatible object store), keep the site +
 manifest on GitHub Pages.** Why R2: **egress (bandwidth) is always $0**, so the bill is decoupled
 from audience size. Storage: first **10 GB free**, then **$0.015/GB-month** — i.e. 20 GB = **$0.15/mo**,
