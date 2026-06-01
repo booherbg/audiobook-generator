@@ -266,7 +266,8 @@ def main():
     book = next((b for b in load_manifest(config.MANIFEST)["books"] if b["id"] == BOOK_ID), {})
     fout, fch, flines = build_fulltext(
         BOOK_ID, resource, title=book.get("title", ""), author=book.get("author", ""),
-        subtitle=book.get("subtitle", ""), source_url=book.get("source_url", ""), repairs=repairs)
+        subtitle=book.get("subtitle", ""), source_url=book.get("source_url", ""),
+        rights=book.get("rights", ""), repairs=repairs)
     print(f"wrote {fout}: {fch} chapters, {flines} paragraphs")
 
 

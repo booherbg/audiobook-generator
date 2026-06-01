@@ -69,6 +69,18 @@ test("buildViewModel", () => {
   assert.equal(buildViewModel(MANIFEST, "nope"), null);
 });
 
+test("buildViewModel exposes source_url + rights (attribution must reach the player)", () => {
+  const m = { books: [{ id: "b", title: "T", voices: [], chapters: [],
+    source_url: "https://www.vatican.va/x", rights: "© Libreria Editrice Vaticana" }] };
+  const vm = buildViewModel(m, "b");
+  assert.equal(vm.rights, "© Libreria Editrice Vaticana");
+  assert.equal(vm.source_url, "https://www.vatican.va/x");
+  // absent fields default to empty string, never undefined (so render code is safe)
+  const bare = buildViewModel({ books: [{ id: "b", title: "T", voices: [], chapters: [] }] }, "b");
+  assert.equal(bare.rights, "");
+  assert.equal(bare.source_url, "");
+});
+
 test("totalDuration", () => {
   const vm = buildViewModel(MANIFEST, "b");
   assert.equal(totalDuration(vm, "female"), 30);

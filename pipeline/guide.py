@@ -133,6 +133,7 @@ def build_guide(book_id, resource, concepts, glossary, further_reading, commenta
         "subtitle": book.get("subtitle", ""),
         "author": book.get("author", ""),
         "source_url": book.get("source_url", ""),
+        "rights": book.get("rights", ""),
         "intro": intro or DEFAULT_INTRO,
         "concepts": cards,
         "glossary": glossary,

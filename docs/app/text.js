@@ -64,8 +64,11 @@ function render(d) {
     text.appendChild(sec);
   }
 
+  // Attribution + copyright line. Where reproduction rests on a "cite the copyright"
+  // permission (e.g. the Vatican's), naming the rights-holder is the load-bearing condition.
+  const rights = d.rights ? `${d.rights}. ` : "";
   $("foot-note").textContent =
-    "Reproduced for accessible reading and study; the original is always the authority.";
+    rights + "Reproduced for accessible reading and study; the original is always the authority.";
 
   // deep-link to a chapter if asked
   const chParam = params.get("ch");

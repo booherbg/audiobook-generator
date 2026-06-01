@@ -314,7 +314,7 @@ def main():
     fout, fch, flines = build_fulltext(
         BOOK_ID, resource, title=book.get("title", ""), author=book.get("author", ""),
         subtitle=book.get("subtitle", ""), source_url=book.get("source_url", ""),
-        chapter_map=chapter_map, repairs=repairs)
+        rights=book.get("rights", ""), chapter_map=chapter_map, repairs=repairs)
     print(f"wrote {fout}: {fch} chapters, {flines} paragraphs")
 
 

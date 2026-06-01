@@ -126,6 +126,32 @@ function renderHead() {
     $("cover").alt = vm.title;
   }
   document.title = `${vm.title} — audiobook`;
+  renderSourceCredit();
+}
+
+// Attribution + copyright in the footer. Naming the rights-holder is the load-bearing
+// condition where reproduction rests on a "cite the copyright" permission (e.g. the Vatican's).
+function renderSourceCredit() {
+  const el = $("source-credit");
+  if (!el) return;
+  el.textContent = "";
+  if (vm.rights) {
+    const r = document.createElement("span");
+    r.textContent = vm.rights + ". ";
+    el.appendChild(r);
+  }
+  if (vm.source_url) {
+    el.append("The authoritative original is published by the Holy See at ");
+    const a = document.createElement("a");
+    a.href = vm.source_url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = "vatican.va";
+    el.appendChild(a);
+    el.append(". Reproduced for accessible listening; the original is always the authority.");
+  } else if (vm.rights) {
+    el.append("Reproduced for accessible listening; the original is always the authority.");
+  }
 }
 
 function renderVoices() {

@@ -15,7 +15,7 @@ TEXT_DIR = config.DOCS / "text"
 
 
 def build_fulltext(book_id, resource, title="", author="", subtitle="", source_url="",
-                   chapter_map=None, repairs=None):
+                   rights="", chapter_map=None, repairs=None):
     chapters = []
     for index, ctitle, lines in clean_chapters(resource, chapter_map=chapter_map, repairs=repairs):
         # lines[0] is the spoken chapter-intro ("Title."); the rest are the body sentences.
@@ -27,6 +27,7 @@ def build_fulltext(book_id, resource, title="", author="", subtitle="", source_u
         "subtitle": subtitle,
         "author": author,
         "source_url": source_url,
+        "rights": rights,
         "chapters": chapters,
     }
     TEXT_DIR.mkdir(parents=True, exist_ok=True)

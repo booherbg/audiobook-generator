@@ -72,6 +72,9 @@ def _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters, e
         "date": keep("date", args.date),
         "source_url": (src if src.startswith("http")
                        else (args.source_url or existing.get("source_url", ""))),
+        # Copyright/attribution line shown to readers (e.g. "© Libreria Editrice Vaticana").
+        # Required where reproduction rests on a cite-the-copyright permission.
+        "rights": keep("rights", getattr(args, "rights", "")),
         "description": keep("description", args.description),
         "cover": existing.get("cover", f"audio/{book_id}/cover.svg"),
         "public": existing.get("public", True),
@@ -301,6 +304,8 @@ def main(argv=None):
     g.add_argument("--date")
     g.add_argument("--description")
     g.add_argument("--source-url", dest="source_url")
+    g.add_argument("--rights", help='copyright/attribution line shown to readers, '
+                                     'e.g. "© Libreria Editrice Vaticana"')
     g.add_argument("--voices", help="comma-separated voice ids (default: all in voices.yaml)")
     g.add_argument("--chapters", help="range to render, e.g. 1:3 (1-based, inclusive)")
     g.add_argument("--chapter-map", help="JSON file of [{title,anchor}] to re-section a "

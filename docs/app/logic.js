@@ -45,6 +45,8 @@ export function buildViewModel(manifest, bookId) {
     date: book.date || "",
     cover: book.cover || "",
     description: book.description || "",
+    source_url: book.source_url || "",
+    rights: book.rights || "",
     hasGuide: !!book.has_guide,
     voices: book.voices || [],
     chapters: (book.chapters || []).map((c) => ({
