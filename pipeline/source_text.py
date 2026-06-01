@@ -12,7 +12,7 @@ from pipeline.clean import clean_paragraph, is_boilerplate
 from pipeline.load import HTMLLoader
 
 
-def clean_chapters(resource, chapter_map=None):
+def clean_chapters(resource, chapter_map=None, repairs=None):
     """Return [(index, title, [lines])] for a URL or file.
 
     `lines` are the exact segments fed to TTS for that chapter: the spoken chapter
@@ -21,10 +21,13 @@ def clean_chapters(resource, chapter_map=None):
     If `chapter_map` (a list of {"title","anchor"}) is given, the cleaned paragraph stream
     is re-sectioned by it before chunking — for sources with no usable heading structure.
     The cut happens AFTER cleaning so anchors match the same text the listener hears.
+
+    `repairs` is an optional source-specific {bad: good} map for fixing missing-space
+    export defects in the original HTML (see clean.clean_paragraph).
     """
     doc = HTMLLoader().load(resource)
     for sec in doc.sections:
-        sec.paragraphs = [clean_paragraph(p) for p in sec.paragraphs if not is_boilerplate(p)]
+        sec.paragraphs = [clean_paragraph(p, repairs) for p in sec.paragraphs if not is_boilerplate(p)]
         sec.paragraphs = [p for p in sec.paragraphs if p]
     doc.sections = [s for s in doc.sections if s.paragraphs]
     if chapter_map:

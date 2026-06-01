@@ -39,12 +39,17 @@ def slugify(text: str) -> str:
     return re.sub(r"[\s_-]+", "-", text) or "book"
 
 
-def clean_document(doc):
+def clean_document(doc, repairs=None):
     for sec in doc.sections:
-        cleaned = [clean_paragraph(p) for p in sec.paragraphs if not is_boilerplate(p)]
+        cleaned = [clean_paragraph(p, repairs) for p in sec.paragraphs if not is_boilerplate(p)]
         sec.paragraphs = [p for p in cleaned if p]
     doc.sections = [s for s in doc.sections if s.paragraphs]
     return doc
+
+
+def _load_repairs(path):
+    """Optional {bad: good} spacing-repair map for a source's export defects."""
+    return json.loads(Path(path).read_text(encoding="utf-8")) if path else None
 
 
 def _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters):
@@ -101,7 +106,7 @@ def cmd_generate(args):
 
     src = resolve(args.resource)
     print(f"loading {src}", flush=True)
-    doc = clean_document(HTMLLoader().load(src))
+    doc = clean_document(HTMLLoader().load(src), _load_repairs(args.repairs))
     if args.chapter_map:
         doc = resection(doc, load_map(args.chapter_map))
         print(f"re-sectioned by chapter map: {len(doc.sections)} chapters", flush=True)
@@ -196,7 +201,7 @@ def cmd_qa(args):
     from pipeline.assemble import measure_loudness
 
     voices_cfg, lexicon = load_voices()
-    doc = clean_document(HTMLLoader().load(resolve(args.source)))
+    doc = clean_document(HTMLLoader().load(resolve(args.source)), _load_repairs(args.repairs))
     if args.chapter_map:
         doc = resection(doc, load_map(args.chapter_map))
     chapters = chunk_document(doc, max_min=args.max_chapter_min)
@@ -271,6 +276,8 @@ def main(argv=None):
     g.add_argument("--chapters", help="range to render, e.g. 1:3 (1-based, inclusive)")
     g.add_argument("--chapter-map", help="JSON file of [{title,anchor}] to re-section a "
                                          "source that has no usable headings")
+    g.add_argument("--repairs", help="JSON {bad: good} map fixing missing-space export "
+                                     "defects in the source HTML")
     g.add_argument("--max-chapter-min", type=float, default=config.MAX_CHAPTER_MIN)
     g.add_argument("--clean", action="store_true", help="delete this book's audio first")
     g.add_argument("--force", action="store_true", help="re-render chapters even if present")
@@ -290,6 +297,7 @@ def main(argv=None):
     q.add_argument("--wer-max", type=float, default=0.12)
     q.add_argument("--chapter-map", help="JSON file of [{title,anchor}] (must match the "
                                          "map used at generate time)")
+    q.add_argument("--repairs", help="JSON {bad: good} map (must match generate time)")
     q.add_argument("--max-chapter-min", type=float, default=config.MAX_CHAPTER_MIN)
     q.set_defaults(func=cmd_qa)
 

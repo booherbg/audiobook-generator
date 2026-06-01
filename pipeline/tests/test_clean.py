@@ -17,6 +17,23 @@ def test_clean_collapses_whitespace():
     assert clean_paragraph("a   b\n c") == "a b c"
 
 
+def test_clean_adds_space_after_punctuation():
+    # MS-Word exports drop spaces after clause punctuation, e.g. "world,should".
+    assert clean_paragraph("the world,should have") == "the world, should have"
+    assert clean_paragraph("first;second") == "first; second"
+    # but NOT inside a decimal/number where the next char is a digit
+    assert clean_paragraph("chapter 5:21 of") == "chapter 5:21 of"
+
+
+def test_clean_applies_source_repairs():
+    # Curated per-source repair map fixes glued words a heuristic can't safely split.
+    repairs = {"ofrevolutionary": "of revolutionary", "inthe": "in the"}
+    assert clean_paragraph("the spirit ofrevolutionary change", repairs) == "the spirit of revolutionary change"
+    assert clean_paragraph("felt inthe sphere", repairs) == "felt in the sphere"
+    # a word NOT in the map is left untouched (no heuristic guessing)
+    assert clean_paragraph("the workers labored", repairs) == "the workers labored"
+
+
 def test_is_boilerplate():
     assert is_boilerplate("Copyright © Dicastero per la Comunicazione")
     assert is_boilerplate("   ")

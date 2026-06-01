@@ -25,7 +25,9 @@ _REGNAL = (
     "John Paul|Leo|John|Paul|Pius|Benedict|Francis|Gregory|Innocent|Clement|"
     "Urban|Boniface|Alexander|Julius|Sixtus|Adrian|Celestine|Honorius"
 )
-_REGNAL_RE = re.compile(rf"\b({_REGNAL}) ([IVXLCDM]+)\b")
+# Case-insensitive so an all-caps masthead ("POPE LEO XIII") expands too; the name is
+# matched without regard to case (the numeral is uppercase Roman either way).
+_REGNAL_RE = re.compile(rf"\b({_REGNAL}) ([IVXLCDM]+)\b", re.IGNORECASE)
 _DIVISION_RE = re.compile(r"\b(Chapter|Part|Book|Section) ([IVXLCDM]+)\b", re.IGNORECASE)
 
 _ABBREV = [

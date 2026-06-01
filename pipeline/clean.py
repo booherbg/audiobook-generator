@@ -8,6 +8,11 @@ _FOOTNOTE_BRACKET = re.compile(r"\[\d+\]")
 _SUPERSCRIPT = re.compile(r"[¹²³⁰-⁹]+")
 _LEADING_NUM = re.compile(r"^\s*\d+\.\s+")
 _WS = re.compile(r"\s+")
+# Missing space after sentence/clause punctuation, e.g. "world,should" -> "world, should".
+# Always safe (a letter immediately after ,;:.!? is never intended). Excludes decimals
+# like "5.21" (handled only when the trailing char is a LETTER) and abbreviations are
+# already expanded downstream.
+_PUNCT_NOSPACE = re.compile(r"([,;:])([A-Za-z])")
 
 # End-matter footnote/reference entries, e.g. "2). Deut. 5:21." or "11). Summa theologiae…"
 # — a number, a close-paren, a period, then a citation. These trail many Vatican texts and
@@ -34,9 +39,19 @@ def is_boilerplate(line: str) -> bool:
     return any(token in low for token in _BOILERPLATE)
 
 
-def clean_paragraph(text: str) -> str:
-    """Strip footnote markers, a leading paragraph number, and excess whitespace."""
+def clean_paragraph(text: str, repairs: dict | None = None) -> str:
+    """Strip footnote markers, a leading paragraph number, and excess whitespace.
+
+    `repairs` is an optional source-specific map of glued/garbled tokens to their correct
+    form (e.g. {"ofrevolutionary": "of revolutionary"}) for fixing missing-space export
+    defects in the original HTML. Applied as whole-word substitutions; curated per source
+    (a heuristic splitter mangles real words like "workers"→"work ers", so we don't guess).
+    """
     text = _FOOTNOTE_BRACKET.sub("", text)
     text = _SUPERSCRIPT.sub("", text)
     text = _LEADING_NUM.sub("", text)
+    text = _PUNCT_NOSPACE.sub(r"\1 \2", text)
+    if repairs:
+        for bad, good in repairs.items():
+            text = re.sub(rf"\b{re.escape(bad)}\b", good, text)
     return _WS.sub(" ", text).strip()

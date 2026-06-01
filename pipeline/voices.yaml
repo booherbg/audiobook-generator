@@ -7,5 +7,8 @@ voices:
   male:
     ref: am_michael
     label: "Michael — friendly US male"
+  george:
+    ref: bm_george
+    label: "George — British narrator"
 
 lexicon: {}
