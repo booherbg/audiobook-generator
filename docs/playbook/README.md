@@ -54,7 +54,8 @@ source (URL/file)
 
 The pipeline is **deterministic and contains no LLM** — finding the source from a description,
 authoring the companion, and running the critic panel are the human + Claude-Code parts.
-There are **no API keys and no console script**; everything is `.venv/bin/python -m pipeline …`.
+There are **no API keys**. Commands are shown as `uv run audiobook …` (the installed console
+script); `.venv/bin/python -m pipeline …` is the exact equivalent if you prefer.
 
 The single source of truth for the *text* (audio, read-along, full-text, and companion quotes
 all derive from it) is `pipeline/source_text.clean_chapters()` — load → clean → chunk, run once.
@@ -73,6 +74,15 @@ MP3s. When audio is in scope, confirm the budget first.
 ---
 
 ## Runbook
+
+> **The authoritative how-to is now [authoring-a-new-book.md](authoring-a-new-book.md)** (and
+> [build-your-own.md](build-your-own.md) for rendering existing books). This older runbook predates
+> the recipe system (`data/books/<id>.json` + `audiobook regenerate`) and is kept as background
+> detail. **Path convention** (read this first, it's the one place the older steps below drift):
+> the **canonical, committed source snapshot lives at `data/sources/<id>.html`** — that's what the
+> recipe's `source_file` points at and what `regenerate`/`qa` read. `build/<id>.html` is just
+> scratch; commands below that say `build/<id>.html` work, but the file you *keep in git* is the
+> `data/sources/` copy. When in doubt, follow authoring-a-new-book.md, not the steps here.
 
 ### 0. One-time machine setup (skip if the venv already exists)
 
@@ -194,12 +204,18 @@ Per-book nav links are now **automatic** — `guide.js`/`text.js`/`player.js` de
 the back/secondary links from the book id, and `guide.py` carries title/subtitle/author/source_url
 into the guide JSON. A new id just works; no per-page editing.
 
-### 5.5. Staging a work-in-progress edition (optional)
+### 5.5. The three flags that govern visibility + companion (reconciled)
 
-To publish a book that isn't ready for the front page yet, set `"hidden": true` on its manifest
-entry. The library renders it as a **work-in-progress card that only appears while the visitor
-holds Shift** (see `docs/app/index.js`). Everything else (player, companion, deep-links) works
-normally for anyone with the direct `player.html?book=<id>` URL. Remove the flag to launch it.
+Three small flags, in two places — set them right and the library behaves. (`regenerate` keeps
+`has_guide`/`wip` in sync from the recipe; a bare `generate` does not, hence the gotcha above.)
+
+| Flag | Lives in | Effect | Set it |
+|------|----------|--------|--------|
+| **`wip: true`** | the **recipe** (`data/books/<id>.json`) → copied to the manifest by `regenerate` | library card shows a **"work in progress" badge** (the book is fully visible — it's a label, not a gate) | in the recipe; `regenerate` propagates it |
+| **`has_guide: true`** | the **manifest** book entry | the player shows the **Companion** link | set after your final `generate`/`regenerate` (a bare `generate` resets it to false — see the gotcha above) |
+| ~~`hidden`~~ | — | **deprecated/removed.** WIP editions used to be Shift-to-reveal; they're now simply visible with the badge. Don't use `hidden`. | — |
+
+To launch a book out of WIP: set `wip: false` in the recipe (or drop the key) and `regenerate`.
 
 ### 6. Companion integrity check
 

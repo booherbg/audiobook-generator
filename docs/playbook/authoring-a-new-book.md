@@ -110,6 +110,29 @@ forbidden — it mangles real words.)
 `{bad: good}` repairs map for the specific defects it found. Both are small tracked JSON files. You
 review and approve.
 
+*Chapter-map rubric* (so this scales to long texts — Laudato Si' is ~38k words, ~2.5× RN):
+- **Target ~8–14 min per chapter** (≈ 1,200–2,200 words at ~155 wpm). Aim for the number of
+  chapters that gives that range; for a ~38k-word book that's roughly **15–25 chapters**. The
+  chunker auto-splits anything over `MAX_CHAPTER_MIN` (18), so treat **~15 min as your soft ceiling**
+  and don't hand-author a chapter longer than that.
+- **Each `anchor` = a 4–8 word VERBATIM opening phrase** of the chapter, unique at that point in the
+  text (grep to confirm it appears once, or first, where you mean). Not a paraphrase.
+- **Follow the document's own argument**, not arbitrary length — break where the author pivots
+  (problem → cause → response → …). Title each chapter for what it actually covers.
+- **Validate before rendering** (no audio needed):
+  ```python
+  uv run python -c "import json; from pipeline.source_text import clean_chapters; \
+    cm=json.load(open('data/chapter_maps/<id>.json')); rp=json.load(open('data/repairs/<id>.json')); \
+    [print(f'{i:2} {sum(len(s.split()) for s in L[1:])/155:5.1f}min  {t}') \
+     for i,t,L in clean_chapters('data/sources/<id>.html', chapter_map=cm, repairs=rp)]"
+  ```
+  Every anchor must resolve (a missing one raises `ValueError`), word counts should land in-band,
+  and titles should read well. Iterate the map until they do.
+- *Repairs:* only fix genuine export defects (glued words, OCR substitutions, stranded drop-caps) —
+  **never** heuristically split words (it mangles real ones). Curate the `{bad: good}` list by hand
+  from what Step 1 surfaced; it's short. The pipeline already strips inline `(N)` footnote markers
+  and end-matter reference lists generically.
+
 **Step 3 — Author the companion.** Clone the template and edit *data only*:
 ```sh
 cp pipeline/build_guide_rerum.py pipeline/build_guide_<id>.py   # then edit BOOK_ID, CONCEPTS, etc.

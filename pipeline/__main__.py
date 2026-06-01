@@ -228,9 +228,19 @@ def cmd_qa(args):
     from pipeline.assemble import measure_loudness
 
     voices_cfg, lexicon = load_voices()
-    doc = clean_document(HTMLLoader().load(resolve(args.source)), _load_repairs(args.repairs))
-    if args.chapter_map:
-        doc = resection(doc, load_map(args.chapter_map))
+    # Default source / chapter-map / repairs from the book's recipe so QA re-cleans the text
+    # EXACTLY as generate did — otherwise WER mismatches the audio and QA fails spuriously.
+    # Explicit flags still override. (validate_guide.py auto-discovers the same way.)
+    recipe_path = config.ROOT / "data" / "books" / f"{args.id}.json"
+    recipe = json.loads(recipe_path.read_text()) if recipe_path.exists() else {}
+    source = args.source or recipe.get("source_file") or recipe.get("source_url")
+    if not source:
+        sys.exit(f"no --source given and no recipe at {recipe_path}; pass --source")
+    chapter_map = args.chapter_map or recipe.get("chapter_map")
+    repairs_path = args.repairs or recipe.get("repairs")
+    doc = clean_document(HTMLLoader().load(resolve(source)), _load_repairs(repairs_path))
+    if chapter_map:
+        doc = resection(doc, load_map(chapter_map))
     chapters = chunk_document(doc, max_min=args.max_chapter_min)
     manifest = load_manifest(config.MANIFEST)
     book = next((b for b in manifest["books"] if b["id"] == args.id), None)
@@ -302,11 +312,23 @@ def cmd_regenerate(args):
     print(f"regenerating '{r['id']}' from {recipe_path.relative_to(config.ROOT)}", flush=True)
 
     # Canonical text = the committed snapshot (data/sources/<id>.html) for byte-stable, offline,
-    # vatican.va-independent reproduction. Fall back to the live source_url only if no snapshot
-    # exists. source_url remains the human attribution reference either way.
+    # vatican.va-independent reproduction. source_url stays as the human attribution reference.
+    # If the recipe DECLARES a source_file, it must exist — failing loudly here beats silently
+    # fetching the live URL and quietly breaking the offline/byte-stable guarantee.
     src_file = r.get("source_file")
-    resource = str(config.ROOT / src_file) if src_file and (config.ROOT / src_file).exists() \
-        else r["source_url"]
+    if src_file:
+        snapshot = config.ROOT / src_file
+        if not snapshot.exists():
+            sys.exit(f"recipe declares source_file '{src_file}' but it's missing. Commit the "
+                     f"source snapshot there (the canonical text), or remove source_file from "
+                     f"the recipe to build from the live source_url instead.")
+        resource = str(snapshot)
+    elif r.get("source_url"):
+        print("  WARNING: no source_file in recipe — building from the live source_url "
+              "(not byte-stable; the page can drift or 404).", flush=True)
+        resource = r["source_url"]
+    else:
+        sys.exit("recipe has neither source_file nor source_url")
     print(f"  source: {resource}", flush=True)
 
     # 1) Audio + manifest — reuse cmd_generate by constructing its args from the recipe.
@@ -386,7 +408,7 @@ def main(argv=None):
 
     q = sub.add_parser("qa", help="audio quality check (WER, loudness, silence, duration)")
     q.add_argument("--id", required=True)
-    q.add_argument("--source", default="build/magnifica.html")
+    q.add_argument("--source", help="source text (default: the book's recipe source_file/source_url)")
     q.add_argument("--sample-sec", type=float, default=90.0)
     q.add_argument("--wer-max", type=float, default=0.12)
     q.add_argument("--chapter-map", help="JSON file of [{title,anchor}] (must match the "

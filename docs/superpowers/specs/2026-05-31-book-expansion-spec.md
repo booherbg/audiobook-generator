@@ -34,7 +34,7 @@ companion authoring, critic review). One text source of truth — `source_text.c
 feeds audio, read-along, full-text, and companion quotes, so on-screen always matches spoken. The
 player is static vanilla JS that knows only four JSON files
 ([data contracts](../../playbook/data-contracts.md)). Deploy is `gh` → GitHub Pages. No API keys,
-no console script, no build step.
+no build step (the `audiobook` console script wraps `python -m pipeline`).
 
 ```
 source → load·clean·chunk → normalize·TTS·assemble → QA → manifest → companion → deploy
