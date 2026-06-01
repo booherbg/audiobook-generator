@@ -93,7 +93,40 @@ folder, the manifest entry, and every JSON file — keep it consistent everywher
 ```
 
 We ship two voices so listeners can choose: **`af_heart` ("Heart")** and **`am_michael`
-("Michael")**. Stick with these unless a book calls for something different.
+("Michael")**. A book can call for something different — *Rerum Novarum* (1891) uses a single
+British voice, **`bm_george` ("George")**, picked from the `bm_*` voices by an objective
+WER+loudness screen. The installed model also has Spanish/Italian/Portuguese voices (see BACKLOG).
+
+### 2.5. Two things to check on a new source (do this before rendering)
+
+Encyclicals vary wildly in how cleanly they export. Two checks save a wasted multi-hour render:
+
+**(a) Does it have usable chapters?** Run the source through the loader and look:
+```bash
+.venv/bin/python -c "from pipeline.source_text import clean_chapters; \
+  [print(i, t) for i,t,_ in clean_chapters('build/<id>.html')]"
+```
+- *Clean headings* (like Magnifica) → nothing to do.
+- *One giant blob* (like Rerum Novarum, which loads as ~1 section) → author a **chapter map**:
+  a tracked `data/chapter_maps/<id>.json` list of `[{"title","anchor"}]`, where each `anchor`
+  is a **verbatim** opening phrase. `pipeline/chapter_map.py` cuts the text there; pass
+  `--chapter-map data/chapter_maps/<id>.json` to `generate` **and** `qa` (and the build-guide
+  script reads it too). This is where you channel an **educator/historian** to break the
+  argument into ~8–10 min thematic chapters that follow the author's actual structure. Verify
+  balance: no chapter over ~15 min (the chunker auto-splits at 18), titles that read well.
+
+**(b) Does it have export defects?** Dump the cleaned paragraphs and skim:
+```bash
+.venv/bin/python -c "from pipeline.source_text import clean_chapters; \
+  print(' '.join(s for _,_,L in clean_chapters('build/<id>.html') for s in L))" | head -c 3000
+```
+Watch for **glued words** ("ofrevolutionary"), **inline footnote markers** ("…classes.(1) It is"),
+**end-matter references** ("2). Deut. 5:21."), and **OCR typos** ("wages axe fair"). The pipeline
+already strips inline `(N)` markers, end-matter reference lists, and fixes missing spaces after
+punctuation. For the rest, write a tracked `data/repairs/<id>.json` map of `{bad: good}`
+whole-word substitutions and pass `--repairs data/repairs/<id>.json`. **Do not** try to split
+glued words heuristically — a dictionary/corpus splitter mangles real words ("workers"→"work ers").
+Curate the list by hand; it's short.
 
 ### 3. Generate the audiobook (resumable) — *audio budget required*
 
@@ -101,11 +134,15 @@ We ship two voices so listeners can choose: **`af_heart` ("Heart")** and **`am_m
 .venv/bin/python -m pipeline generate build/<id>.html \
     --id <id> --title "<Title>" --author "<Author>" --date "<year>" \
     --subtitle "<subtitle>" --source-url "<canonical-url>" \
-    --voices af_heart,am_michael
+    --voices af_heart,am_michael \
+    --chapter-map data/chapter_maps/<id>.json \   # only if you authored one (step 2.5a)
+    --repairs data/repairs/<id>.json              # only if you authored one (step 2.5b)
 ```
 
 - **Resumable.** A chapter already on disk (and plausibly complete: ≥0.6× expected duration)
   is skipped; a crash-truncated MP3 is re-rendered. Safe to re-run after any interruption.
+- **Smoke-test first.** Always render `--chapters 1:1` and `qa` that one chapter before the full
+  run — it catches a bad voice, a broken anchor, or narratable junk in minutes instead of hours.
 - The manifest entry is rebuilt from **whatever audio is actually on disk**, scanning *all*
   configured voices — a single-voice re-render never drops the other voice.
 - Long render (~hours for a full book). It auto-backgrounds; resume by re-running the same
@@ -132,15 +169,24 @@ cp pipeline/build_guide_magnifica.py pipeline/build_guide_<id>.py
 
 How to author well (anchors, blurbs, commentary persona, the no-hallucination rule):
 [companion-authoring.md](companion-authoring.md). Read-along and full-text need **no authoring**
-— they fall out of the shared source path automatically.
+— they fall out of the shared source path automatically. If the book uses a chapter map / repairs,
+have your `build_guide_<id>.py` pass them to `build_guide`/`build_transcript`/`build_fulltext`
+(copy how `build_guide_rerum.py` does it) so the companion's chapters match the audio's.
 
 > **Gotcha — turn the companion on.** Set `"has_guide": true` on the book in
 > `docs/manifest.json` so the player shows the Companion link. Re-running `generate` rebuilds the
 > entry with `has_guide:false`, so flip it *after* your final generate (or just before deploy).
 
-Wire the per-book links if you added a new id (the shipped pages hard-code
-`?book=magnifica-humanitas`): the player/guide/text top-bar links and the `BOOK` default in
-`docs/app/{guide,text}.js`. For a multi-book library, prefer reading the id from the manifest.
+Per-book nav links are now **automatic** — `guide.js`/`text.js`/`player.js` derive the title and
+the back/secondary links from the book id, and `guide.py` carries title/subtitle/author/source_url
+into the guide JSON. A new id just works; no per-page editing.
+
+### 5.5. Staging a work-in-progress edition (optional)
+
+To publish a book that isn't ready for the front page yet, set `"hidden": true` on its manifest
+entry. The library renders it as a **work-in-progress card that only appears while the visitor
+holds Shift** (see `docs/app/index.js`). Everything else (player, companion, deep-links) works
+normally for anyone with the direct `player.html?book=<id>` URL. Remove the flag to launch it.
 
 ### 6. Companion integrity check
 
