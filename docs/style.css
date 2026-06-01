@@ -30,13 +30,20 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
 
 /* Library */
 .lede { color: var(--muted); margin: 0 0 22px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+/* One book per row. The page is already capped (--max: 720px), so a single-column list
+   fills the column and aligns with the header — and on a phone it's simply full-width.
+   Device-driven, not library-size-driven. */
+.grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
 .card {
-  display: flex; gap: 14px; background: var(--panel); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 14px; align-items: center; transition: border-color .15s;
+  display: flex; gap: 16px; background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 16px; align-items: flex-start; transition: border-color .15s;
 }
 .card:hover { border-color: var(--accent-2); text-decoration: none; }
-.card img { width: 84px; height: 84px; border-radius: 10px; flex: none; background: var(--panel-2); }
+.card img { width: 92px; height: 92px; border-radius: 10px; flex: none; background: var(--panel-2); }
+@media (max-width: 480px) {
+  .card { gap: 12px; padding: 12px; }
+  .card img { width: 72px; height: 72px; }
+}
 .card .t { font-weight: 600; color: var(--text); }
 .card .s { color: var(--text-2, #c9c2b4); font-size: 0.86rem; font-style: italic; margin-top: 1px; }
 .card .a { color: var(--muted); font-size: 0.9rem; margin-top: 2px; }
