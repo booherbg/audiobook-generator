@@ -19,7 +19,9 @@ Automated gross-defect detection for spoken word (not a mastering suite). Run:
 
 ```bash
 rm -f build/qa-report.json     # the report is resumable; always start clean
-.venv/bin/python -m pipeline qa --id <id> --source build/<id>.html
+uv run audiobook qa --id <id>
+# the recipe supplies source + chapter-map + repairs automatically;
+# pass --source data/sources/<id>.html only to override.
 # → build/qa-report.json, prints per-chapter rows and QA PASSED / FAILED
 ```
 
@@ -31,7 +33,7 @@ Per chapter × voice, all must hold (`pipeline/qa.py`, gated in `pipeline/__main
 | **Loudness** (integrated LUFS) | within 2.0 of −16 | too quiet / too hot |
 | **True peak** (real sample peak, astats) | ≤ 0 dBFS | clipping |
 | **Silence** (silencedetect, >3s) | none | dead air, dropouts, truncation |
-| **Duration band** | 120–200 wpm for the word count | runaway length / cut-off chapters |
+| **Duration band** | within ±40% of the expected duration at 155 wpm | runaway length / cut-off chapters |
 
 **Debugging failures**
 - **High WER:** usually a normalization miss (numbers, Latin, abbreviations) or a bad voice
@@ -50,7 +52,7 @@ voices. The automated gates catch gross defects; your ear catches "is this pleas
 ## Companion integrity
 
 ```bash
-.venv/bin/python scripts/validate_guide.py <id> build/<id>.html
+.venv/bin/python scripts/validate_guide.py <id> data/sources/<id>.html
 # concepts=N nonverbatim=NONE dead=NONE unique_titles=True   ← all required (exits non-zero otherwise)
 ```
 

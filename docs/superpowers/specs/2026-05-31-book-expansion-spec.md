@@ -4,8 +4,10 @@
 repeatable, pull-and-go process that reliably produces a *world-class, source-honoring* result —
 so the next books need no re-derivation of method.
 
-**Status:** The system and method are proven on *Magnifica Humanitas* (live, critic-verdict
-HONORS). This spec captures the contract; the operational detail lives in
+**Status:** The system and method are proven on **two shipped books** — *Magnifica Humanitas* and
+*Rerum Novarum* (both live, critic-verdict HONORS; *Rerum* carries an intentional "work in
+progress" badge). *Laudato si'* is sourced (committed snapshot) but not yet built — it's the next
+target. This spec captures the contract; the operational detail lives in
 [`docs/playbook/`](../../playbook/README.md).
 
 ---
@@ -79,7 +81,8 @@ These are nice-to-haves observed while shipping the first edition; do them oppor
 - **Multi-book player wiring.** Pages currently hard-code `?book=magnifica-humanitas` in top-bar
   links and the `BOOK` default in `app/{guide,text}.js`. With a second book, read the id from the
   manifest / URL instead.
-- **`has_guide` automation.** `build_guide_<id>` could set `has_guide:true` on the manifest entry
-  so it isn't reset by a later `generate` (today it's a manual flip — documented in the playbook).
+- **`has_guide` automation.** Largely DONE: `generate`/`regenerate` now **preserve** an existing
+  `has_guide` (it is no longer reset). Only auto-setting it on the very first companion build
+  remains open (today that first flip is manual — documented in the playbook).
 - **A library landing page** that lists editions and the relationships between them (further-reading
   links become live cross-edition links once siblings exist).

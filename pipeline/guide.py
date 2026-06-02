@@ -25,10 +25,15 @@ GUIDE_DIR = config.DOCS / "guide"
 
 
 def _load_book(manifest_path, book_id):
-    """The manifest entry for this book, looked up BY ID (not books[0] — a multi-book
-    library has many). Returns {} if the book isn't in the manifest yet."""
+    """Metadata for this book, looked up BY ID. Prefers the manifest entry (it carries the audio
+    durations); for a text-first edition not yet in the manifest, falls back to the recipe
+    (data/books/<id>.json) so title/author/source_url/rights still populate. {} if neither."""
     books = json.loads(Path(manifest_path).read_text()).get("books", [])
-    return next((b for b in books if b.get("id") == book_id), {})
+    book = next((b for b in books if b.get("id") == book_id), None)
+    if book:
+        return book
+    recipe = config.ROOT / "data" / "books" / f"{book_id}.json"
+    return json.loads(recipe.read_text()) if recipe.exists() else {}
 
 
 def _voice_timeline(book, voice):
@@ -42,7 +47,11 @@ def _voice_timeline(book, voice):
 
 
 def _default_voice(book):
-    return book["voices"][0]["id"] if book.get("voices") else "female"
+    voices = book.get("voices")
+    if not voices:
+        return "female"
+    v = voices[0]  # manifest voices are {id,label,ref} dicts; recipe voices are plain ids
+    return v["id"] if isinstance(v, dict) else v
 
 
 def find_quote(chapters, anchor):
@@ -79,6 +88,16 @@ def build_guide(book_id, resource, concepts, glossary, further_reading, commenta
     book = _load_book(manifest_path, book_id)
     voice = _default_voice(book)
     starts, durs = _voice_timeline(book, voice)
+    if not any(durs.values()):
+        # Text-first edition (no audio rendered yet): synthesize a reading-pace timeline from
+        # word counts, so commentary timestamps still resolve to the right chapter + fraction.
+        # Once the audio exists, real per-voice durations replace this (just rebuild the guide).
+        wpm = getattr(config, "WPM", 155)
+        t = 0.0
+        for c_idx, _ct, c_lines in chapters:
+            dur = (sum(len(s.split()) for s in c_lines) / wpm) * 60.0
+            starts[c_idx], durs[c_idx] = t, dur
+            t += dur
 
     def label_seconds(chapter, fraction):
         """Human-readable timestamp on the default voice (display only)."""

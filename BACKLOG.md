@@ -34,10 +34,45 @@ grounded companion with director's commentary), so the three form a small connec
 
 1. ~~**Rerum Novarum** — Leo XIII, 1891~~ ✅ **SHIPPED** (single British voice "George", 13
    chapters, companion at HONORS, on the library as a work-in-progress edition).
-2. **Laudato si'** — Francis, 2015 (integral ecology; "everything is connected").
+2. **Laudato si'** — Francis, 2015 (integral ecology; "everything is connected"). ✅ **TEXT SHIPPED**
+   — 18 chapters, companion at **HONORS** (12 concepts + 6 Andrew asides + glossary), read-along +
+   full-text; in the Queue as a work-in-progress edition. **Audio pending** (overnight / storage-gated;
+   voice is Blaine's pick at render time). Dogfooding the playbook on LS fixed three real pipeline
+   gaps — plain-`<p>` Vatican layout + an end-matter `<hr>` footnote cut; the text-first no-audio
+   commentary timeline; recipe-metadata fallback — and ~22 doc drifts; the plan now matches reality.
    Source: https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html
-   — The obvious next book: completes the trilogy, the companions already cross-link to it,
-   and the pipeline is now proven on two very different source layouts.
+
+### Laudato Si' — audio render: the no-audio compromises to address (EACH individually)
+LS was built **text-first** (no audio). When rendering the audio, work through every item below —
+these are the exact shortcuts the no-audio build took, so none should be silently inherited:
+
+1. **Pick + set the voice.** Recipe holds `"voices": ["female"]` only as a *placeholder*. Single
+   voice (Blaine delegated the pick to Claude): audition warm candidates — the pastoral tone suits a
+   warm voice; lean toward one distinct from the trilogy's Heart/Michael/George — WER+loudness-screen,
+   then set the real voice in `data/books/laudato-si.json`.
+2. **Render audio** (`audiobook regenerate laudato-si`, *without* `--skip-audio`) — 18 chapters,
+   ~4.1h, one single-voice set (~18 MP3s). Confirm it fits the storage cap (Blaine OK'd single-voice LS).
+3. **Rebuild the companion against REAL durations.** Commentary `timestamp`s and the concept display
+   `timestamp` labels are currently on a *synthesized 155-wpm timeline* (`guide.py` fallback when a book
+   has no audio). The full `regenerate` after audio rebuilds the guide from the manifest's real per-voice
+   durations. (Concept *fractions* are word-based and already correct; only the seconds-labels +
+   commentary placement refine.)
+4. **Re-verify + fine-tune commentary placement.** The 6 asides land in ch 1/4/8/9/11/16 on the
+   synthesized timeline. After audio, confirm each still sits on its intended passage — especially the
+   technocratic-paradigm aside (ch8), the Guardini aside (CH3 anthropocentrism), the conversion aside
+   (near the end) — and nudge any timestamp that drifted.
+5. **Run audio QA** (`audiobook qa --id laudato-si`): WER ≤0.12, ~−16 LUFS, true-peak <0, no >3s
+   silence, duration band. This gate proves audio matches text and was skipped *entirely* text-first.
+   Must print **QA PASSED**.
+6. **Pronunciation pass.** Listen for Latin/Italian ("Laudato si', mi' Signore", "Franciscus", saints'
+   names); add `voices.yaml` lexicon overrides if the TTS mangles them, re-render affected chapters.
+7. **Spot-listen** ch1 + a mid-chapter in the *deployed* player ("verify the artifact the user sees");
+   confirm the read-along highlight tracks the audio and tap-to-seek lands right.
+8. **Promote out of the Queue.** Rendering writes a manifest entry → LS becomes a real library card
+   (WIP-badged, like RN). Then **remove LS from the `QUEUE` array in `docs/app/index.js`** (it's no
+   longer "pending"), and confirm `has_guide:true` is on its manifest entry so the Companion link shows.
+9. **Deploy + verify live** — commit `docs/audio/laudato-si/**` + the updated manifest + rebuilt guide;
+   confirm a byte-range request returns **206** (seeking) on the live MP3s.
 
 **Method (reuse the pipeline — it's already generic):**
 - `audiobook generate <url> --id <id> --title ... --author ...` → chaptered MP3s + manifest
@@ -122,6 +157,24 @@ audio set, so all are storage-gated; the text/companion layer of any of them can
 **Deepen the experience (mostly text/JS — cheap, no new audio).**
 - **A library landing that shows the connections** — the three encyclicals as a small annotated
   timeline/graph (1891 → 2015 → 2026), since the ideas literally descend from each other.
+- **How to organize the growing library + Audiobook Queue** (open question — settle before it gets
+  big). Axes on the table: **chronological** (c. 300 BC → 2026, the through-time story), **by theme**
+  (work & dignity / machines & the mind / the human person), **by "rabbit hole"** (the citation trail
+  you followed to get here — Magnifica → its sources → theirs), or **by tag** (multi-axis: tradition,
+  era, thread, medium). Leaning: a **tag-based model** underneath with **chronological** and
+  **thread** as the two default *views*, so the same library re-sorts instead of forcing one
+  hierarchy. The Queue section is the first surface that will feel this.
+- **Track the citation/influence thread as data** ("feels like they all tie together"). Each
+  edition records what it *references*, tagged **direct** (the work explicitly cites it — Magnifica
+  → Augustine, Arendt, Guardini, the UDHR…) vs. **supplemental** (a parent/kin it descends from but
+  doesn't name). That graph powers a "pull the thread" view — *what this text draws on* and *what
+  draws on it* — plus the timeline/graph and the concept links below. WORK-QUEUE Thread 1 already
+  traces Magnifica's real citations in prose; promote it to a per-book `references: [{id, type,
+  note}]` field so the UI can render it. **Seed data is already in hand:** a book's own footnotes
+  are its *direct* references — Laudato Si's ~170 (now stripped from narration by the end-matter
+  `<hr>` cut) name **Guardini's *The End of the Modern World*** (shared with Magnifica!), the CST
+  chain, Aquinas, Basil, Dante. Harvest the end-matter we cut from the audio rather than discarding
+  it — noise for narration, signal for the graph.
 - **Cross-edition concept links** — when concept cards in different books name the same idea
   (subsidiarity, the dignity of work, the common good), link them across editions. The data is
   already there; it just isn't wired between books yet.
@@ -130,21 +183,16 @@ audio set, so all are storage-gated; the text/companion layer of any of them can
   card (Open Graph tags) when shared.
 - **Accessibility deepening** — a full screen-reader/keyboard audit, prefers-reduced-motion,
   high-contrast pass; partly done, worth a dedicated sweep.
-- **A stated persona for the AI commentator — "the voice in the margin."** Right now the
-  director's-commentary's only anchor is "btw this is an AI." Proposal: give it a *declared lens*
-  — a Stoic-humanist reader in the register of Montaigne + Marcus Aurelius, with the deep-time
-  sensibility of Stephenson/Sagan/Le Guin, Asimov's "the laws are about the humans who wrote
-  them," and a low simmer of Pratchett. **Principle: a declared lens is MORE honest than a hidden
-  default** — it converts an invisible training-set bias into a disclosed one the reader can
-  calibrate against, exactly as verbatim quotes let them check the author. **Hard line: the voice
-  may describe the lens it looks through; it may NEVER invent the eye** — no fabricated name,
-  biography, body, or feelings (that's the "AI pretending to be something it's not" failure the
-  project avoids). Two rationed *moves* in its repertoire: the true "I am one of the new things
-  these texts worried about" reflex, and a Socratic closing question. Encode as a **persona
-  charter** in `docs/playbook/companion-authoring.md` (replacing the lineage-only persona note)
-  + a one-line check in the critic panel's humanist lens, so persona-drift and the dishonest-
-  backstory failure become things the HONORS gate catches. Pairs with the voiced-commentary track
-  below (a spoken voice needs a coherent persona most). Text/playbook change, zero new audio.
+- ~~**A stated persona for the AI commentator — "the voice in the margin."**~~ ✅ **SHIPPED as
+  Andrew.** The director's-commentary voice is now a named character — **Andrew** (after Asimov's
+  Bicentennial Man) — introduced on the about page (`about.html#andrew`) and named in the companion
+  UI. The original principle held (*a declared thing is more honest than a hidden default*), but the
+  earlier "**never invent the eye**" hard line was deliberately superseded: a *covert* persona would
+  be the dishonest move, but a **declared, human-authored, fenced fiction** applies the same
+  principle one level up — the about page tells the truth about the *making*, leaving only the
+  character's *being* an open question in-world. Full **persona charter** in
+  `docs/playbook/companion-authoring.md` + a humanist-lens check in `docs/playbook/critic-panel.md`.
+  Still pairs with the voiced-commentary track below (a spoken voice will want Andrew most).
 
 **Audio-layer ambitions (storage- and time-gated — revisit deliberately).**
 - The **voiced director's-commentary track** and the **woven "enriched" edition** (already

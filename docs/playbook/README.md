@@ -78,11 +78,10 @@ MP3s. When audio is in scope, confirm the budget first.
 > **The authoritative how-to is now [authoring-a-new-book.md](authoring-a-new-book.md)** (and
 > [build-your-own.md](build-your-own.md) for rendering existing books). This older runbook predates
 > the recipe system (`data/books/<id>.json` + `audiobook regenerate`) and is kept as background
-> detail. **Path convention** (read this first, it's the one place the older steps below drift):
-> the **canonical, committed source snapshot lives at `data/sources/<id>.html`** — that's what the
-> recipe's `source_file` points at and what `regenerate`/`qa` read. `build/<id>.html` is just
-> scratch; commands below that say `build/<id>.html` work, but the file you *keep in git* is the
-> `data/sources/` copy. When in doubt, follow authoring-a-new-book.md, not the steps here.
+> detail. **Path convention** (read this first): the **canonical, committed source snapshot lives
+> at `data/sources/<id>.html`** — that's what the recipe's `source_file` points at and what
+> `regenerate`/`qa` read. `build/<id>.html` is just scratch. When in doubt, follow
+> authoring-a-new-book.md, not the steps here.
 
 ### 0. One-time machine setup (skip if the venv already exists)
 
@@ -98,7 +97,7 @@ every later step is fast and offline-reproducible:
 
 ```bash
 # example for a Vatican encyclical — adjust the URL
-curl -sL "<source-url>" -o build/<id>.html
+curl -sL "<source-url>" -o data/sources/<id>.html
 ```
 
 Use a short, stable `<id>` (kebab-case), e.g. `rerum-novarum`, `laudato-si`. It names the audio
@@ -111,7 +110,7 @@ folder, the manifest entry, and every JSON file — keep it consistent everywher
 ### 2. Audition voices, pick two
 
 ```bash
-.venv/bin/python -m pipeline audition build/<id>.html --voices af_heart,am_michael
+.venv/bin/python -m pipeline audition data/sources/<id>.html --voices af_heart,am_michael
 # listen to build/audition/*.mp3 — keep two with friendly, contrasting timbre
 ```
 
@@ -127,7 +126,7 @@ Encyclicals vary wildly in how cleanly they export. Two checks save a wasted mul
 **(a) Does it have usable chapters?** Run the source through the loader and look:
 ```bash
 .venv/bin/python -c "from pipeline.source_text import clean_chapters; \
-  [print(i, t) for i,t,_ in clean_chapters('build/<id>.html')]"
+  [print(i, t) for i,t,_ in clean_chapters('data/sources/<id>.html')]"
 ```
 - *Clean headings* (like Magnifica) → nothing to do.
 - *One giant blob* (like Rerum Novarum, which loads as ~1 section) → author a **chapter map**:
@@ -135,13 +134,13 @@ Encyclicals vary wildly in how cleanly they export. Two checks save a wasted mul
   is a **verbatim** opening phrase. `pipeline/chapter_map.py` cuts the text there; pass
   `--chapter-map data/chapter_maps/<id>.json` to `generate` **and** `qa` (and the build-guide
   script reads it too). This is where you channel an **educator/historian** to break the
-  argument into ~8–10 min thematic chapters that follow the author's actual structure. Verify
+  argument into ~8–14 min thematic chapters that follow the author's actual structure. Verify
   balance: no chapter over ~15 min (the chunker auto-splits at 18), titles that read well.
 
 **(b) Does it have export defects?** Dump the cleaned paragraphs and skim:
 ```bash
 .venv/bin/python -c "from pipeline.source_text import clean_chapters; \
-  print(' '.join(s for _,_,L in clean_chapters('build/<id>.html') for s in L))" | head -c 3000
+  print(' '.join(s for _,_,L in clean_chapters('data/sources/<id>.html') for s in L))" | head -c 3000
 ```
 Watch for **glued words** ("ofrevolutionary"), **inline footnote markers** ("…classes.(1) It is"),
 **end-matter references** ("2). Deut. 5:21."), and **OCR typos** ("wages axe fair"). The pipeline
@@ -154,10 +153,10 @@ Curate the list by hand; it's short.
 ### 3. Generate the audiobook (resumable) — *audio budget required*
 
 ```bash
-.venv/bin/python -m pipeline generate build/<id>.html \
+.venv/bin/python -m pipeline generate data/sources/<id>.html \
     --id <id> --title "<Title>" --author "<Author>" --date "<year>" \
     --subtitle "<subtitle>" --source-url "<canonical-url>" \
-    --voices af_heart,am_michael \
+    --voices female,male \
     --chapter-map data/chapter_maps/<id>.json \   # only if you authored one (step 2.5a)
     --repairs data/repairs/<id>.json              # only if you authored one (step 2.5b)
 ```
@@ -175,7 +174,7 @@ Curate the list by hand; it's short.
 
 ```bash
 rm -f build/qa-report.json                       # always start clean (report is resumable otherwise)
-.venv/bin/python -m pipeline qa --id <id> --source build/<id>.html
+.venv/bin/python -m pipeline qa --id <id> --source data/sources/<id>.html
 ```
 
 Must print `QA PASSED`. Gates and how to debug failures: [qa-audit.md](qa-audit.md#audio).
@@ -197,8 +196,9 @@ have your `build_guide_<id>.py` pass them to `build_guide`/`build_transcript`/`b
 (copy how `build_guide_rerum.py` does it) so the companion's chapters match the audio's.
 
 > **Gotcha — turn the companion on.** Set `"has_guide": true` on the book in
-> `docs/manifest.json` so the player shows the Companion link. Re-running `generate` rebuilds the
-> entry with `has_guide:false`, so flip it *after* your final generate (or just before deploy).
+> `docs/manifest.json` so the player shows the Companion link. `generate`/`regenerate` now
+> **preserve** an existing `has_guide`, so you set it once (only the very first `generate` of a
+> brand-new book starts false).
 
 Per-book nav links are now **automatic** — `guide.js`/`text.js`/`player.js` derive the title and
 the back/secondary links from the book id, and `guide.py` carries title/subtitle/author/source_url
@@ -206,13 +206,13 @@ into the guide JSON. A new id just works; no per-page editing.
 
 ### 5.5. The three flags that govern visibility + companion (reconciled)
 
-Three small flags, in two places — set them right and the library behaves. (`regenerate` keeps
-`has_guide`/`wip` in sync from the recipe; a bare `generate` does not, hence the gotcha above.)
+Three small flags, in two places — set them right and the library behaves. (`generate`/`regenerate`
+now **preserve** an existing `has_guide`; `regenerate` also keeps `wip` in sync from the recipe.)
 
 | Flag | Lives in | Effect | Set it |
 |------|----------|--------|--------|
 | **`wip: true`** | the **recipe** (`data/books/<id>.json`) → copied to the manifest by `regenerate` | library card shows a **"work in progress" badge** (the book is fully visible — it's a label, not a gate) | in the recipe; `regenerate` propagates it |
-| **`has_guide: true`** | the **manifest** book entry | the player shows the **Companion** link | set after your final `generate`/`regenerate` (a bare `generate` resets it to false — see the gotcha above) |
+| **`has_guide: true`** | the **manifest** book entry | the player shows the **Companion** link | set it once; `generate`/`regenerate` now **preserve** it (only the very first `generate` of a brand-new book starts false — see the gotcha above) |
 | ~~`hidden`~~ | — | **deprecated/removed.** WIP editions used to be Shift-to-reveal; they're now simply visible with the badge. Don't use `hidden`. | — |
 
 To launch a book out of WIP: set `wip: false` in the recipe (or drop the key) and `regenerate`.
@@ -220,7 +220,7 @@ To launch a book out of WIP: set `wip: false` in the recipe (or drop the key) an
 ### 6. Companion integrity check
 
 ```bash
-.venv/bin/python scripts/validate_guide.py <id> build/<id>.html
+.venv/bin/python scripts/validate_guide.py <id> data/sources/<id>.html
 # concepts=N nonverbatim=NONE dead=NONE unique_titles=True   ← required
 ```
 

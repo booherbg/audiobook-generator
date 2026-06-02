@@ -58,7 +58,8 @@ The contract is the recipe at `data/books/<id>.json`, which names everything:
   "chapter_map": "data/chapter_maps/laudato-si.json",  // or null if the source has usable headings
   "repairs": "data/repairs/laudato-si.json",       // or null if the source is clean
   "guide_builder": "pipeline.build_guide_laudato_si",  // the companion authoring module
-  "wip": true                                      // shows a "work in progress" badge
+  "notes": "Built from the vatican.va HTML snapshot; © Libreria Editrice Vaticana.",  // free-text human memo (build basis, copyright, caveats)
+  "wip": true                                      // shows a "work in progress" badge; set false (or omit) for launched books — true only while a book is work-in-progress
 }
 ```
 
@@ -77,9 +78,9 @@ Once those exist, **render is one command** (resumable; audio is a build artifac
 ```sh
 uv run audiobook regenerate <id>          # audio + read-along + full-text + companion
 uv run audiobook regenerate <id> --skip-audio   # just the text layer (fast)
-rm -f build/qa-report.json && uv run audiobook qa --id <id> \
-   --source data/sources/<id>.html \
-   --chapter-map data/chapter_maps/<id>.json --repairs data/repairs/<id>.json   # must print QA PASSED
+rm -f build/qa-report.json && uv run audiobook qa --id <id>   # must print QA PASSED
+   # the recipe supplies source + chapter-map + repairs; the flags below are optional overrides:
+   #   --source data/sources/<id>.html --chapter-map data/chapter_maps/<id>.json --repairs data/repairs/<id>.json
 uv run audiobook deploy
 ```
 

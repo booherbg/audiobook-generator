@@ -17,8 +17,8 @@ for every book. It is not a rubber stamp.
    (This just flattens `docs/guide/<id>.json` into readable markdown — see the bottom of this file
    for what it does.)
 
-2. **Dispatch three subagents in parallel** (`Agent`, `general-purpose`), each a different lens,
-   each reading the bundle **against the cleaned source** (`build/<id>.html` or `build/clean.txt`).
+2. **Dispatch three subagents in parallel** (`general-purpose`), each a different lens,
+   each reading the bundle **against the cleaned source** (`data/sources/<id>.html`).
    Three lenses that worked well:
    - **Educator** — is it clear, accurate, and genuinely helpful to a curious non-expert? Does it
      teach, or just decorate?
@@ -37,7 +37,8 @@ for every book. It is not a rubber stamp.
 
 4. **Apply the findings**, re-grounding every change in verbatim source text (fix anchors, deepen
    blurbs, add missing concepts, correct the commentary). Rebuild
-   (`python -m pipeline.build_guide_<id>`), re-validate (`scripts/validate_guide.py`).
+   (`uv run audiobook regenerate <id> --skip-audio`), re-validate
+   (`scripts/validate_guide.py <id> data/sources/<id>.html`).
 
 5. **Re-run one confirming audit** (the domain expert is usually enough) to verify the fixes
    landed and the verdict is now **HONORS.** Apply only quick wins from the second pass.
@@ -56,7 +57,7 @@ before the pass") — that honesty is part of honoring the work.
 ## Ready-to-paste prompts
 
 Fill in `<id>`, `<TITLE>`, `<AUTHOR>`, the source description, and the third lens. Dispatch all
-three at once (parallel `Agent` calls), then a single confirming run after fixes.
+three at once (parallel subagent calls, one per lens), then a single confirming run after fixes.
 
 > **Shared preamble** (prepend to each):
 > *You are reviewing an AI-built "companion" to <AUTHOR>'s <TITLE> (<one-line description>).
@@ -64,7 +65,7 @@ three at once (parallel `Agent` calls), then a single confirming run after fixes
 > extracted verbatim from the source by code; your job is to judge the **blurbs, commentary,
 > glossary, selection, and emphasis** — does the companion honor what the source actually claims,
 > in its own register? Companion: `build/companion_for_review.md`. Source (chapter-marked):
-> `build/<id>.html` (or `build/clean.txt`). Cite source line numbers. Do not rubber-stamp.*
+> `data/sources/<id>.html`. Cite source line numbers. Do not rubber-stamp.*
 
 **Educator lens (append):**
 > *Lens: a gifted teacher introducing this to a curious, technical, non-specialist reader. Is each
@@ -76,7 +77,12 @@ three at once (parallel `Agent` calls), then a single confirming run after fixes
 > *Lens: a thoughtful humanist reader. Does the companion engage the ideas honestly and humanely,
 > without dogmatism or evangelism, suited to a reader who is open but not committed? Does it
 > respect the reader's intelligence and the author's seriousness? Flag anything preachy,
-> dismissive, or tonally off. End with per-finding severity, then a verdict, with one-line fixes.*
+> dismissive, or tonally off. **The commentary asides are a named character — Andrew (see the
+> persona charter in `companion-authoring.md`): are they recognizably his (dry, specific, the
+> insight and the flavor in one sentence) and never generic "AI commentary" (no "as an AI," no
+> uplift bow)? Does each stay clearly labelled opinion, never laid over the text — and never claim
+> to be human, speak for the author, or assert as fact what the source doesn't say?** End with
+> per-finding severity, then a verdict, with one-line fixes.*
 
 **Domain-expert lens (append — example for a Catholic encyclical):**
 > *Lens: a scholar of the Catholic intellectual and spiritual tradition (patristics, scholasticism,

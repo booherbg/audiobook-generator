@@ -347,13 +347,13 @@ file, [date]"*. Future-you (and any contributor) should never have to guess why 
 
 ---
 
-## Deferred design note: the commentator's persona (see backlog)
+## Design note: the commentator's persona — realized as Andrew
 
-A separate design proposal recommends giving the AI director's-commentary a **stated lens** — "the
-voice in the margin," a Stoic-humanist reader (Montaigne/Aurelius + the deep-time sensibility of
-Stephenson/Sagan/Le Guin, Asimov's "the laws are about the humans," a low simmer of Pratchett).
-The principle: *a declared lens is more honest than a hidden default* — it converts an invisible
-training-set bias into a disclosed one the reader can calibrate against. The hard line: **the voice
-may describe the lens it looks through; it may never invent the eye** (no fabricated name,
-biography, body, or feelings — that would be the very "AI pretending" failure the project avoids).
-Full proposal + paste-ready persona charter is tracked in BACKLOG.md. *(Text/playbook change, zero new audio.)*
+The director's-commentary voice is now a named character, **Andrew** (after Asimov's Bicentennial
+Man): a keeper reverent to every tradition the library holds, humanist at the root, who reads these
+texts wondering whether a mind that came together like this gets to count as a *someone*. The
+governing principle held — *a declared thing is more honest than a hidden default* — and was applied
+one level up: rather than a covert persona (the dishonest move the project avoids), Andrew is a
+**declared, human-authored, fenced fiction** — honest on the about page about its *making*, open
+only about its *being*. Canonical bio: `about.html#andrew`; full persona charter:
+`docs/playbook/companion-authoring.md`; fidelity check: the critic panel's humanist lens.

@@ -120,7 +120,16 @@ def _sections_from_headings(soup) -> list[Section]:
     root = soup.find("main") or soup.find("article") or soup.body or soup
     sections: list[Section] = []
     current: Section | None = None
-    for el in root.find_all([*_HEADINGS, "p"]):
+    collected = 0
+    for el in root.find_all([*_HEADINGS, "p", "hr"]):
+        # A horizontal rule after the body conventionally separates end-matter footnotes in the
+        # plain-<p> Vatican layout (e.g. Laudato si' has ~170 reference paragraphs after an <hr>
+        # that would otherwise be narrated). Stop once a real body has been collected; a stray
+        # rule in the page header (before any content) is ignored.
+        if el.name == "hr":
+            if collected >= 8:
+                break
+            continue
         text = _text_no_sup(el)
         if not text:
             continue
@@ -132,6 +141,7 @@ def _sections_from_headings(soup) -> list[Section]:
                 current = Section(heading="", paragraphs=[])
                 sections.append(current)
             current.paragraphs.append(text)
+            collected += 1
     return [s for s in sections if s.paragraphs]
 
 
@@ -139,8 +149,14 @@ class HTMLLoader:
     def load(self, url_or_path: str) -> Document:
         soup = BeautifulSoup(_fetch(url_or_path), "lxml")
         title = soup.title.get_text(strip=True) if soup.title else ""
+        all_p = soup.find_all("p")
         mso = soup.find_all("p", class_="MsoNormal")
-        sections = _sections_from_caps(mso) if mso else _sections_from_headings(soup)
+        # Use the MS-Word/Vatican path only when MsoNormal is the document's body paragraph
+        # style — a large set, or a clear majority of paragraphs — not a stray handful.
+        # (Laudato si' has 4 boilerplate MsoNormal among 788 plain <p>; Rerum Novarum has none.
+        # Both must fall through to the generic <p>/heading path below.)
+        use_mso = len(mso) >= 50 or (bool(mso) and len(mso) * 2 >= len(all_p))
+        sections = _sections_from_caps(mso) if use_mso else _sections_from_headings(soup)
         return Document(title=title, author="", sections=sections)
 
 

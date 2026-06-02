@@ -9,11 +9,25 @@
 <body>
   <div class="wrap">
     <header class="topbar">
-      <strong>Audiobook Library</strong>
+      <strong id="lib-title">Audiobook Library</strong>
       <a href="about.html">About</a>
     </header>
-    <p class="lede">Freely-shared texts, narrated locally and played in your browser.</p>
+    <p class="lede">A free, growing collection on one restless question: what it means to stay
+      human as our machines grow more capable. It begins where the question grabbed us — a 2026
+      letter on AI and the human person — and follows the thread outward, across the thinkers,
+      scriptures, and science fiction that have circled the same ground since antiquity. You don't
+      have to believe any of it to be pulled in; come curious.</p>
+    <p class="muted home-sub">Narrated locally, with read-along text and a companion in the
+      margins — no account, no tracking, no paywall.</p>
     <div class="grid" id="grid"></div>
+
+    <section class="queue">
+      <h2 class="queue-head">Audiobook Queue</h2>
+      <p class="lede queue-sub">Pending editions — audio still to come. These are the works in the
+        through-line this library follows: the long conversation between humanism and technology,
+        from the ancients to the age of AI.</p>
+      <div class="grid" id="queue"></div>
+    </section>
   </div>
 
   <script type="module">

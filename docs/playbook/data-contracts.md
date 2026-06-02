@@ -11,9 +11,9 @@ so on-screen words match spoken words.
 | File | Written by | Read by | Purpose |
 |------|-----------|---------|---------|
 | `docs/manifest.json` | `pipeline/manifest.py` (via `generate`) | every page | library index, per-voice chapter files + durations |
-| `docs/guide/<id>.json` | `pipeline/guide.py` | `app/guide.js` | companion: concepts, commentary, glossary, further-reading |
-| `docs/transcript/<id>.json` | `pipeline/transcript.py` | `app/player.js` | read-along lines + timing fractions |
-| `docs/text/<id>.json` | `pipeline/fulltext.py` | `app/text.js` | full-text reader |
+| `docs/guide/<id>.json` | `pipeline/guide.py` | `docs/app/guide.js` | companion: concepts, commentary, glossary, further-reading |
+| `docs/transcript/<id>.json` | `pipeline/transcript.py` | `docs/app/player.js` | read-along lines + timing fractions |
+| `docs/text/<id>.json` | `pipeline/fulltext.py` | `docs/app/text.js` | full-text reader |
 
 A core invariant ties three of them together: **voice-independent positioning.** Voices differ
 in length by ~10%, so an absolute second on one voice's timeline lands in the wrong place — even
@@ -42,15 +42,15 @@ The library. One entry per book; chapters carry per-voice file paths and measure
       "cover": "audio/magnifica-humanitas/cover.svg",
       "public": true,
       "voices": [
-        { "id": "af_heart",  "label": "Heart",   "engine": "kokoro", "ref": "af_heart" },
-        { "id": "am_michael","label": "Michael", "engine": "kokoro", "ref": "am_michael" }
+        { "id": "female", "label": "Heart — warm US female",  "engine": "kokoro", "ref": "af_heart" },
+        { "id": "male",   "label": "Michael — friendly US male", "engine": "kokoro", "ref": "am_michael" }
       ],
       "chapters": [
         {
           "index": 1,
           "title": "Humanity, Created in Grandeur",
-          "files":    { "af_heart": "audio/…/af_heart/chapter-01.mp3", "am_michael": "audio/…/chapter-01.mp3" },
-          "duration": { "af_heart": 612.3, "am_michael": 558.9 }   // seconds, per voice
+          "files":    { "female": "audio/…/af_heart/chapter-01.mp3", "male": "audio/…/chapter-01.mp3" },
+          "duration": { "female": 612.3, "male": 558.9 }   // seconds, per voice
         }
       ]
     }
@@ -62,8 +62,8 @@ The library. One entry per book; chapters carry per-voice file paths and measure
 - `chapters[].files` and `chapters[].duration` are keyed by **voice id**. Both voices must be
   present for a chapter to be listed (`generate` only emits chapters complete across all voices
   on disk).
-- `has_guide` defaults to **false** and is reset every `generate`. Flip it to `true` after the
-  companion exists. (See playbook step 5.)
+- `has_guide` defaults to **false**; set it `true` once after the companion exists —
+  `generate`/`regenerate` then **preserve** it (no longer reset). (See playbook step 5.)
 - `duration` is measured by `ffprobe`, not estimated — the read-along and deep-link math depend
   on it being real.
 

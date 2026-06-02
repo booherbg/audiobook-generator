@@ -238,3 +238,31 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
 }
 .source-credit a { color: var(--muted); text-decoration: underline; }
 .source-credit a:hover { color: var(--accent); }
+
+/* ── Audiobook Queue (pending editions on the library index — no audio yet) ── */
+.queue { margin-top: 36px; }
+.queue-head { font-size: 1.05rem; margin: 0 0 4px; }
+.queue-sub { margin: 0 0 16px; font-size: 0.92rem; }
+.card.queued { cursor: default; opacity: .92; border-style: dashed; }
+.card.queued:hover { border-color: var(--line); }
+.queue-num {
+  width: 92px; height: 92px; border-radius: 10px; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--panel-2); color: var(--muted); font-size: 1.6rem; font-weight: 600;
+}
+@media (max-width: 480px) { .queue-num { width: 72px; height: 72px; font-size: 1.3rem; } }
+.queue-badge {
+  display: inline-block; margin-top: 8px; padding: 1px 8px; border-radius: 999px;
+  font-size: .7rem; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--muted); background: var(--panel-2); border: 1px solid var(--line);
+}
+.queue-badge.production { color: var(--bg); background: var(--accent); border-color: transparent; opacity: .9; }
+.card.queued.admin { opacity: 1; border-style: solid; }
+.queue-preview { margin-top: 8px; display: flex; gap: 14px; flex-wrap: wrap; }
+.queue-preview a { font-size: 0.82rem; color: var(--accent-2); text-decoration: none; }
+.queue-preview a:hover { text-decoration: underline; color: var(--accent); }
+.queue-preview.muted { color: var(--muted); font-size: 0.78rem; font-style: italic; }
+body.admin .queue-head::after {
+  content: " · admin"; color: var(--accent); font-size: .62rem;
+  letter-spacing: .08em; text-transform: uppercase; vertical-align: middle;
+}
