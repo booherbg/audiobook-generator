@@ -7,10 +7,18 @@
   "source_url": "https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
   "source_file": "data/sources/magnifica-humanitas.html",
   "rights": "© Libreria Editrice Vaticana",
-  "voices": ["female", "male"],
+  "voices": [
+    "female",
+    "male"
+  ],
   "chapter_map": null,
   "repairs": "data/repairs/magnifica-humanitas.json",
   "guide_builder": "pipeline.build_guide_magnifica",
   "wip": false,
-  "notes": "Auto-chaptered by the loader (Vatican HTML has usable headings); no chapter map needed. Repairs fix a drop-cap 'R esponsibility' and a stripped <sup>th</sup> ('135 anniversary')."
+  "notes": "Auto-chaptered by the loader (Vatican HTML has usable headings); no chapter map needed. Repairs fix a drop-cap 'R esponsibility' and a stripped <sup>th</sup> ('135 anniversary').",
+  "tags": [
+    "technology",
+    "humanism",
+    "west"
+  ]
 }

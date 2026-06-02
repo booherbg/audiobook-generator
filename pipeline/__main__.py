@@ -81,6 +81,10 @@ def _book_dict(args, book_id, title, selected, voices_cfg, src, book_chapters, e
         "has_guide": existing.get("has_guide", False),
         # preserve the work-in-progress flag across re-renders (only carry it if set)
         **({"wip": True} if existing.get("wip") else {}),
+        # organizing-model tags: recipe is source of truth, carried (or preserved) across renders.
+        # See docs/superpowers/specs/2026-06-02-collection-organizing-model.md
+        **({"tags": getattr(args, "tags", None) or existing.get("tags") or []}
+           if (getattr(args, "tags", None) or existing.get("tags")) else {}),
         "voices": [
             {"id": v, "label": voices_cfg[v]["label"], "engine": "kokoro", "ref": voices_cfg[v]["ref"]}
             for v in selected
@@ -338,6 +342,7 @@ def cmd_regenerate(args):
         source_url=r["source_url"], rights=r.get("rights"),
         voices=",".join(r.get("voices") or []) or None,
         chapters=args.chapters, chapter_map=r.get("chapter_map"), repairs=r.get("repairs"),
+        tags=r.get("tags"),
         max_chapter_min=config.MAX_CHAPTER_MIN, clean=args.clean, force=args.force,
     )
     if args.skip_audio:

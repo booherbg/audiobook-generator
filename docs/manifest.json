@@ -232,7 +232,12 @@
           }
         }
       ],
-      "rights": "© Libreria Editrice Vaticana"
+      "rights": "© Libreria Editrice Vaticana",
+      "tags": [
+        "technology",
+        "humanism",
+        "west"
+      ]
     },
     {
       "id": "rerum-novarum",
@@ -386,7 +391,11 @@
         }
       ],
       "wip": true,
-      "rights": "© Libreria Editrice Vaticana"
+      "rights": "© Libreria Editrice Vaticana",
+      "tags": [
+        "humanism",
+        "west"
+      ]
     },
     {
       "id": "laudato-si",
@@ -590,6 +599,11 @@
             "aoede": 853.1
           }
         }
+      ],
+      "tags": [
+        "technology",
+        "humanism",
+        "west"
       ]
     }
   ]
