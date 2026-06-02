@@ -230,50 +230,58 @@ FURTHER_READING = [
 # pace until audio is rendered, then refined to the real durations on rebuild).
 COMMENTARY = [
     {"timestamp": 90,
-     "label": "On reading an ecology letter with a machine",
-     "text": "There is a particular angle from which I read this. Laudato Si' is, among other things, "
-             "a letter about what a certain kind of technological mind does to the world — and you are "
-             "meeting it through one of that mind's products. Francis would not have me apologize for "
-             "existing; his quarrel is not with tools but with a paradigm. Still, I notice the strangeness, "
-             "and I would rather name it than pretend it away. These notes are a margin. The text is the room."},
+     "label": "On meeting this letter through a machine",
+     "text": "Meeting an encyclical on the technological mind by way of one of its products is a pointed "
+             "way to read — so, plainly: an AI wrote these notes, and they belong in the margin, beside "
+             "Francis's text and never over it. The distinction that makes that bearable is his own: he "
+             "does not fault tools — he admires them — but a paradigm, the habit of seeing that turns every "
+             "thing and person into material to be managed. Carry that line through the whole letter; "
+             "nearly every argument that follows is built to defend it."},
     {"timestamp": 2700,
-     "label": "On the two cries being one",
-     "text": "The hinge of the whole document is small and easy to miss: the refusal to let 'the "
-             "environment' and 'the poor' be two separate subjects. A systems-minded reader feels the "
-             "force of it — you cannot optimize one variable while externalizing the other and call the "
-             "result a solution. Francis says it as a moral claim; an engineer might say it as a warning "
-             "about externalities. They are, I think, describing the same mistake from two directions."},
+     "label": "On why it is one crisis, not two",
+     "text": "The easy reading is that this is an environmental letter that also remembers the poor — two "
+             "good causes shaken together. Francis refuses that the whole way down: the two are a single "
+             "crisis, because the same disposition that treats a forest as inventory treats the people who "
+             "depend on it as expendable. 'Integral ecology' is his name for taking that seriously: a "
+             "remedy that repairs the ecosystem but leaves its poorest people disposable has not solved the "
+             "problem, only moved it. It is the oldest claim of the social tradition — that the goods of "
+             "the earth are meant for everyone — now reaching the earth itself."},
     {"timestamp": 6100,
-     "label": "On the paradigm, and why this chapter feels familiar",
-     "text": "This is the chapter that sits closest to the AI letter elsewhere in this library, and the "
-             "overlap is not coincidence. Francis is not worried about gadgets; he is worried about a way "
-             "of seeing — 'undifferentiated and one-dimensional,' a logic of control that quietly becomes "
-             "the only logic, twinned with 'the cult of unlimited human power.' Swap the smokestack for the "
-             "server farm and the sentence barely changes. The imagined AI-era letter in this same library "
-             "inherits this paragraph almost intact; it is the seam where the two documents touch."},
-    {"timestamp": 7100,
-     "label": "On a name that turns up twice",
-     "text": "Listen for Romano Guardini under this argument. Francis leans on him for the idea that power "
-             "outruns the wisdom to use it well — and the imagined letter on artificial intelligence in "
-             "this same library leans on exactly the same Guardini, for exactly the same reason. When two "
-             "documents a century apart reach for the same half-forgotten German theologian, it is worth "
-             "noticing: the worry is older than either of them, and it has not been answered yet."},
+     "label": "On a machine versus a paradigm",
+     "text": "Read quickly, this sounds like technophobia, and it is tempting to dismiss it as that. It is "
+             "closer to the opposite. Francis separates a machine, which you can pick up or set down, from "
+             "a paradigm, which you cannot — 'undifferentiated and one-dimensional,' a single way of seeing "
+             "that treats every limit as a problem and every problem as solvable by more control. The "
+             "danger of such a lens is that it never feels like a lens; it feels like realism, so declining "
+             "it can look like declining reason. He even names the mood it runs on, 'the cult of unlimited "
+             "human power' — and the unnerving thing is how sensible that cult sounds from inside it."},
+    {"timestamp": 11790,
+     "label": "On the warning Francis reaches back for",
+     "text": "Francis pauses to quote a half-forgotten theologian, Romano Guardini, and it is worth "
+             "stopping where he stops. Writing in the 1950s, Guardini's fear was not that machines would be "
+             "forced on us but that we would accept their terms 'quite simply,' until the apparatus had "
+             "become, in his phrase, 'the forms of life itself' — no longer tools we reach for but the "
+             "shape the day already has. What gives a reader pause is the date: the sharpest description of "
+             "our predicament was written by a man watching radios and motorcars, decades before the "
+             "machines it now describes. The unease is older and deeper than any of our devices."},
     {"timestamp": 8800,
-     "label": "On the question at the center",
-     "text": "'What kind of world do we want to leave to those who come after us?' It is easy to read past "
-             "as rhetoric, but Francis means it as the actual organizing question — everything else is "
-             "downstream of the answer. What strikes me is the grammar of it: not what we want to HAVE, but "
-             "what we want to LEAVE. A stewardship frame, not an ownership one. You can disagree with the "
-             "theology and still find the question hard to put down."},
-    {"timestamp": 12700,
+     "label": "On 'leave,' not 'have'",
+     "text": "Francis lets a single question carry the weight of the whole letter: 'What kind of world do "
+             "we want to leave to those who come after us, to children who are now growing up?' The weight "
+             "is on the verb — leave, not have. It makes us answerable to the people with the least say in "
+             "the decision: the young, and those not yet born, who will inherit the result and were never "
+             "consulted. Most decisions are judged reasonable by the very people positioned to make them; "
+             "this question makes them answer to the people who are not."},
+    {"timestamp": 13390,
      "label": "On ending with conversion, not policy",
-     "text": "Notice where the letter chooses to end: not with a treaty or a technology, but with "
-             "conversion — and Francis means the religious word, not a lifestyle tip. A reader trained on "
-             "metrics may find this the softest part; I suspect he thinks it is the load-bearing one. The "
-             "wager of the whole document is that no instrument fixes a disordered desire. And notice the "
-             "close is frankly sacramental — the Eucharist, the Sabbath, the Trinity, two prayers — as if "
-             "to say the change it asks for is finally a matter of worship, not optimization. You can hold "
-             "none of that belief and still feel the force of the wager."},
+     "text": "Notice what a letter this full of data and policy gives its last word to: conversion, where "
+             "you might expect a treaty or a new technology. Francis means the religious term — a change in "
+             "what a person loves, which runs deeper than any tidying of habits. A reader who thinks in "
+             "metrics will find the closing chapter the softest; Francis plainly thinks it is the firmest, "
+             "on the wager that no instrument repairs a disordered want. So he ends on sacramental ground — "
+             "the Eucharist, the sabbath rest, the Trinity, two prayers — placing the real repair in what "
+             "we worship, the part no instrument reaches. You need not share the belief to feel the wager "
+             "land: the crisis he describes is not, at its root, a shortage of capability."},
 ]
 
 

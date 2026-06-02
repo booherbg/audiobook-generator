@@ -387,6 +387,210 @@
       ],
       "wip": true,
       "rights": "© Libreria Editrice Vaticana"
+    },
+    {
+      "id": "laudato-si",
+      "title": "Laudato Si'",
+      "subtitle": "On Care for Our Common Home",
+      "author": "Pope Francis",
+      "date": "2015",
+      "source_url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html",
+      "rights": "© Libreria Editrice Vaticana",
+      "description": "",
+      "cover": "audio/laudato-si/cover.svg",
+      "public": true,
+      "has_guide": true,
+      "voices": [
+        {
+          "id": "aoede",
+          "label": "Aoede — gentle US female",
+          "engine": "kokoro",
+          "ref": "af_aoede"
+        }
+      ],
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Introduction",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-01.mp3"
+          },
+          "duration": {
+            "aoede": 931.6
+          }
+        },
+        {
+          "index": 2,
+          "title": "Pollution, Water, and the Throwaway Culture",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-02.mp3"
+          },
+          "duration": {
+            "aoede": 846.0
+          }
+        },
+        {
+          "index": 3,
+          "title": "The Loss of Biodiversity and the Decline of Life",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-03.mp3"
+          },
+          "duration": {
+            "aoede": 762.9
+          }
+        },
+        {
+          "index": 4,
+          "title": "Global Inequality and the Weakness of Our Responses",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-04.mp3"
+          },
+          "duration": {
+            "aoede": 909.8
+          }
+        },
+        {
+          "index": 5,
+          "title": "The Gospel of Creation: Faith and the Biblical Accounts",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-05.mp3"
+          },
+          "duration": {
+            "aoede": 950.1
+          }
+        },
+        {
+          "index": 6,
+          "title": "The Mystery of the Universe",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-06.mp3"
+          },
+          "duration": {
+            "aoede": 703.0
+          }
+        },
+        {
+          "index": 7,
+          "title": "A Universal Communion and the Gaze of Jesus",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-07.mp3"
+          },
+          "duration": {
+            "aoede": 683.4
+          }
+        },
+        {
+          "index": 8,
+          "title": "Technology, Power, and the Technocratic Paradigm",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-08.mp3"
+          },
+          "duration": {
+            "aoede": 916.7
+          }
+        },
+        {
+          "index": 9,
+          "title": "The Crisis of Modern Anthropocentrism",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-09.mp3"
+          },
+          "duration": {
+            "aoede": 473.5
+          }
+        },
+        {
+          "index": 10,
+          "title": "Practical Relativism, Work, and Biotechnology",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-10.mp3"
+          },
+          "duration": {
+            "aoede": 791.2
+          }
+        },
+        {
+          "index": 11,
+          "title": "Integral Ecology: Environment, Economy, and Culture",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-11.mp3"
+          },
+          "duration": {
+            "aoede": 635.2
+          }
+        },
+        {
+          "index": 12,
+          "title": "The Ecology of Daily Life and Future Generations",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-12.mp3"
+          },
+          "duration": {
+            "aoede": 841.6
+          }
+        },
+        {
+          "index": 13,
+          "title": "Dialogue in the International Community",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-13.mp3"
+          },
+          "duration": {
+            "aoede": 694.9
+          }
+        },
+        {
+          "index": 14,
+          "title": "National Policy and Transparent Decisions",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-14.mp3"
+          },
+          "duration": {
+            "aoede": 707.4
+          }
+        },
+        {
+          "index": 15,
+          "title": "Politics, Economy, and Religion in Dialogue",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-15.mp3"
+          },
+          "duration": {
+            "aoede": 837.0
+          }
+        },
+        {
+          "index": 16,
+          "title": "A New Lifestyle and Ecological Education",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-16.mp3"
+          },
+          "duration": {
+            "aoede": 709.3
+          }
+        },
+        {
+          "index": 17,
+          "title": "Ecological Conversion, Joy, and Civic Love",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-17.mp3"
+          },
+          "duration": {
+            "aoede": 907.3
+          }
+        },
+        {
+          "index": 18,
+          "title": "Sacramental Signs, the Trinity, and the Prayers",
+          "files": {
+            "aoede": "audio/laudato-si/aoede/chapter-18.mp3"
+          },
+          "duration": {
+            "aoede": 888.0
+          }
+        }
+      ],
+      "wip": true
     }
   ]
 }

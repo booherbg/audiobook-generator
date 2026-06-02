@@ -54,10 +54,6 @@ export function renderLibrary(doc, grid, m) {
 // queue; edit freely. Full rationale + copyright per item lives in docs/WORK-QUEUE.md.
 // `preview` lists assets already built (companion / full text); shown only in admin mode (below).
 export const QUEUE = [
-  { id: "laudato-si", title: "Laudato Si'", subtitle: "On Care for Our Common Home",
-    author: "Pope Francis", year: "2015", status: "in production",
-    preview: [{ label: "Companion", href: "guide.html?book=laudato-si" }, { label: "Full text", href: "text.html?book=laudato-si" }],
-    note: "Integral ecology and the “technocratic paradigm” — Magnifica's nearest kin." },
   { id: "city-of-god", title: "The City of God", subtitle: "Book XIV — the two cities",
     author: "Augustine of Hippo", year: "c. 420", status: "queued", preview: [],
     note: "“Two loves have made two cities” — the source of Magnifica's central image." },
@@ -71,6 +67,18 @@ export const QUEUE = [
   { id: "erewhon-machines", title: "Erewhon: The Book of the Machines", subtitle: "",
     author: "Samuel Butler", year: "1872", status: "queued", preview: [],
     note: "Could machines evolve a will of their own? The machine-consciousness urtext." },
+  { id: "the-machine-stops", title: "The Machine Stops", subtitle: "",
+    author: "E. M. Forster", year: "1909", status: "queued", preview: [],
+    note: "Humanity underground, every need met by a global Machine — until it stops. Eerily early." },
+  { id: "rur", title: "R.U.R.", subtitle: "Rossum's Universal Robots",
+    author: "Karel Čapek", year: "1920", status: "queued", preview: [],
+    note: "The play that gave us the word “robot,” and asked what we owe the things we make." },
+  { id: "frankenstein", title: "Frankenstein", subtitle: "or, The Modern Prometheus",
+    author: "Mary Shelley", year: "1818", status: "queued", preview: [],
+    note: "The first modern myth of made life — and of a maker who abandons what he makes." },
+  { id: "quadragesimo-anno", title: "Quadragesimo Anno", subtitle: "On the Reconstruction of the Social Order",
+    author: "Pius XI", year: "1931", status: "queued", preview: [],
+    note: "Forty years after Rerum Novarum — it names “subsidiarity,” a beam Magnifica leans on." },
 ];
 
 export function queueCard(doc, item, i, admin = false) {

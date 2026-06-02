@@ -7,10 +7,10 @@
   "source_url": "https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html",
   "source_file": "data/sources/laudato-si.html",
   "rights": "© Libreria Editrice Vaticana",
-  "voices": ["female"],
+  "voices": ["aoede"],
   "chapter_map": "data/chapter_maps/laudato-si.json",
   "repairs": null,
   "guide_builder": "pipeline.build_guide_laudato_si",
   "wip": true,
-  "notes": "Clean 2015 Vatican HTML; loads via the generic <p> path with the end-matter <hr> cut excluding ~170 footnote paragraphs. 18 thematic chapters via the chapter map (~4.1h). No repairs needed (defect scan clean). Audio deferred (storage cap) — voice is provisional (Blaine's pick at render time); the text layer is voice-agnostic. LEV cite-attribution permission (free/non-commercial/attributed/not-sold-separately)."
+  "notes": "Clean 2015 Vatican HTML; loads via the generic <p> path with the end-matter <hr> cut excluding ~170 footnote paragraphs. 18 thematic chapters via the chapter map (~4.1h). No repairs needed (defect scan clean). Single voice 'aoede' (Kokoro af_aoede), chosen via a WER/loudness screen — best intelligibility and the cleanest Latin/Italian ('Laudato si', mi' Signore') and saints' names of the warm candidates; distinct from the trilogy's Heart/Michael/George. LEV cite-attribution permission (free/non-commercial/attributed/not-sold-separately)."
 }

@@ -92,6 +92,28 @@ three at once (parallel subagent calls, one per lens), then a single confirming 
 > anchored to a heading instead of the claim? Verify new quotes are verbatim and correctly framed.
 > Cite source lines. End with per-finding severity, then a verdict, with one-line fixes.*
 
+**Anti-drivel / voice lens (append) — THE GATE for the commentary asides.** Run this on the asides
+specifically, as a cook-until-clean loop (draft → critique → fix → re-critique); the set passes only
+when every aside is CLEAN. The human ear signs off last — this lens will rubber-stamp euphonious slop
+that a person catches (failure-mode K).
+> *Lens: a ruthless anti-AI-drivel critic. The asides are the one surface that can undermine the
+> project — a glib line poisons trust in the exact tooling around it. Judge HARD; default to flagging.
+> Read the shipped Magnifica/Rerum asides (`pipeline/build_guide_magnifica.py`,
+> `pipeline/build_guide_rerum.py`) as the bar: each aside RESISTS the facile reading and earns a
+> harder one; its wit is EARNED BY ERUDITION (a real reference from inside the text's lineage), never
+> a quip; it is reverent to the text and humanizes the maker; it STANDS ALONE; one idea; the last
+> sentence DEEPENS, never mic-drops. Hunt these failure modes, quoting the exact phrase: (A) glib
+> quip / wit not earned by understanding; (B) cheap substitution gimmick ("swap X for Y and the
+> sentence barely changes"); (C) tidy-bow / mic-drop ending; (D) broken/strained metaphor; (E)
+> performance-tell ("read it slowly," "notice the grammar"); (F) slogan-shaped clause that chimes
+> instead of argues; (G) the "not X but Y" antithesis cadence used more than once across the set —
+> flag ONLY when ornamental (an earned contrast carrying the source's actual distinction is fine);
+> (H) repeated formula opener; (I) restatement of the concept or of another aside; (J) AI tells
+> (uplift, "as an AI," manufactured rapport, both-sidesing); (K) bare AI-self-reference or performed
+> humility that scans as modest but earns nothing. Per aside: CLEAN / DRIVEL-RISK + the failure
+> letters + exact phrases + a one-line fix. SET VERDICT: PASS only if all CLEAN; else name the single
+> highest-value edit. This is a gate, not a vibe check.*
+
 **Confirming pass (after fixes):**
 > *(Domain-expert preamble +) A prior panel found this MOSTLY-HONORS-WITH-FIXES; specific fixes
 > were applied. For each claimed fix, confirm it actually landed and is faithful (per-item

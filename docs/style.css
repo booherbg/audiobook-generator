@@ -3,7 +3,7 @@
   --panel: #1f1c16;
   --panel-2: #2a261d;
   --text: #ece6da;
-  --muted: #a59c89;
+  --muted: #b3a98f;   /* lifted one notch: AAA (7:1+) on bg/panels for comfortable long-form reading */
   --accent: #d9b25b;
   --accent-2: #c79a3e;
   --line: #3a342a;
@@ -22,8 +22,10 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .wrap { max-width: var(--max); margin: 0 auto; padding: 16px 16px 64px; }
-h1 { font-size: 1.5rem; margin: 0 0 4px; }
-h2 { font-size: 1.05rem; margin: 0 0 10px; }
+h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 4px; }
+h2 { font-size: 1.2rem; line-height: 1.3; margin: 0 0 10px; }
+/* Vertical rhythm: section headings get room above so they anchor their block. */
+section + section { margin-top: 32px; }
 
 .topbar { display: flex; justify-content: space-between; align-items: center; padding: 6px 0 14px; }
 .topbar a { color: var(--muted); font-size: 0.95rem; }
@@ -241,7 +243,7 @@ h2 { font-size: 1.05rem; margin: 0 0 10px; }
 
 /* ── Audiobook Queue (pending editions on the library index — no audio yet) ── */
 .queue { margin-top: 36px; }
-.queue-head { font-size: 1.05rem; margin: 0 0 4px; }
+.queue-head { font-size: 1.2rem; margin: 0 0 4px; }
 .queue-sub { margin: 0 0 16px; font-size: 0.92rem; }
 .card.queued { cursor: default; opacity: .92; border-style: dashed; }
 .card.queued:hover { border-color: var(--line); }

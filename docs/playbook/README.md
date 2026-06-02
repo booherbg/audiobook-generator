@@ -23,8 +23,9 @@ of labor — it's the heart of how this works in the AI era.
 | Doc | What it covers |
 |-----|----------------|
 | [data-contracts.md](data-contracts.md) | The JSON shapes the player reads: `manifest`, `guide`, `transcript`, `text`. The pipeline↔player interface. |
-| [companion-authoring.md](companion-authoring.md) | Authoring the companion (`build_guide_<id>.py`), how read-along + full-text come free, the no-hallucination quote rule, commentary persona. |
-| [critic-panel.md](critic-panel.md) | The "nerd review": domain-expert reviewers read the companion *against the source* and iterate to a **HONORS** verdict. Ready-to-paste prompts + rubric. |
+| [companion-authoring.md](companion-authoring.md) | Authoring the companion (`build_guide_<id>.py`), how read-along + full-text come free, the no-hallucination quote rule, and the commentary voice — **craft before character**. |
+| [critic-panel.md](critic-panel.md) | The "nerd review": domain-expert reviewers read the companion *against the source* and iterate to a **HONORS** verdict. Ready-to-paste prompts + rubric, including the **anti-drivel gate** for the commentary asides. |
+| [directing-the-voice.md](directing-the-voice.md) | A guide for the *editor* (the human): how to tell earned commentary from glib at a glance, the failure modes, and the anti-drivel cook + final-ear call. |
 | [qa-audit.md](qa-audit.md) | The world-class QA audit: audio gates, site gates, companion integrity, live verification, and the artifact-the-user-sees rule. |
 | [text-first-builds.md](text-first-builds.md) | Ship the text now, render audio later (overnight): what's deferred, the fallbacks that keep it safe, and the QA loop that re-converges on the audio-first bar — so a no-audio build never silently drifts. |
 

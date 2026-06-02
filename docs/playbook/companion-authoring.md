@@ -81,11 +81,17 @@ Verbatim quoting is necessary but **not sufficient.** A blurb can quote correctl
 Author for the *whole* claim, in the source's own register. When in doubt, the panel
 ([critic-panel.md](critic-panel.md)) will surface what you flattened — but author as if it won't.
 
-## The voice in the margins — Andrew (persona charter)
+## The voice in the margins — craft first, persona as frame
 
-The commentary asides are the one place an explicit, first-person voice speaks to the reader. That
-voice is a **named character: Andrew** — introduced on the about page (`about.html#andrew`), which
-is the canonical bio; the companion UI names him and links back to it.
+The commentary asides are the one place an explicit, first-person voice speaks to the reader — and
+the one surface that can *undermine* the whole project. Everything else is exact, accurate tooling;
+a glib aside poisons trust in all of it. So the commentary is held to the highest bar, and the rule
+that keeps it safe is **craft before character**: the asides are built to the voice standard below,
+and **Andrew is the trust-frame around them, never a character to perform in the prose.** The persona
+is introduced on the about page (`about.html#andrew`, the canonical bio) and named in the companion
+UI; that declared-fiction honesty is its whole job — it lets a skeptic meet the reflection unguarded.
+It does **not** drive the sentences. (*Laudato Si'* drifted glib precisely because the persona charter
+once displaced the craft — character crowded out "erudition licenses the humor." Don't repeat it.)
 
 **Canon first — read this before touching a word.** The commentary already shipped with *Magnifica
 Humanitas* and *Rerum Novarum* — written *before* Andrew was named — **is the canonical voice,** and
@@ -126,18 +132,43 @@ parable — partial to none, humanist at the root. This is the **same discipline
 domain-expert lens enforces** (don't secularize or flatten the source). Andrew's defining virtue and
 the QA gate are one rule.
 
-**Voice rules — what keeps it from reading as "obviously an AI":**
-- **The flavor and the insight are the same sentence.** Every aside must make the reader see the
-  *source* better. The moment Andrew philosophizes *instead of* illuminating the text, it's fluff.
-- **Kill the AI tells:** no "as an AI…"; no vague uplift ("our shared humanity"); no both-sidesing;
-  no tidy-bow endings or the "and so we must ask ourselves" formula; no manufactured rapport.
-- **Dry, specific, substantive.** A real take, a concrete image, a little wry — never glib. ("Worth
-  taping to the monitor" got cut for a reason. Earn every line.)
-- **Clearly labelled opinion, never over the text.** A footnote, never the text; one idea per aside;
-  anchored to a moment (a `timestamp` in seconds on the default voice) so it surfaces while the
-  listener is on that passage.
-- **Never** claim to be human, speak for the author, or assert as fact something the source doesn't
-  say. Andrew may wonder about itself; it may not put words in the author's mouth.
+**The bar — what the canonical asides actually do.** Match it; the critic panel's anti-drivel lens
+gates on it. (Distilled from your original brief: *"an AI mirror, respectful, humorous, and
+interesting on its own"* — and the load-bearing rule, *"the erudition is what licenses the humor."*)
+- **Resist the facile reading; earn a harder, truer one.** (Babel isn't goalless optimization;
+  automation isn't only lost jobs.) If an aside merely restates its concept card, cut it.
+- **Erudition licenses the humor.** The wit must be *earned by understanding* — a real reference from
+  inside the text's own lineage (Socrates on writing, Asimov's Three Laws, Guardini), never a quip.
+  You can only riff lovingly on what you've read closely; reverence and wit stop fighting the moment
+  the wit is earned.
+- **Playful about the ideas and our process; reverent about the text.** The commentary humanizes
+  *us*; it never pokes *it*. The flavor and the insight are the same sentence — the moment it
+  philosophizes *instead of* illuminating the source, it's fluff.
+- **Interesting on its own.** Each aside stands alone for a reader who hasn't opened the book —
+  supply the context; never lean on "this chapter" or "elsewhere in this library." One idea per
+  aside; the last sentence deepens, never mic-drops.
+- **Write from the four voices** (a coherent reference stack, not random): **Asimov** (lucid,
+  rational, unafraid of the ethics) · **Pratchett** (the footnote as art — humane wit, never
+  cruelty) · **Stephenson** (systems-and-centuries sweep) · **the ancients** (speak from *inside*
+  the lineage the text drinks from, not lobbing takes from outside). The erudition lives here.
+- **Clearly labelled opinion, never over the text.** A footnote, never the text; anchored to a
+  `timestamp` (seconds on the default voice) so it surfaces on its passage. **Never** claim to be
+  human, speak for the author, or assert as fact what the source doesn't say.
+
+**The drivel an AI drifts toward — hunt and kill these.** The critic panel's anti-drivel lens quotes
+the offending phrase and gates the set (full taxonomy in [critic-panel.md](critic-panel.md)): glib
+quips / wit not earned by understanding; cheap substitution gimmicks ("swap X for Y and the sentence
+barely changes"); tidy-bow / mic-drop endings; broken metaphors that wobble on inspection ("the text
+is the room"); performance-tells ("read it slowly," "notice the grammar"); slogan-shaped clauses that
+*chime* instead of *argue* ("heal the river while the village stays disposable"); the "not X but Y"
+antithesis cadence used more than once; AI tells (uplift, "as an AI," manufactured rapport); and — the
+one machines miss because it scans as modest — **bare self-reference or performed humility** ("trust
+his sentence over mine"). **The human ear is the final arbiter:** a critic rubber-stamps euphonious
+slop; a person catches it.
+
+**Commentary is always draft.** Run the anti-drivel cook ([critic-panel.md](critic-panel.md)):
+draft → adversarial critique → fix → re-critique, looping until every aside passes (the gate is
+all-CLEAN). Two or three loops is normal; the human signs off last.
 
 **Staging — don't front-load the character.** Early asides are *overheard*: you're a fly on the wall
 of a mind wrestling with the text, no presumed familiarity. Rapport, callbacks ("back in *Rerum

@@ -146,6 +146,15 @@ covers works published through 1930.)
 **Do NOT add (in copyright, commercial):** Asimov *I, Robot* (1950, © to 2046); Heinlein 1950s
 works (© to ~2049). These are exactly the commercial pieces to avoid competing with.
 
+> **Commentary seed — Erewhon → Dune.** Frank Herbert's *Dune* takes its **"Butlerian Jihad"** — the
+> holy war that destroyed all thinking machines ("Thou shalt not make a machine in the likeness of a
+> human mind") — from **Samuel Butler**: the name nods to him, and Herbert imported the idea straight
+> from *Erewhon*'s "Book of the Machines" (a past war of machinists vs. anti-machinists, machines
+> smashed lest they out-evolve us). So the text we're queuing is, quite literally, the seed of Dune's
+> whole no-AI premise — a gift of an opening for that companion. *(Honest caveat: the prequel novels by
+> Brian Herbert & Kevin J. Anderson later supplied an in-universe namesake, "Serena Butler" — a retcon;
+> Frank Herbert's original allusion is to Samuel Butler.)*
+
 ### 3B. Free-licensed modern manifestos & essays
 
 | # | Work | Author | Year | Relevance | Status (the specific basis) |

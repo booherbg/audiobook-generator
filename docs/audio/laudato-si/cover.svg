@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" role="img" aria-label="Laudato Si&#x27; cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#241f17"/>
+      <stop offset="1" stop-color="#14110c"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <rect x="28" y="28" width="544" height="544" rx="18" fill="none" stroke="#d9b25b" stroke-opacity="0.45" stroke-width="2"/>
+  <!-- default emblem: an open book -->
+  <g stroke="#d9b25b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M300 176 C272 160 244 160 224 168 L224 246 C244 238 272 238 300 254 Z"/>
+    <path d="M300 176 C328 160 356 160 376 168 L376 246 C356 238 328 238 300 254 Z"/>
+    <line x1="300" y1="176" x2="300" y2="254"/>
+  </g>
+  <text x="300" y="392" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="52" fill="#ece6da" letter-spacing="1">Laudato Si&#x27;</text>
+  <text x="300" y="486" text-anchor="middle" font-family="-apple-system, Segoe UI, Roboto, sans-serif" font-size="20" fill="#a59c89">Pope Francis</text>
+  <text x="300" y="524" text-anchor="middle" font-family="-apple-system, Segoe UI, Roboto, sans-serif" font-size="15" fill="#8a8170">On Care for Our Common Home</text>
+</svg>

@@ -10,5 +10,8 @@ voices:
   george:
     ref: bm_george
     label: "George — British narrator"
+  aoede:
+    ref: af_aoede
+    label: "Aoede — gentle US female"
 
 lexicon: {}
