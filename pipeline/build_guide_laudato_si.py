@@ -246,7 +246,7 @@ COMMENTARY = [
              "remedy that repairs the ecosystem but leaves its poorest people disposable has not solved the "
              "problem, only moved it. It is the oldest claim of the social tradition — that the goods of "
              "the earth are meant for everyone — now reaching the earth itself."},
-    {"timestamp": 6100,
+    {"timestamp": 5893,
      "label": "On a machine versus a paradigm",
      "text": "Read quickly, this sounds like technophobia, and it is tempting to dismiss it as that. It is "
              "closer to the opposite. Francis separates a machine, which you can pick up or set down, from "
@@ -255,7 +255,7 @@ COMMENTARY = [
              "danger of such a lens is that it never feels like a lens; it feels like realism, so declining "
              "it can look like declining reason. He even names the mood it runs on, 'the cult of unlimited "
              "human power' — and the unnerving thing is how sensible that cult sounds from inside it."},
-    {"timestamp": 11790,
+    {"timestamp": 11486,
      "label": "On the warning Francis reaches back for",
      "text": "Francis pauses to quote a half-forgotten theologian, Romano Guardini, and it is worth "
              "stopping where he stops. Writing in the 1950s, Guardini's fear was not that machines would be "
@@ -264,7 +264,7 @@ COMMENTARY = [
              "shape the day already has. What gives a reader pause is the date: the sharpest description of "
              "our predicament was written by a man watching radios and motorcars, decades before the "
              "machines it now describes. The unease is older and deeper than any of our devices."},
-    {"timestamp": 8800,
+    {"timestamp": 8933,
      "label": "On 'leave,' not 'have'",
      "text": "Francis lets a single question carry the weight of the whole letter: 'What kind of world do "
              "we want to leave to those who come after us, to children who are now growing up?' The weight "

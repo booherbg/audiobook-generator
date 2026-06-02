@@ -400,6 +400,7 @@
       "cover": "audio/laudato-si/cover.svg",
       "public": false,
       "has_guide": true,
+      "wip": true,
       "voices": [
         {
           "id": "aoede",
@@ -416,7 +417,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-01.mp3"
           },
           "duration": {
-            "aoede": 931.6
+            "aoede": 906.1
           }
         },
         {
@@ -426,7 +427,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-02.mp3"
           },
           "duration": {
-            "aoede": 846.0
+            "aoede": 828.8
           }
         },
         {
@@ -436,7 +437,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-03.mp3"
           },
           "duration": {
-            "aoede": 762.9
+            "aoede": 750.7
           }
         },
         {
@@ -446,7 +447,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-04.mp3"
           },
           "duration": {
-            "aoede": 909.8
+            "aoede": 892.9
           }
         },
         {
@@ -456,7 +457,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-05.mp3"
           },
           "duration": {
-            "aoede": 950.1
+            "aoede": 876.3
           }
         },
         {
@@ -466,7 +467,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-06.mp3"
           },
           "duration": {
-            "aoede": 703.0
+            "aoede": 685.6
           }
         },
         {
@@ -476,7 +477,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-07.mp3"
           },
           "duration": {
-            "aoede": 683.4
+            "aoede": 639.4
           }
         },
         {
@@ -486,7 +487,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-08.mp3"
           },
           "duration": {
-            "aoede": 916.7
+            "aoede": 895.6
           }
         },
         {
@@ -496,7 +497,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-09.mp3"
           },
           "duration": {
-            "aoede": 473.5
+            "aoede": 465.6
           }
         },
         {
@@ -506,7 +507,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-10.mp3"
           },
           "duration": {
-            "aoede": 791.2
+            "aoede": 779.4
           }
         },
         {
@@ -516,7 +517,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-11.mp3"
           },
           "duration": {
-            "aoede": 635.2
+            "aoede": 618.1
           }
         },
         {
@@ -526,7 +527,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-12.mp3"
           },
           "duration": {
-            "aoede": 841.6
+            "aoede": 825.4
           }
         },
         {
@@ -536,7 +537,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-13.mp3"
           },
           "duration": {
-            "aoede": 694.9
+            "aoede": 681.7
           }
         },
         {
@@ -546,7 +547,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-14.mp3"
           },
           "duration": {
-            "aoede": 707.4
+            "aoede": 697.4
           }
         },
         {
@@ -556,7 +557,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-15.mp3"
           },
           "duration": {
-            "aoede": 837.0
+            "aoede": 819.1
           }
         },
         {
@@ -566,7 +567,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-16.mp3"
           },
           "duration": {
-            "aoede": 709.3
+            "aoede": 688.0
           }
         },
         {
@@ -576,7 +577,7 @@
             "aoede": "audio/laudato-si/aoede/chapter-17.mp3"
           },
           "duration": {
-            "aoede": 907.3
+            "aoede": 882.7
           }
         },
         {
@@ -586,11 +587,10 @@
             "aoede": "audio/laudato-si/aoede/chapter-18.mp3"
           },
           "duration": {
-            "aoede": 888.0
+            "aoede": 853.1
           }
         }
-      ],
-      "wip": true
+      ]
     }
   ]
 }
