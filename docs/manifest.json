@@ -398,7 +398,7 @@
       "rights": "© Libreria Editrice Vaticana",
       "description": "",
       "cover": "audio/laudato-si/cover.svg",
-      "public": true,
+      "public": false,
       "has_guide": true,
       "voices": [
         {

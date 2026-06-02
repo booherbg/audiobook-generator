@@ -36,7 +36,8 @@ export function bookCard(doc, m, b) {
 
 // Render every book. Returns counts for testing.
 export function renderLibrary(doc, grid, m) {
-  const books = (m && m.books) || [];
+  // Unreleased editions (public:false) stay reachable/playable by direct link but off the public grid.
+  const books = ((m && m.books) || []).filter((b) => b.public !== false);
   if (!books.length) {
     grid.innerHTML = '<p class="muted">No books yet.</p>';
     return { total: 0, wip: 0 };
@@ -54,6 +55,10 @@ export function renderLibrary(doc, grid, m) {
 // queue; edit freely. Full rationale + copyright per item lives in docs/WORK-QUEUE.md.
 // `preview` lists assets already built (companion / full text); shown only in admin mode (below).
 export const QUEUE = [
+  { id: "laudato-si", title: "Laudato Si'", subtitle: "On Care for Our Common Home",
+    author: "Pope Francis", year: "2015", status: "in review",
+    preview: [{ label: "Player", href: "player.html?book=laudato-si" }, { label: "Companion", href: "guide.html?book=laudato-si" }, { label: "Full text", href: "text.html?book=laudato-si" }],
+    note: "Integral ecology and the “technocratic paradigm” — Magnifica's nearest kin. (Audio rendered; in review.)" },
   { id: "city-of-god", title: "The City of God", subtitle: "Book XIV — the two cities",
     author: "Augustine of Hippo", year: "c. 420", status: "queued", preview: [],
     note: "“Two loves have made two cities” — the source of Magnifica's central image." },
