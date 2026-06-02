@@ -5,6 +5,7 @@ import {
   buildViewModel,
   clamp,
   currentLineIndex,
+  formatDuration,
   formatTime,
   lineStartSeconds,
   nextIndex,
@@ -22,6 +23,14 @@ test("formatTime", () => {
   assert.equal(formatTime(3661), "1:01:01");
   assert.equal(formatTime(-5), "0:00");
   assert.equal(formatTime(NaN), "0:00");
+});
+
+test("formatDuration", () => {
+  assert.equal(formatDuration(13788), "3h 50m");  // 3:49:48 → rounded to the minute
+  assert.equal(formatDuration(3600), "1h");
+  assert.equal(formatDuration(2520), "42m");
+  assert.equal(formatDuration(0), "");
+  assert.equal(formatDuration(NaN), "");
 });
 
 test("clamp", () => {

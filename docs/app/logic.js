@@ -10,6 +10,15 @@ export function formatTime(sec) {
   return h ? `${h}:${mm}:${String(s).padStart(2, "0")}` : `${m}:${String(s).padStart(2, "0")}`;
 }
 
+// Human "how long is it" for library cards — rounded to the minute, e.g. "3h 50m" / "42m".
+// (formatTime stays the clock format the player needs for its seek readout.)
+export function formatDuration(sec) {
+  if (!isFinite(sec) || sec <= 0) return "";
+  const mins = Math.round(sec / 60);
+  const h = Math.floor(mins / 60), m = mins % 60;
+  return h ? (m ? `${h}h ${m}m` : `${h}h`) : `${m}m`;
+}
+
 export function clamp(x, lo, hi) {
   return Math.max(lo, Math.min(hi, x));
 }
