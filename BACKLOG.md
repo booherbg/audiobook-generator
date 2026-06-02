@@ -157,8 +157,9 @@ audio set, so all are storage-gated; the text/companion layer of any of them can
 **Deepen the experience (mostly text/JS — cheap, no new audio).**
 - **A library landing that shows the connections** — the three encyclicals as a small annotated
   timeline/graph (1891 → 2015 → 2026), since the ideas literally descend from each other.
-- **How to organize the growing library + Audiobook Queue** (open question — settle before it gets
-  big). Axes on the table: **chronological** (c. 300 BC → 2026, the through-time story), **by theme**
+- **How to organize the growing library + Audiobook Queue** (**now spec'd** — see
+  [the collection organizing model](docs/superpowers/specs/2026-06-02-collection-organizing-model.md);
+  queue items are already tagged). The axes we weighed: **chronological** (c. 300 BC → 2026, the through-time story), **by theme**
   (work & dignity / machines & the mind / the human person), **by "rabbit hole"** (the citation trail
   you followed to get here — Magnifica → its sources → theirs), or **by tag** (multi-axis: tradition,
   era, thread, medium). Leaning: a **tag-based model** underneath with **chronological** and
